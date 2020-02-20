@@ -1,6 +1,6 @@
 const graphql = require("graphql");
 const User = require("../../model/User");
-const { hashPassword } = require("../operations/Operations");
+const { hashPassword } = require("../operations/hashPassword");
 const { capitalize } = require("../../util/Util");
 
 const {
