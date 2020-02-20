@@ -1,6 +1,7 @@
 const graphql = require("graphql");
 const User = require("../../model/User");
 const { hashPassword } = require("../operations/Operations");
+const { capitalize } = require("../../util/Util");
 
 const {
   GraphQLObjectType,
@@ -50,16 +51,14 @@ const Mutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) }
       },
-      resolve(parent, args) {
-        let password = hashPassword(args.password);
-        console.log(args);
-        let User = new User({
-          name: args.name,
+      async resolve(parent, args) {
+        let password = await hashPassword(args.password);
+        let user = new User({
+          name: capitalize(args.name),
           email: args.email,
-          password: args.password
+          password: password
         });
-        console.log(User);
-        return User.save();
+        return user.save();
       }
     }
   }
