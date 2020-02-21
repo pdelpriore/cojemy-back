@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const { connection } = require("./config/db/Connection");
 const graphqlHTTP = require("express-graphql");
-const schema = require("./graphql/schema/Schema");
+const graphqlSchema = require("./graphql/schema/graphqlSchema");
 const rootResolver = require("./graphql/resolvers/index");
 const cors = require("cors");
 const bodyParser = require("body-parser");
@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(
   strings.path.GRAPHQL,
   graphqlHTTP({
-    schema: schema,
+    schema: graphqlSchema,
     rootValue: rootResolver,
     graphiql: true
   })
