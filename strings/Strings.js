@@ -10,7 +10,7 @@ const strings = Object.freeze({
   },
   errors: {
     signup: {
-      USER_EXIST: "utilisateur déjà inscrit"
+      USER_EXISTS: "utilisateur déjà inscrit"
     }
   }
 });

@@ -8,7 +8,7 @@ module.exports = {
     try {
       const user = await User.findOne({ email: email });
       if (user) {
-        throw new Error(capitalizeFirst(strings.errors.signup.USER_EXIST));
+        throw new Error(capitalizeFirst(strings.errors.signup.USER_EXISTS));
       } else {
         let passwordHashed = await hashPassword(password);
         let user = new User({
