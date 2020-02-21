@@ -7,6 +7,11 @@ const strings = Object.freeze({
   notification: {
     SERVER: "server is running",
     DB: "connected to MongoDB database"
+  },
+  errors: {
+    signup: {
+      USER_EXIST: "utilisateur déjà inscrit"
+    }
   }
 });
 
