@@ -1,10 +1,11 @@
-const User = require("../../model/User");
-const { hashPassword } = require("../operations/hashPassword");
-const { strings } = require("../../strings/Strings");
-const { capitalizeFirst } = require("../../util/Util");
-
 module.exports = {
-  signUp: async ({ name, email, password }) => {
+  changeSomething: async (
+    { userInput: { name, email, password } },
+    { isAuth }
+  ) => {
+    if (!isAuth) {
+      throw new Error("Unauthenticated");
+    }
     try {
       const user = await User.findOne({ email: email });
       if (user) {

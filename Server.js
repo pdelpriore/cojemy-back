@@ -8,9 +8,11 @@ const cors = require("cors");
 const bodyParser = require("body-parser");
 const { strings } = require("./strings/Strings");
 const { capitalizeFirst } = require("./util/Util");
+const { isAuth } = require("./middlewares/isAuth");
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(isAuth);
 
 app.use(
   strings.path.GRAPHQL,
