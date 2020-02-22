@@ -23,8 +23,13 @@ app.use(
   })
 );
 
-connection.then(() => {
-  app.listen(strings.port, () =>
-    console.log(capitalizeFirst(strings.notification.SERVER))
-  );
-});
+(async () => {
+  try {
+    await connection();
+    app.listen(strings.port, () =>
+      console.log(capitalizeFirst(strings.notification.SERVER))
+    );
+  } catch (err) {
+    if (err) throw err;
+  }
+})();

@@ -3,15 +3,16 @@ mongoose.set("useFindAndModify", false);
 const { strings } = require("../../strings/Strings");
 const { capitalizeFirst } = require("../../util/Util");
 
-const connection = mongoose
-  .connect(strings.path.MONGODB, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  })
-  .then(() => console.log(capitalizeFirst(strings.notification.DB)))
-  .catch(err => {
-    console.log(err);
-    process.exit();
-  });
+const connection = async () => {
+  try {
+    const dbConnected = await mongoose.connect(strings.path.MONGODB, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true
+    });
+    if (dbConnected) console.log(capitalizeFirst(strings.notification.DB));
+  } catch (err) {
+    if (err) throw err;
+  }
+};
 
 module.exports = { connection };
