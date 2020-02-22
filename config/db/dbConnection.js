@@ -3,7 +3,7 @@ mongoose.set("useFindAndModify", false);
 const { strings } = require("../../strings/Strings");
 const { capitalizeFirst } = require("../../util/Util");
 
-const connection = async () => {
+const dbConnection = async () => {
   try {
     const dbConnected = await mongoose.connect(strings.path.MONGODB, {
       useNewUrlParser: true,
@@ -15,4 +15,4 @@ const connection = async () => {
   }
 };
 
-module.exports = { connection };
+module.exports = { dbConnection };

@@ -1,6 +1,6 @@
 const express = require("express");
 const app = express();
-const { connection } = require("./config/db/Connection");
+const { dbConnection } = require("./config/db/dbConnection");
 const graphqlHTTP = require("express-graphql");
 const graphqlSchema = require("./graphql/schema/graphqlSchema");
 const rootResolver = require("./graphql/resolvers/index");
@@ -25,7 +25,7 @@ app.use(
 
 (async () => {
   try {
-    await connection();
+    await dbConnection();
     app.listen(strings.port, () =>
       console.log(capitalizeFirst(strings.notification.SERVER))
     );
