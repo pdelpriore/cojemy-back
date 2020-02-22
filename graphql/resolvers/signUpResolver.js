@@ -16,7 +16,8 @@ module.exports = {
           email: email,
           password: passwordHashed
         });
-        return await user.save();
+        await user.save();
+        return user;
       }
     } catch (err) {
       if (err) throw err;
