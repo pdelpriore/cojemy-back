@@ -24,3 +24,11 @@ module.exports = {
     }
   }
 };
+
+//EXEMPLE With context = {req, res}
+// const resolvers = {
+//   Query: {
+//     author(parent, args, context, info) {
+//       return find(authors, { id: args.id });
+//     },
+//   },
