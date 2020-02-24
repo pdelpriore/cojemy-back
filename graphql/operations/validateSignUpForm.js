@@ -4,9 +4,13 @@ const nameSpaceRegex = /^[^\s]+$/;
 const { strings } = require("../../strings/Strings");
 const { capitalizeFirst } = require("../../util/Util");
 
-const validateSignupForm = async (name, email, password) => {
+const validateSignupForm = async (name, email, confirmEmail, password) => {
   const validateResult = await new Promise((resolve, reject) => {
-    if (name.length < 5) {
+    if (email !== confirmEmail) {
+      reject(
+        capitalizeFirst(strings.errors.validateSignupForm.EMAILS_MISMATCH)
+      );
+    } else if (name.length < 5) {
       reject(capitalizeFirst(strings.errors.validateSignupForm.NAME_LENGTH));
     } else if (!nameSpaceRegex.test(name)) {
       reject(capitalizeFirst(strings.errors.validateSignupForm.NAME_SPACE));
