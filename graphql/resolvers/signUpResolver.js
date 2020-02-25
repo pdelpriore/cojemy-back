@@ -16,7 +16,8 @@ module.exports = {
         let user = new User({
           name: name,
           email: email.toLowerCase(),
-          password: passwordHashed
+          password: passwordHashed,
+          isEmailConfirmed: false
         });
         await user.save();
         return user;

@@ -14,6 +14,10 @@ const UserSchema = new Schema(
     password: {
       type: String,
       required: true
+    },
+    isEmailConfirmed: {
+      type: Boolean,
+      required: true
     }
   },
   { collection: "user" }
