@@ -1,7 +1,9 @@
 const strings = Object.freeze({
   path: {
     MONGODB: "mongodb://localhost:27017/quoimanger",
-    GRAPHQL: "/graphql"
+    GRAPHQL: "/graphql",
+    EMAIL_CONFIRM: "/emailconfirm/:token/:email",
+    REDIRECT_LOGIN: "http://localhost:3000/login"
   },
   port: 4000,
   notification: {

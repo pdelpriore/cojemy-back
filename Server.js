@@ -9,6 +9,7 @@ const bodyParser = require("body-parser");
 const { strings } = require("./strings/Strings");
 const { capitalizeFirst } = require("./util/Util");
 const { isAuth } = require("./middlewares/isAuth");
+const emailConfirmation = require("./routes/emailConfirmation");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -16,17 +17,17 @@ app.use(isAuth);
 
 app.use(
   strings.path.GRAPHQL,
-  graphqlHTTP((req, res) => ({
+  graphqlHTTP({
     schema: graphqlSchema,
     rootValue: rootResolver,
-    graphiql: true,
-    context: { req, res }
-  }))
+    graphiql: true
+  })
 );
 
 (async () => {
   try {
     await dbConnection();
+    emailConfirmation(app);
     app.listen(strings.port, () => {
       console.log(capitalizeFirst(strings.notification.SERVER));
     });

@@ -5,7 +5,7 @@ const { emailConfirmId } = require("../../config/security/Security");
 
 const sendEmailConfirm = async (email, token) => {
   const confirmEmailSent = await new Promise((resolve, reject) => {
-    const url = `http://localhost:4000/graphql?query=%7B%0A%20%20confirmEmail(token%3A%20%22${token}%22%2C%20email%3A%20%22${email}%22)%20%0A%7D`;
+    const url = `http://localhost:4000/emailconfirm/${token}/${email}`;
     const mailOptions = {
       from: `${emailConfirmId}`,
       to: email,
