@@ -10,7 +10,7 @@ module.exports = buildSchema(
       creationDate: String!
     }
     type RootQuery {
-        confirmEmail(token: String!, email: String!): String
+        confirmEmail(token: String!, email: String!): Boolean
         user(email: String!): User!
         users: [User!]!
     }

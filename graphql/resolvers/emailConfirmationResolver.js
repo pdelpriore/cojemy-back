@@ -13,6 +13,6 @@ module.exports = {
     } catch (err) {
       if (err) throw new Error(err);
     }
-    return "ok";
+    return res.redirect("http://localhost:3000/login");
   }
 };
