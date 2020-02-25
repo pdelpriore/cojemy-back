@@ -7,17 +7,25 @@ const { capitalizeFirst } = require("../../util/Util");
 const validateSignupForm = async (name, email, confirmEmail, password) => {
   const validateResult = await new Promise((resolve, reject) => {
     if (email !== confirmEmail) {
-      reject(
+      throw new Error(
         capitalizeFirst(strings.errors.validateSignupForm.EMAILS_MISMATCH)
       );
     } else if (name.length < 5) {
-      reject(capitalizeFirst(strings.errors.validateSignupForm.NAME_LENGTH));
+      throw new Error(
+        capitalizeFirst(strings.errors.validateSignupForm.NAME_LENGTH)
+      );
     } else if (!nameSpaceRegex.test(name)) {
-      reject(capitalizeFirst(strings.errors.validateSignupForm.NAME_SPACE));
+      throw new Error(
+        capitalizeFirst(strings.errors.validateSignupForm.NAME_SPACE)
+      );
     } else if (!emailRegex.test(email)) {
-      reject(capitalizeFirst(strings.errors.validateSignupForm.WRONG_EMAIL));
+      throw new Error(
+        capitalizeFirst(strings.errors.validateSignupForm.WRONG_EMAIL)
+      );
     } else if (!passwordRegex.test(password)) {
-      reject(capitalizeFirst(strings.errors.validateSignupForm.WRONG_PASSWORD));
+      throw new Error(
+        capitalizeFirst(strings.errors.validateSignupForm.WRONG_PASSWORD)
+      );
     } else {
       resolve();
     }
