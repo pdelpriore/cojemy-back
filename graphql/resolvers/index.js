@@ -1,7 +1,9 @@
 const signUpResolver = require("./signUpResolver");
+const emailConfirmationResolver = require("./emailConfirmationResolver");
 
 const rootResolver = {
-  ...signUpResolver
+  ...signUpResolver,
+  ...emailConfirmationResolver
 };
 
 module.exports = rootResolver;

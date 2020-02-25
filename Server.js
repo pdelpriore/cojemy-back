@@ -16,11 +16,12 @@ app.use(isAuth);
 
 app.use(
   strings.path.GRAPHQL,
-  graphqlHTTP({
+  graphqlHTTP((req, res) => ({
     schema: graphqlSchema,
     rootValue: rootResolver,
-    graphiql: true
-  })
+    graphiql: true,
+    context: { req, res }
+  }))
 );
 
 (async () => {
