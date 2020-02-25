@@ -26,9 +26,9 @@ app.use(
 (async () => {
   try {
     await dbConnection();
-    app.listen(strings.port, () =>
-      console.log(capitalizeFirst(strings.notification.SERVER))
-    );
+    app.listen(strings.port, () => {
+      console.log(capitalizeFirst(strings.notification.SERVER));
+    });
   } catch (err) {
     if (err) throw err;
   }

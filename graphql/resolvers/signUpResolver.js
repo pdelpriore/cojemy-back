@@ -3,6 +3,8 @@ const { hashPassword } = require("../operations/hashPassword");
 const { validateSignupForm } = require("../operations/validateSignUpForm");
 const { strings } = require("../../strings/Strings");
 const { capitalizeFirst, dateToString } = require("../../util/Util");
+const { generateToken } = require("../operations/generateToken");
+const { sendEmailConfirm } = require("../operations/sendEmailConfirm");
 
 module.exports = {
   signUp: async ({ name, email, confirmEmail, password }) => {
@@ -21,6 +23,9 @@ module.exports = {
           creationDate: dateToString(new Date())
         });
         await user.save();
+        let token = await generateToken(email);
+        //send token
+        await sendEmailConfirm(email, token);
         return user;
       }
     } catch (err) {
