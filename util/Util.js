@@ -10,4 +10,8 @@ const capitalizeFirst = text => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
 
-module.exports = { capitalize, capitalizeFirst };
+const dateToString = date => {
+  return date.toISOString();
+};
+
+module.exports = { capitalize, capitalizeFirst, dateToString };

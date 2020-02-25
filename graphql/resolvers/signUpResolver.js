@@ -2,7 +2,7 @@ const User = require("../../model/User");
 const { hashPassword } = require("../operations/hashPassword");
 const { validateSignupForm } = require("../operations/validateSignUpForm");
 const { strings } = require("../../strings/Strings");
-const { capitalizeFirst } = require("../../util/Util");
+const { capitalizeFirst, dateToString } = require("../../util/Util");
 
 module.exports = {
   signUp: async ({ name, email, confirmEmail, password }) => {
@@ -17,7 +17,8 @@ module.exports = {
           name: name,
           email: email.toLowerCase(),
           password: passwordHashed,
-          isEmailConfirmed: false
+          isEmailConfirmed: false,
+          creationDate: dateToString(new Date())
         });
         await user.save();
         return user;

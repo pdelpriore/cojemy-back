@@ -18,6 +18,10 @@ const UserSchema = new Schema(
     isEmailConfirmed: {
       type: Boolean,
       required: true
+    },
+    creationDate: {
+      type: Date,
+      required: true
     }
   },
   { collection: "user" }
