@@ -7,7 +7,10 @@ const generateToken = async email => {
     try {
       const user = await User.findOne({ email: email });
       if (user) {
-        const token = jwt.sign({ userId: user._id, email: email }, jwtSecret);
+        const token = jwt.sign(
+          { userId: user._id, email: user.email },
+          jwtSecret
+        );
         resolve(token);
       }
     } catch (err) {
