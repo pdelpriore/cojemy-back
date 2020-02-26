@@ -24,7 +24,7 @@ module.exports = {
         });
         await user.save();
         let token = await generateToken(email);
-        await sendEmailConfirm(email, token);
+        await sendEmailConfirm(name, email, token);
         return user;
       }
     } catch (err) {
