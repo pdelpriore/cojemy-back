@@ -5,7 +5,7 @@ const { strings } = require("../strings/Strings");
 module.exports = app => {
   app.get(strings.path.EMAIL_CONFIRM, async (req, res) => {
     try {
-      await verifyToken(req.params.token);
+      await verifyToken(req.params.email, req.params.token);
       const user = await User.findOneAndUpdate(
         { email: req.params.email },
         { $set: { isEmailConfirmed: true } },
