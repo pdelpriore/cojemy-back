@@ -2,7 +2,7 @@ const {
   IdClient,
   clientSecret,
   redirectUrl,
-  codeEmailConfirm
+  codeEmailContact
 } = require("../config/security/Security");
 const { google } = require("googleapis");
 
@@ -24,16 +24,18 @@ const generateGoogleAuthUrl = () => {
     scope: GMAIL_SCOPES
   });
 
-  let getToken = async () => {
-    try {
-      const { tokens } = await oauth2Client.getToken(codeEmailConfirm);
-      console.info(tokens);
-    } catch (err) {
-      if (err) console.log(err);
-    }
-  };
+  //console.log(url);
 
-  getToken();
+  //   let getToken = async () => {
+  //     try {
+  //       const { tokens } = await oauth2Client.getToken(codeEmailContact);
+  //       console.info(tokens);
+  //     } catch (err) {
+  //       if (err) console.log(err);
+  //     }
+  //   };
+
+  //   getToken();
 };
 
 module.exports = generateGoogleAuthUrl;

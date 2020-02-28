@@ -1,7 +1,9 @@
 const signUpResolver = require("./signUpResolver");
+const customerContactResolver = require("./CustomerContactResolver");
 
 const rootResolver = {
-  ...signUpResolver
+  ...signUpResolver,
+  ...customerContactResolver
 };
 
 module.exports = rootResolver;

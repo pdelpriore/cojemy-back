@@ -10,6 +10,7 @@ const { strings } = require("./strings/Strings");
 const { capitalizeFirst } = require("./util/Util");
 const { isAuth } = require("./middlewares/isAuth");
 const emailConfirmation = require("./routes/emailConfirmation");
+const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -30,6 +31,7 @@ app.use(
     emailConfirmation(app);
     app.listen(strings.port, () => {
       console.log(capitalizeFirst(strings.notification.SERVER));
+      //generateGoogleAuthUrl();
     });
   } catch (err) {
     if (err) throw err;

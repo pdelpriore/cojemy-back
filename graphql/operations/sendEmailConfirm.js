@@ -1,6 +1,6 @@
 const {
   emailConfirmTransporter
-} = require("../../config/nodemailer/Transporter");
+} = require("../../config/nodemailer/transporters/emailConfirm/EmailConfirmTransporter");
 const { emailConfirmId } = require("../../config/security/Security");
 
 const sendEmailConfirm = async (name, email, token) => {
@@ -11,7 +11,7 @@ const sendEmailConfirm = async (name, email, token) => {
       to: email,
       subject: "Quoi Manger ? - Mail de confirmation",
       html: `<!DOCTYPE html>
-      <html lang="en">
+      <html lang="fr">
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />

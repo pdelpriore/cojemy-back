@@ -3,12 +3,16 @@ const strings = Object.freeze({
     MONGODB: "mongodb://localhost:27017/quoimanger",
     GRAPHQL: "/graphql",
     EMAIL_CONFIRM: "/emailconfirm/:token/:email",
-    REDIRECT_LOGIN: "http://localhost:3000/login"
+    REDIRECT_LOGIN: "http://localhost:3000/login",
+    SERVICE_EMAIL: "paul.del.priore29@gmail.com"
   },
   port: 4000,
   notification: {
     SERVER: "server is running",
     DB: "connected to MongoDB database"
+  },
+  contact: {
+    CUSTOMER_EMAIL_SENT: "Ton email a été bien envoyé. Merci."
   },
   errors: {
     signup: {

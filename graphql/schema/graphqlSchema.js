@@ -15,6 +15,7 @@ module.exports = buildSchema(
     }
     type RootMutation {
         signUp(name: String!, email: String!, confirmEmail: String!, password: String!, isEmailConfirmed: Boolean, creationDate: String): User!
+        customerContact(subject: String!, email: String!, content: String!): String
     }
       schema {
         query: RootQuery

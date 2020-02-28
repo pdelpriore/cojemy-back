@@ -6,7 +6,7 @@ const {
   emailConfirmRefreshToken,
   emailConfirmAccessToken,
   emailConfirmExpiryToken
-} = require("../security/Security");
+} = require("../../../security/Security");
 
 const emailConfirmTransporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
