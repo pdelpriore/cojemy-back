@@ -3,7 +3,6 @@ const {
 } = require("../../config/nodemailer/transporters/contact/ContactTransporter");
 const { emailContactId } = require("../../config/security/Security");
 const { strings } = require("../../strings/Strings");
-const { capitalizeFirst } = require("../../util/Util");
 
 const sendCustomerContactEmail = async (subject, email, content) => {
   const customerContactEmailSent = await new Promise((resolve, reject) => {
@@ -35,7 +34,7 @@ const sendCustomerContactEmail = async (subject, email, content) => {
           <p
             style="font-size: 20px; font-family: 'OpenSans'; font-weight: 400; color: #071A52; text-align: center; margin-bottom: 1%;"
           >
-            Sujet: ${capitalizeFirst(subject)}
+            Sujet: ${subject}
           </p>
           <p
             style="font-size: 20px; font-family: 'OpenSans'; font-weight: 400; color: #071A52; text-align: center; margin-bottom: 1%;"
@@ -50,7 +49,7 @@ const sendCustomerContactEmail = async (subject, email, content) => {
           <p
             style="font-size: 22px; font-family: 'OpenSans'; font-weight: 300; color: #071A52; word-wrap: break-word; white-space: pre-wrap;"
           >
-            ${capitalizeFirst(content)}
+            ${content}
           </p>
         </body>
       </html>`
