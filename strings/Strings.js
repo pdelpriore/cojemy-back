@@ -14,9 +14,15 @@ const strings = Object.freeze({
   contact: {
     CUSTOMER_EMAIL_SENT: "Ton email a été bien envoyé. Merci."
   },
+  remindPass: {
+    PASSWORD_SENT: "nouveau mot de passe envoyé"
+  },
   errors: {
     signup: {
       USER_EXISTS: "utilisateur déjà inscrit"
+    },
+    remindPass: {
+      USER_NULL: "utilisateur n'existe pas"
     },
     validateSignupForm: {
       NAME_LENGTH: "ton nom d'utilisateur doit contenir au moins 5 caractères",

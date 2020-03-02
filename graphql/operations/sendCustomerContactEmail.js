@@ -32,22 +32,22 @@ const sendCustomerContactEmail = async (subject, email, content) => {
             Customer Contact Email
           </h3>
           <p
-            style="font-size: 20px; font-family: 'OpenSans'; font-weight: 400; color: #071A52; text-align: center; margin-bottom: 1%;"
+            style="font-size: 20px; font-family: 'Open Sans'; font-weight: 400; color: #071A52; text-align: center; margin-bottom: 1%;"
           >
             Sujet: ${subject}
           </p>
           <p
-            style="font-size: 20px; font-family: 'OpenSans'; font-weight: 400; color: #071A52; text-align: center; margin-bottom: 1%;"
+            style="font-size: 20px; font-family: 'Open Sans'; font-weight: 400; color: #071A52; text-align: center; margin-bottom: 1%;"
           >
             Expéditeur: ${email}
           </p>
           <p
-            style="font-size: 20px; font-family: 'OpenSans'; font-weight: 600; color: #071A52; text-align: center;"
+            style="font-size: 20px; font-family: 'Open Sans'; font-weight: 600; color: #071A52; text-align: center;"
           >
             Content:
           </p>
           <p
-            style="font-size: 22px; font-family: 'OpenSans'; font-weight: 300; color: #071A52; word-wrap: break-word; white-space: pre-wrap;"
+            style="font-size: 22px; font-family: 'Open Sans'; font-weight: 300; color: #071A52; word-wrap: break-word; white-space: pre-wrap;"
           >
             ${content}
           </p>

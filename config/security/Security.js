@@ -16,10 +16,19 @@ const emailContactAccessToken =
 const emailContactRefreshToken =
   "1//03sPiBodEeOa8CgYIARAAGAMSNwF-L9IrGh8LvnTYyt9qD_IBnIN5ttcLdQqn4Um4wjayu_GwP0Km9F2FOeT_tH84ETIgCKWQDCE";
 const emailContactExpiryToken = "1582881430393";
+const codeEmailNewPass =
+  "4/xAGABJV6nOMVos1z4q-fqKiMDYxuxynMKxzWFmlO236PiFURfHCbG04QYPxQBSiagWYsliTnrdZRCAbCijTHjRU";
+const emailNewPassAccessToken =
+  "ya29.Il_AB5PDtqeJaGrKOnTSRUSSHlWrgUakex6WxhZqotXlxfTgOOr6IVZMy1qJ04CtozWTkYzY2NQSfkuInfDuI7p2y4_cIbdMHP9FrtPsM2C5jMHref_RSw26jONe6RtTWw";
+const emailNewPassRefreshToken =
+  "1//03i4LUFURUdDkCgYIARAAGAMSNwF-L9Irs3O5fixlNYbajS4R2wC7UV8fE2ecDMGUFEpWzlu8rJViujVNafIvfkctwVrH1PYv5NM";
+const emailNewPassExpiryToken = "1583144587008";
 const emailConfirmId = "no.reply.qm.emailconfirm@gmail.com";
 const emailConfirmPass = "DeXQmsp(o%!koAWSapp";
 const emailContactId = "no.reply.qm.customercontact@gmail.com";
 const emailContactPass = "DeXoS25%*$IO(!?aPP";
+const emailNewPasswordId = "no.reply.qm.newpass@gmail.com";
+const emailNewPasswordPass = "NEw%!PaSsspo-.?$k(o";
 const jwtSecret = "SUp%!(cnEpAAS$/!";
 
 module.exports = {
@@ -34,5 +43,9 @@ module.exports = {
   emailContactAccessToken,
   emailContactRefreshToken,
   emailContactExpiryToken,
+  emailNewPasswordId,
+  emailNewPassAccessToken,
+  emailNewPassRefreshToken,
+  emailNewPassExpiryToken,
   jwtSecret
 };
