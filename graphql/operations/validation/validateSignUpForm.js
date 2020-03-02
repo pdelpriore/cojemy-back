@@ -1,8 +1,8 @@
 const emailRegex = /[a-z0-9\._%+!$&*=^|~#%'`?{}/\-]+@([a-z0-9\-]+\.){1,}([a-z]{2,16})/;
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 const nameSpaceRegex = /^[^\s]+$/;
-const { strings } = require("../../strings/Strings");
-const { capitalizeFirst } = require("../../util/Util");
+const { strings } = require("../../../strings/Strings");
+const { capitalizeFirst } = require("../../../util/Util");
 
 const validateSignupForm = async (name, email, confirmEmail, password) => {
   const validateResult = await new Promise((resolve, reject) => {

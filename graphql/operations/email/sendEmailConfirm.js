@@ -1,7 +1,7 @@
 const {
   emailConfirmTransporter
-} = require("../../config/nodemailer/transporters/emailConfirm/EmailConfirmTransporter");
-const { emailConfirmId } = require("../../config/security/Security");
+} = require("../../../config/nodemailer/transporters/emailConfirm/EmailConfirmTransporter");
+const { emailConfirmId } = require("../../../config/security/Security");
 
 const sendEmailConfirm = async (name, email, token) => {
   const confirmEmailSent = await new Promise((resolve, reject) => {

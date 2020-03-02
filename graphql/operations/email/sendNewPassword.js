@@ -1,7 +1,7 @@
 const {
   remindPassTransporter
-} = require("../../config/nodemailer/transporters/remindPass/RemindPassTransporter");
-const { emailNewPasswordId } = require("../../config/security/Security");
+} = require("../../../config/nodemailer/transporters/remindPass/RemindPassTransporter");
+const { emailNewPasswordId } = require("../../../config/security/Security");
 
 const sendNewPassword = async (name, password, email) => {
   const newPasswordSent = await new Promise((resolve, reject) => {

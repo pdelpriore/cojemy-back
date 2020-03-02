@@ -1,4 +1,4 @@
-const User = require("../../model/User");
+const User = require("../../../model/User");
 const generator = require("generate-password");
 const { hashPassword } = require("./hashPassword");
 

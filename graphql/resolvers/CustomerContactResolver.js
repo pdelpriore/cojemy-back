@@ -1,9 +1,9 @@
 const {
   validateCustomerContactForm
-} = require("../operations/validateCustomerContactForm");
+} = require("../operations/validation/validateCustomerContactForm");
 const {
   sendCustomerContactEmail
-} = require("../operations/sendCustomerContactEmail");
+} = require("../operations/email/sendCustomerContactEmail");
 const { strings } = require("../../strings/Strings");
 
 module.exports = {

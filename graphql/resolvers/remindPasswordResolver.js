@@ -1,7 +1,9 @@
 const User = require("../../model/User");
-const { validateNewPassForm } = require("../operations/validateNewPassForm");
-const { setNewPassword } = require("../operations/setNewPassword");
-const { sendNewPassword } = require("../operations/sendNewPassword");
+const {
+  validateNewPassForm
+} = require("../operations/validation/validateNewPassForm");
+const { setNewPassword } = require("../operations/password/setNewPassword");
+const { sendNewPassword } = require("../operations/email/sendNewPassword");
 const { strings } = require("../../strings/Strings");
 const { capitalizeFirst } = require("../../util/Util");
 

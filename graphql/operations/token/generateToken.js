@@ -1,6 +1,6 @@
 const jwt = require("jsonwebtoken");
-const { jwtSecret } = require("../../config/security/Security");
-const User = require("../../model/User");
+const { jwtSecret } = require("../../../config/security/Security");
+const User = require("../../../model/User");
 
 const generateToken = async email => {
   const tokenGenerated = await new Promise(async (resolve, reject) => {

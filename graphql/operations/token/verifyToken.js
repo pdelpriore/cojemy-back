@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { jwtSecret } = require("../../config/security/Security");
+const { jwtSecret } = require("../../../config/security/Security");
 
 const verifyToken = async (email, token) => {
   const tokenVerified = await new Promise((resolve, reject) => {
