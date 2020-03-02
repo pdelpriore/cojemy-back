@@ -15,7 +15,7 @@ const setNewPassword = async email => {
         { $set: { password: newPasswordHashed } },
         { new: true }
       ).exec();
-      resolve(user);
+      resolve({ user: user, newPassword: newPassword });
     } catch (err) {
       if (err) throw new Error(err);
     }

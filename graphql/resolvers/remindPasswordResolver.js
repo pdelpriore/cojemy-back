@@ -15,11 +15,11 @@ module.exports = {
       if (user === null) {
         throw new Error(capitalizeFirst(strings.errors.remindPass.USER_NULL));
       } else {
-        const userWithNewPassword = await setNewPassword(user.email);
+        const result = await setNewPassword(user.email);
         await sendNewPassword(
-          userWithNewPassword.name,
-          userWithNewPassword.password,
-          userWithNewPassword.email
+          result.user.name,
+          result.newPassword,
+          result.user.email
         );
         return strings.remindPass.PASSWORD_SENT;
       }
