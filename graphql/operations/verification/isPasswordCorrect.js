@@ -1,21 +1,17 @@
-const User = require("../../../model/User");
 const { strings } = require("../../../strings/Strings");
 const { capitalizeFirst } = require("../../../util/Util");
 const bcrypt = require("bcrypt");
 
-const isPasswordCorrect = async (email, password) => {
-  const result = await new Promise(async (resolve, reject) => {
+const isPasswordCorrect = async (password, hashedPassword) => {
+  const result = await new Promise((resolve, reject) => {
     try {
-      const user = await User.findOne({ email: email });
-      if (user) {
-        bcrypt.compare(password, user.password, (err, comparison) => {
-          if (comparison) {
-            resolve();
-          } else {
-            reject(capitalizeFirst(strings.errors.login.WRONG_PASSWORD));
-          }
-        });
-      }
+      bcrypt.compare(password, hashedPassword, (err, comparison) => {
+        if (comparison) {
+          resolve();
+        } else {
+          reject(capitalizeFirst(strings.errors.login.WRONG_PASSWORD));
+        }
+      });
     } catch (err) {
       if (err) throw new Error(err);
     }

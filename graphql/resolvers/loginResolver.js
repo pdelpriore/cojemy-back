@@ -11,8 +11,8 @@ module.exports = {
   login: async ({ email, password }) => {
     try {
       const user = await isUserExist(email);
-      await isEmailConfirmed(email);
-      await isPasswordCorrect(email, password);
+      await isEmailConfirmed(user.isEmailConfirmed);
+      await isPasswordCorrect(password, user.password);
       const token = await generateToken(user.email);
       console.log(token);
       return user;

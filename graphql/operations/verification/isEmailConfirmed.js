@@ -1,12 +1,10 @@
-const User = require("../../../model/User");
 const { strings } = require("../../../strings/Strings");
 const { capitalizeFirst } = require("../../../util/Util");
 
-const isEmailConfirmed = async email => {
-  const result = await new Promise(async (resolve, reject) => {
+const isEmailConfirmed = async isEmailConfirmed => {
+  const result = await new Promise((resolve, reject) => {
     try {
-      const user = await User.findOne({ email: email });
-      if (user.isEmailConfirmed) {
+      if (isEmailConfirmed) {
         resolve();
       } else {
         reject(capitalizeFirst(strings.errors.login.EMAIL_UNCONFIRMED));
