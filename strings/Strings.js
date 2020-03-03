@@ -21,6 +21,10 @@ const strings = Object.freeze({
     signup: {
       USER_EXISTS: "utilisateur déjà inscrit."
     },
+    login: {
+      WRONG_PASSWORD: "mot de passe incorrect.",
+      EMAIL_UNCONFIRMED: "email non confirmé."
+    },
     remindPass: {
       USER_NULL: "utilisateur n'existe pas."
     },

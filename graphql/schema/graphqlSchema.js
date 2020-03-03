@@ -17,6 +17,7 @@ module.exports = buildSchema(
         signUp(name: String!, email: String!, confirmEmail: String!, password: String!, isEmailConfirmed: Boolean, creationDate: String): User!
         customerContact(subject: String!, email: String!, content: String!): String
         remindPassword(email: String!): String
+        login(email: String!, password: String!): User!
     }
       schema {
         query: RootQuery

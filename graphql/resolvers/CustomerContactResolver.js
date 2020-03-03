@@ -8,8 +8,12 @@ const { strings } = require("../../strings/Strings");
 
 module.exports = {
   customerContact: async ({ subject, email, content }) => {
-    await validateCustomerContactForm(email);
-    await sendCustomerContactEmail(subject, email, content);
-    return strings.contact.CUSTOMER_EMAIL_SENT;
+    try {
+      await validateCustomerContactForm(email);
+      await sendCustomerContactEmail(subject, email, content);
+      return strings.contact.CUSTOMER_EMAIL_SENT;
+    } catch (err) {
+      if (err) throw new Error(err);
+    }
   }
 };
