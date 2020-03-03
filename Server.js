@@ -6,9 +6,9 @@ const graphqlSchema = require("./graphql/schema/graphqlSchema");
 const rootResolver = require("./graphql/resolvers/index");
 const cors = require("cors");
 const bodyParser = require("body-parser");
+const cookieParser = require("cookie-parser");
 const { strings } = require("./strings/Strings");
 const { capitalizeFirst } = require("./util/Util");
-const { isAuth } = require("./middlewares/isAuth");
 const emailConfirmation = require("./routes/emailConfirmation");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 
@@ -18,8 +18,8 @@ app.use(
     origin: strings.path.ORIGIN_FRONT
   })
 );
+app.use(cookieParser());
 app.use(bodyParser.json());
-app.use(isAuth);
 
 app.use(
   strings.path.GRAPHQL,

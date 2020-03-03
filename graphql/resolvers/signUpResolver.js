@@ -7,12 +7,11 @@ const { strings } = require("../../strings/Strings");
 const { capitalizeFirst, dateToString } = require("../../util/Util");
 const { generateToken } = require("../operations/token/generateToken");
 const { sendEmailConfirm } = require("../operations/email/sendEmailConfirm");
-const { isUserExist } = require("../operations/verification/isUserExist");
 
 module.exports = {
   signUp: async ({ name, email, confirmEmail, password }) => {
     try {
-      const user = await isUserExist(email);
+      const user = await User.findOne({ email: email });
       if (user) {
         throw new Error(capitalizeFirst(strings.errors.signup.USER_EXISTS));
       } else {
