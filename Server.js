@@ -12,17 +12,23 @@ const { isAuth } = require("./middlewares/isAuth");
 const emailConfirmation = require("./routes/emailConfirmation");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 
-app.use(cors());
+app.use(
+  cors({
+    credentials: true,
+    origin: strings.path.ORIGIN_FRONT
+  })
+);
 app.use(bodyParser.json());
 app.use(isAuth);
 
 app.use(
   strings.path.GRAPHQL,
-  graphqlHTTP({
+  graphqlHTTP((req, res) => ({
     schema: graphqlSchema,
     rootValue: rootResolver,
-    graphiql: true
-  })
+    graphiql: true,
+    context: { req, res }
+  }))
 );
 
 (async () => {

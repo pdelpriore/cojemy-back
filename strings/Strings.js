@@ -4,7 +4,8 @@ const strings = Object.freeze({
     GRAPHQL: "/graphql",
     EMAIL_CONFIRM: "/emailconfirm/:token/:email",
     REDIRECT_LOGIN: "http://localhost:3000/login",
-    SERVICE_EMAIL: "paul.del.priore29@gmail.com"
+    SERVICE_EMAIL: "paul.del.priore29@gmail.com",
+    ORIGIN_FRONT: "http://localhost:3000"
   },
   port: 4000,
   notification: {
