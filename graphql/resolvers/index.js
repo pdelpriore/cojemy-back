@@ -1,5 +1,5 @@
 const signUpResolver = require("./signUpResolver");
-const customerContactResolver = require("./CustomerContactResolver");
+const customerContactResolver = require("./customerContactResolver");
 const remindPasswordResolver = require("./remindPasswordResolver");
 
 const rootResolver = {

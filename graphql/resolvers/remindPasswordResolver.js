@@ -2,6 +2,7 @@ const User = require("../../model/User");
 const {
   validateNewPassForm
 } = require("../operations/validation/validateNewPassForm");
+const { isUserExist } = require("../operations/verification/isUserExist");
 const { setNewPassword } = require("../operations/password/setNewPassword");
 const { sendNewPassword } = require("../operations/email/sendNewPassword");
 const { strings } = require("../../strings/Strings");
@@ -11,10 +12,8 @@ module.exports = {
   remindPassword: async ({ email }) => {
     try {
       await validateNewPassForm(email);
-      const user = await User.findOne({ email: email });
-      if (user === null) {
-        throw new Error(capitalizeFirst(strings.errors.remindPass.USER_NULL));
-      } else {
+      const user = await isUserExist(email);
+      if (user) {
         const { userWithNewPassword, newPassword } = await setNewPassword(
           user.email
         );
