@@ -19,6 +19,10 @@ const UserSchema = new Schema(
       type: Boolean,
       required: true
     },
+    isGoogleUser: {
+      type: Boolean,
+      required: true
+    },
     creationDate: {
       type: Date,
       required: true

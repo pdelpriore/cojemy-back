@@ -22,6 +22,7 @@ module.exports = {
           email: email.toLowerCase(),
           password: passwordHashed,
           isEmailConfirmed: false,
+          isGoogleUser: false,
           creationDate: dateToString(new Date())
         });
         await user.save();
