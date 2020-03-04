@@ -7,6 +7,7 @@ module.exports = buildSchema(
       email: String!
       password: String!
       isEmailConfirmed: Boolean!
+      isGoogleUser: Boolean!
       creationDate: String!
     }
     type RootQuery {
