@@ -6,6 +6,7 @@ module.exports = buildSchema(
       name: String!
       email: String!
       password: String!
+      googlePhoto: String!
       isEmailConfirmed: Boolean!
       isGoogleUser: Boolean!
       creationDate: String!

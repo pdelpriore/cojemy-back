@@ -3,7 +3,7 @@ const { capitalizeFirst, dateToString } = require("../../util/Util");
 const { strings } = require("../../strings/Strings");
 
 module.exports = {
-  signUpGoogleUser: async ({ name, email, photo }) => {
+  signUpGoogleUser: async ({ name, email, googlePhoto }) => {
     try {
       const user = await User.findOne({ email: email });
       if (user) {
@@ -14,8 +14,8 @@ module.exports = {
         let user = new User({
           name: name,
           email: email.toLowerCase(),
-          googlePhoto: photo,
           password: strings.signupGoogleUser.NO_PASSWORD,
+          googlePhoto: googlePhoto,
           isEmailConfirmed: true,
           isGoogleUser: true,
           creationDate: dateToString(new Date())
