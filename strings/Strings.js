@@ -18,8 +18,14 @@ const strings = Object.freeze({
   remindPass: {
     PASSWORD_SENT: "nouveau mot de passe envoyé."
   },
+  signupGoogleUser: {
+    NO_PASSWORD: "password not required"
+  },
   errors: {
     signup: {
+      USER_EXISTS: "utilisateur déjà inscrit."
+    },
+    signupGoogleUser: {
       USER_EXISTS: "utilisateur déjà inscrit."
     },
     login: {

@@ -15,6 +15,15 @@ const UserSchema = new Schema(
       type: String,
       required: true
     },
+    photo: {
+      data: Buffer,
+      contentType: String,
+      required: false
+    },
+    googlePhoto: {
+      type: String,
+      require: true
+    },
     isEmailConfirmed: {
       type: Boolean,
       required: true
