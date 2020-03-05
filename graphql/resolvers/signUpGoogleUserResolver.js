@@ -24,7 +24,7 @@ module.exports = {
         return user;
       }
     } catch (err) {
-      if (err) throw new Error(err);
+      if (err) throw err;
     }
   }
 };
