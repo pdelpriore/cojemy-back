@@ -19,6 +19,7 @@ module.exports = buildSchema(
         customerContact(subject: String!, email: String!, content: String!): String
         remindPassword(email: String!): String
         login(email: String!, password: String!): User!
+        logout(email: String!): Boolean
     }
       schema {
         query: RootQuery
