@@ -16,7 +16,7 @@ module.exports = buildSchema(
         users: [User!]!
     }
     type RootMutation {
-        signUp(name: String!, email: String!, confirmEmail: String!, password: String!, isEmailConfirmed: Boolean, creationDate: String): User!
+        signUp(name: String!, email: String!, confirmEmail: String!, password: String!): User!
         customerContact(subject: String!, email: String!, content: String!): String
         remindPassword(email: String!): String
         login(email: String!, password: String!): User!
