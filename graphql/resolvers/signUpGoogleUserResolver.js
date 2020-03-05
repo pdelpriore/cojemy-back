@@ -14,7 +14,7 @@ module.exports = {
         let user = new User({
           name: name,
           email: email.toLowerCase(),
-          photo: photo,
+          googlePhoto: photo,
           password: strings.signupGoogleUser.NO_PASSWORD,
           isEmailConfirmed: true,
           isGoogleUser: true,
