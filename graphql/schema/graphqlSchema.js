@@ -23,6 +23,7 @@ module.exports = buildSchema(
         logout(email: String!): Boolean
         signUpGoogleUser(name: String!, email: String!, googlePhoto: String!): User!
         loginGoogleUser(email: String!): User!
+        logoutGoogleUser(email: String!): Boolean
     }
       schema {
         query: RootQuery
