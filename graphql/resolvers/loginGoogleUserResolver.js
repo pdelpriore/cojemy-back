@@ -1,5 +1,4 @@
 const { isUserExist } = require("../operations/verification/isUserExist");
-const { isGoogleUser } = require("../operations/verification/isGoogleUser");
 const { strings } = require("../../strings/Strings");
 const { capitalizeFirst } = require("../../util/Util");
 const { verifyToken } = require("../operations/token/verifyToken");
@@ -8,12 +7,11 @@ module.exports = {
   loginGoogleUser: async ({ email }, { req, res }) => {
     try {
       const user = await isUserExist(email);
-      const isUserGoogle = isGoogleUser(user.isGoogleUser);
-      if (isUserGoogle) {
+      if (user.isGoogleUser) {
         const tokenVerified = await verifyToken(
           email,
           req.get(strings.request.HEADER),
-          isUserGoogle
+          user.isGoogleUser
         );
         if (tokenVerified) {
           res.cookie("id", req.get(strings.request.HEADER), {
