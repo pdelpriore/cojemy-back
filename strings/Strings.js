@@ -9,7 +9,7 @@ const strings = Object.freeze({
   },
   port: 4000,
   request: {
-    HEADER: "authorization"
+    HEADER: "x-auth"
   },
   notification: {
     SERVER: "server is running",
@@ -38,6 +38,9 @@ const strings = Object.freeze({
     },
     loginGoogleUser: {
       ERROR: "ce n'est pas un compte google."
+    },
+    token: {
+      ERROR: "tu n'es pas autorisé"
     },
     remindPass: {
       USER_NULL: "utilisateur n'existe pas."

@@ -4,6 +4,7 @@ const remindPasswordResolver = require("./remindPasswordResolver");
 const loginResolver = require("./loginResolver");
 const logoutResolver = require("./logoutResolver");
 const signUpGoogleUserResolver = require("./signUpGoogleUserResolver");
+const loginGoogleUserResolver = require("./loginGoogleUserResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -11,7 +12,8 @@ const rootResolver = {
   ...remindPasswordResolver,
   ...loginResolver,
   ...logoutResolver,
-  ...signUpGoogleUserResolver
+  ...signUpGoogleUserResolver,
+  ...loginGoogleUserResolver
 };
 
 module.exports = rootResolver;
