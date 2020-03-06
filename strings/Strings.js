@@ -8,6 +8,9 @@ const strings = Object.freeze({
     ORIGIN_FRONT: "http://localhost:3000"
   },
   port: 4000,
+  request: {
+    HEADER: "authorization"
+  },
   notification: {
     SERVER: "server is running",
     DB: "connected to MongoDB database"
@@ -30,7 +33,11 @@ const strings = Object.freeze({
     },
     login: {
       WRONG_PASSWORD: "mot de passe incorrect.",
-      EMAIL_UNCONFIRMED: "email non confirmé."
+      EMAIL_UNCONFIRMED: "email non confirmé.",
+      ERROR: "c'est un compte google."
+    },
+    loginGoogleUser: {
+      ERROR: "ce n'est pas un compte google."
     },
     remindPass: {
       USER_NULL: "utilisateur n'existe pas."
