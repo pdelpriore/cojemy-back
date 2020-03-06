@@ -14,6 +14,7 @@ module.exports = {
           //on production set secure true
           //secure: true
         });
+        return user;
       } else {
         throw new Error(capitalizeFirst(strings.errors.loginGoogleUser.ERROR));
       }
