@@ -1,10 +1,10 @@
 const {
   validateCustomerContactForm
-} = require("../operations/validation/validateCustomerContactForm");
+} = require("../../operations/validation/validateCustomerContactForm");
 const {
   sendCustomerContactEmail
-} = require("../operations/email/sendCustomerContactEmail");
-const { strings } = require("../../strings/Strings");
+} = require("../../operations/email/sendCustomerContactEmail");
+const { strings } = require("../../../strings/Strings");
 
 module.exports = {
   customerContact: async ({ subject, email, content }) => {

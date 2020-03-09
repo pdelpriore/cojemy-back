@@ -1,12 +1,12 @@
-const User = require("../../model/User");
+const User = require("../../../model/User");
 const {
   validateNewPassForm
-} = require("../operations/validation/validateNewPassForm");
-const { isUserExist } = require("../operations/verification/isUserExist");
-const { setNewPassword } = require("../operations/password/setNewPassword");
-const { sendNewPassword } = require("../operations/email/sendNewPassword");
-const { strings } = require("../../strings/Strings");
-const { capitalizeFirst } = require("../../util/Util");
+} = require("../../operations/validation/validateNewPassForm");
+const { isUserExist } = require("../../operations/verification/isUserExist");
+const { setNewPassword } = require("../../operations/password/setNewPassword");
+const { sendNewPassword } = require("../../operations/email/sendNewPassword");
+const { strings } = require("../../../strings/Strings");
+const { capitalizeFirst } = require("../../../util/Util");
 
 module.exports = {
   remindPassword: async ({ email }) => {

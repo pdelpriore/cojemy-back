@@ -1,4 +1,4 @@
-const { verifyToken } = require("../operations/token/verifyToken");
+const { verifyToken } = require("../../operations/token/verifyToken");
 
 module.exports = {
   logout: async ({ email }, { req, res }) => {

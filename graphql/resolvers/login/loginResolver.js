@@ -1,14 +1,16 @@
-const { isUserExist } = require("../operations/verification/isUserExist");
+const { isUserExist } = require("../../operations/verification/isUserExist");
 const {
   isPasswordCorrect
-} = require("../operations/verification/isPasswordCorrect");
+} = require("../../operations/verification/isPasswordCorrect");
 const {
   isEmailConfirmed
-} = require("../operations/verification/isEmailConfirmed");
-const { generateToken } = require("../operations/token/generateToken");
-const { protectAgainstHack } = require("../operations/hack/protectAgainstHack");
-const { capitalizeFirst } = require("../../util/Util");
-const { strings } = require("../../strings/Strings");
+} = require("../../operations/verification/isEmailConfirmed");
+const { generateToken } = require("../../operations/token/generateToken");
+const {
+  protectAgainstHack
+} = require("../../operations/hack/protectAgainstHack");
+const { capitalizeFirst } = require("../../../util/Util");
+const { strings } = require("../../../strings/Strings");
 
 module.exports = {
   login: async ({ email, password }, { req, res }) => {

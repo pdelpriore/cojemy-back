@@ -1,12 +1,12 @@
-const User = require("../../model/User");
-const { hashPassword } = require("../operations/password/hashPassword");
+const User = require("../../../model/User");
+const { hashPassword } = require("../../operations/password/hashPassword");
 const {
   validateSignupForm
-} = require("../operations/validation/validateSignUpForm");
-const { strings } = require("../../strings/Strings");
-const { capitalizeFirst, dateToString } = require("../../util/Util");
-const { generateToken } = require("../operations/token/generateToken");
-const { sendEmailConfirm } = require("../operations/email/sendEmailConfirm");
+} = require("../../operations/validation/validateSignUpForm");
+const { strings } = require("../../../strings/Strings");
+const { capitalizeFirst, dateToString } = require("../../../util/Util");
+const { generateToken } = require("../../operations/token/generateToken");
+const { sendEmailConfirm } = require("../../operations/email/sendEmailConfirm");
 
 module.exports = {
   signUp: async ({ name, email, confirmEmail, password }) => {
