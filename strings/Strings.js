@@ -34,7 +34,8 @@ const strings = Object.freeze({
     login: {
       WRONG_PASSWORD: "mot de passe incorrect.",
       EMAIL_UNCONFIRMED: "email non confirmé.",
-      ERROR: "c'est un compte google."
+      ERROR: "c'est un compte google.",
+      HACK: "tu es bloqué en raison de tentative de hack."
     },
     loginGoogleUser: {
       ERROR: "ce n'est pas un compte google."

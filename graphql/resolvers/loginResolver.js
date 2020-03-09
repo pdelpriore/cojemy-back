@@ -6,12 +6,14 @@ const {
   isEmailConfirmed
 } = require("../operations/verification/isEmailConfirmed");
 const { generateToken } = require("../operations/token/generateToken");
+const { protectAgainstHack } = require("../operations/hack/protectAgainstHack");
 const { capitalizeFirst } = require("../../util/Util");
 const { strings } = require("../../strings/Strings");
 
 module.exports = {
-  login: async ({ email, password }, { res }) => {
+  login: async ({ email, password }, { req, res }) => {
     try {
+      await protectAgainstHack(req);
       const user = await isUserExist(email);
       if (!user.isGoogleUser) {
         await isEmailConfirmed(user.isEmailConfirmed);

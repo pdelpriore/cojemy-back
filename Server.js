@@ -11,6 +11,7 @@ const { strings } = require("./strings/Strings");
 const { capitalizeFirst } = require("./util/Util");
 const emailConfirmation = require("./routes/emailConfirmation");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
+const checkRequest = require("./util/checkRequest");
 
 app.use(
   cors({
@@ -38,6 +39,7 @@ app.use(
     app.listen(strings.port, () => {
       console.log(capitalizeFirst(strings.notification.SERVER));
       //generateGoogleAuthUrl();
+      checkRequest();
     });
   } catch (err) {
     if (err) throw err;
