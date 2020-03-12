@@ -3,6 +3,7 @@ const { buildSchema } = require("graphql");
 module.exports = buildSchema(
   `
     type User {
+      _id: ID!
       name: String!
       email: String!
       password: String!
@@ -10,10 +11,18 @@ module.exports = buildSchema(
       isEmailConfirmed: Boolean!
       isGoogleUser: Boolean!
       creationDate: String!
+      recipes: [Recipe]
+    }
+    type Recipe {
+      _id: ID!
+      title: String!
+      picture: String 
+      category: String!
+      date: String!
+      author: User!
     }
     type RootQuery {
-        user(email: String!): User!
-        users: [User!]!
+        retrieveRecipes(category: String!): [Recipe!]!
     }
     type RootMutation {
         signUp(name: String!, email: String!, confirmEmail: String!, password: String!): User!

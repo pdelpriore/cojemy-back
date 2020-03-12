@@ -35,7 +35,13 @@ const UserSchema = new Schema(
     creationDate: {
       type: Date,
       required: true
-    }
+    },
+    recipes: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "recipe"
+      }
+    ]
   },
   { collection: "user" }
 );
