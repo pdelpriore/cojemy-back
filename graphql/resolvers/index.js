@@ -6,6 +6,7 @@ const logoutResolver = require("./logout/logoutResolver");
 const signUpGoogleUserResolver = require("./signup/signUpGoogleUserResolver");
 const loginGoogleUserResolver = require("./login/loginGoogleUserResolver");
 const logoutGoogleUserResolver = require("./logout/logoutGoogleUserResolver");
+const getRecipe = require("./recipes/getRecipeResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -15,7 +16,8 @@ const rootResolver = {
   ...logoutResolver,
   ...signUpGoogleUserResolver,
   ...loginGoogleUserResolver,
-  ...logoutGoogleUserResolver
+  ...logoutGoogleUserResolver,
+  ...getRecipe
 };
 
 module.exports = rootResolver;

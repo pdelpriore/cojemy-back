@@ -10,10 +10,18 @@ module.exports = buildSchema(
       isEmailConfirmed: Boolean!
       isGoogleUser: Boolean!
       creationDate: String!
+      recipes: [Recipes!]!
+    }
+    type Recipes {
+      title: String!,
+      picture: String,
+      category: String!,
+      date: String!
     }
     type RootQuery {
         user(email: String!): User!
         users: [User!]!
+        getRecipe(category: String!): [User!]!
     }
     type RootMutation {
         signUp(name: String!, email: String!, confirmEmail: String!, password: String!): User!

@@ -35,7 +35,28 @@ const UserSchema = new Schema(
     creationDate: {
       type: Date,
       required: true
-    }
+    },
+    recipes: [
+      {
+        title: {
+          type: String,
+          required: true
+        },
+        picture: {
+          data: Buffer,
+          contentType: String,
+          required: false
+        },
+        category: {
+          type: String,
+          required: true
+        },
+        date: {
+          type: Date,
+          required: true
+        }
+      }
+    ]
   },
   { collection: "user" }
 );
