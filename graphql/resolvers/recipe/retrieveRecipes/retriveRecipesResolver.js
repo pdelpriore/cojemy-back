@@ -4,6 +4,7 @@ const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
   retrieveRecipes: async ({ category }) => {
+    //if category === news szukaj po dacie z ostatniej doby else reszte
     try {
       const recipes = await Recipe.find({ category: category }).populate(
         "author"
