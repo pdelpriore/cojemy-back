@@ -53,6 +53,9 @@ const strings = Object.freeze({
       EMAILS_MISMATCH: "emails saisis ne sont pas les mêmes.",
       WRONG_PASSWORD:
         "ton mot de passe doit contenir au moins: \n 1. Une chiffre \n 2. Un caractère minuscule \n 3. Un caractère majuscule \n 4. Huit caractères"
+    },
+    retrieveRecipes: {
+      NO_RECIPES: "pas de recettes."
     }
   }
 });
