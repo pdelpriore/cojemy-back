@@ -32,6 +32,10 @@ const UserSchema = new Schema(
       type: Boolean,
       required: true
     },
+    isPremium: {
+      type: Boolean,
+      required: true
+    },
     creationDate: {
       type: Date,
       required: true

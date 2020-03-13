@@ -5,7 +5,7 @@ const { capitalizeFirst } = require("../../../util/Util");
 const isUserExist = async email => {
   const result = await new Promise(async (resolve, reject) => {
     try {
-      const user = await User.findOne({ email: email });
+      const user = await User.findOne({ email: email }, { password: 0 });
       if (user) {
         resolve(user);
       } else if (user === null) {

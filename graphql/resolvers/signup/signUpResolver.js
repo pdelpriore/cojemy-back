@@ -11,7 +11,7 @@ const { sendEmailConfirm } = require("../../operations/email/sendEmailConfirm");
 module.exports = {
   signUp: async ({ name, email, confirmEmail, password }) => {
     try {
-      const user = await User.findOne({ email: email });
+      const user = await User.findOne({ email: email }, { password: 0 });
       if (user) {
         throw new Error(capitalizeFirst(strings.errors.signup.USER_EXISTS));
       } else {
@@ -23,6 +23,7 @@ module.exports = {
           password: passwordHashed,
           isEmailConfirmed: false,
           isGoogleUser: false,
+          isPremium: false,
           creationDate: dateToString(new Date())
         });
         await user.save();

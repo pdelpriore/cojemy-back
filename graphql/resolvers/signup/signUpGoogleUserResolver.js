@@ -5,7 +5,7 @@ const { strings } = require("../../../strings/Strings");
 module.exports = {
   signUpGoogleUser: async ({ name, email, googlePhoto }) => {
     try {
-      const user = await User.findOne({ email: email });
+      const user = await User.findOne({ email: email }, { password: 0 });
       if (user) {
         throw new Error(
           capitalizeFirst(strings.errors.signupGoogleUser.USER_EXISTS)
@@ -18,6 +18,7 @@ module.exports = {
           googlePhoto: googlePhoto,
           isEmailConfirmed: true,
           isGoogleUser: true,
+          isPremium: false,
           creationDate: dateToString(new Date())
         });
         await user.save();
