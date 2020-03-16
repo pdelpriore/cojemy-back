@@ -2,9 +2,9 @@ const { isUserExist } = require("../../operations/verification/isUserExist");
 const { strings } = require("../../../strings/Strings");
 const { capitalizeFirst } = require("../../../util/Util");
 const {
-  verifyGoogleIdToken,
-  generateToken
+  verifyGoogleIdToken
 } = require("../../operations/token/verifyGoogleIdToken");
+const { generateToken } = require("../../operations/token/generateToken");
 
 module.exports = {
   loginGoogleUser: async ({ email }, { req, res }) => {
