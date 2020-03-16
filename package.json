@@ -25,7 +25,6 @@
     "express": "^4.17.1",
     "express-graphql": "^0.9.0",
     "generate-password": "^1.5.1",
-    "google-auth-library": "^5.10.1",
     "google-id-token-verifier": "^0.2.3",
     "googleapis": "^47.0.0",
     "graphql": "^14.6.0",

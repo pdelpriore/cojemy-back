@@ -45,8 +45,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
       args: {
         category: { type: new GraphQLNonNull(GraphQLString) },
-        email: { type: new GraphQLNonNull(GraphQLString) },
-        isGoogleUser: { type: new GraphQLNonNull(GraphQLBoolean) }
+        email: { type: new GraphQLNonNull(GraphQLString) }
       }
     }
   }

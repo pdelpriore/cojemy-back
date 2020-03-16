@@ -1,20 +1,22 @@
 const { isUserExist } = require("../../operations/verification/isUserExist");
 const { strings } = require("../../../strings/Strings");
 const { capitalizeFirst } = require("../../../util/Util");
-const { verifyToken } = require("../../operations/token/verifyToken");
+const {
+  verifyGoogleIdToken,
+  generateToken
+} = require("../../operations/token/verifyGoogleIdToken");
 
 module.exports = {
   loginGoogleUser: async ({ email }, { req, res }) => {
     try {
       const user = await isUserExist(email);
       if (user.isGoogleUser) {
-        const tokenVerified = await verifyToken(
-          email,
-          req.get(strings.request.HEADER),
-          user.isGoogleUser
+        const googleIdTokenVerified = await verifyGoogleIdToken(
+          req.get(strings.request.HEADER)
         );
-        if (tokenVerified) {
-          res.cookie("id", req.get(strings.request.HEADER), {
+        if (googleIdTokenVerified) {
+          const token = await generateToken(user.email);
+          res.cookie("id", token, {
             httpOnly: true
             //on production set secure true
             //secure: true

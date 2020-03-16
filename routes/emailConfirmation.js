@@ -7,8 +7,7 @@ module.exports = app => {
     try {
       const tokenVerified = await verifyToken(
         req.params.email,
-        req.params.token,
-        false
+        req.params.token
       );
       const user = await User.findOneAndUpdate(
         { email: req.params.email },

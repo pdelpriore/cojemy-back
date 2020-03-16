@@ -1,28 +1,15 @@
 const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../../../config/security/Security");
-const { IdClient } = require("../../../config/security/Security");
-const verifier = require("google-id-token-verifier");
-const { OAuth2Client } = require("google-auth-library");
 
-const verifyToken = async (email, token, isUserGoogle) => {
+const verifyToken = async (email, token) => {
   const tokenVerified = await new Promise((resolve, reject) => {
-    if (!isUserGoogle) {
-      jwt.verify(token, jwtSecret, (err, decoded) => {
-        if (decoded && decoded.email === email) {
-          resolve(true);
-        } else {
-          resolve(false);
-        }
-      });
-    } else {
-      verifier.verify(token, IdClient, (err, tokenInfo) => {
-        if (err) {
-          resolve(false);
-        } else if (tokenInfo.email_verified) {
-          resolve(true);
-        }
-      });
-    }
+    jwt.verify(token, jwtSecret, (err, decoded) => {
+      if (decoded && decoded.email === email) {
+        resolve(true);
+      } else {
+        resolve(false);
+      }
+    });
   });
   return tokenVerified;
 };

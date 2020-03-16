@@ -4,14 +4,10 @@ const { strings } = require("../../../../strings/Strings");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
-  retrieveRecipes: async ({ category, email, isGoogleUser }, { req }) => {
+  retrieveRecipes: async ({ category, email }, { req }) => {
     //if category === news szukaj po dacie z ostatniej doby else reszte
     try {
-      const tokenVerified = await verifyToken(
-        email,
-        req.cookies.id,
-        isGoogleUser
-      );
+      const tokenVerified = await verifyToken(email, req.cookies.id);
       if (tokenVerified) {
         const recipes = await Recipe.find({ category: category }).populate(
           "author"
