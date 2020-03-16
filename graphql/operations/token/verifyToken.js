@@ -2,6 +2,7 @@ const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../../../config/security/Security");
 const { IdClient } = require("../../../config/security/Security");
 const verifier = require("google-id-token-verifier");
+const { OAuth2Client } = require("google-auth-library");
 
 const verifyToken = async (email, token, isUserGoogle) => {
   const tokenVerified = await new Promise((resolve, reject) => {
