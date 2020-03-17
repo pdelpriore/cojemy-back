@@ -24,7 +24,7 @@ module.exports = {
           isEmailConfirmed: false,
           isGoogleUser: false,
           isPremium: false,
-          creationDate: dateToString(new Date())
+          creationDate: new Date()
         });
         await user.save();
         let token = await generateToken(email);

@@ -9,6 +9,7 @@ const {
   GraphQLNonNull
 } = graphql;
 const { GraphQLUpload } = require("graphql-upload");
+const GraphQLDate = require("graphql-date");
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -20,7 +21,7 @@ const UserType = new GraphQLObjectType({
     googlePhoto: { type: new GraphQLNonNull(GraphQLString) },
     isEmailConfirmed: { type: new GraphQLNonNull(GraphQLBoolean) },
     isGoogleUser: { type: new GraphQLNonNull(GraphQLBoolean) },
-    creationDate: { type: new GraphQLNonNull(GraphQLString) },
+    creationDate: { type: new GraphQLNonNull(GraphQLDate) },
     recipes: { type: new GraphQLList(RecipeType) }
   })
 });
@@ -32,7 +33,7 @@ const RecipeType = new GraphQLObjectType({
     title: { type: new GraphQLNonNull(GraphQLString) },
     picture: { type: GraphQLUpload },
     category: { type: new GraphQLNonNull(GraphQLString) },
-    date: { type: new GraphQLNonNull(GraphQLString) },
+    date: { type: new GraphQLNonNull(GraphQLDate) },
     author: { type: new GraphQLNonNull(UserType) }
   })
 });

@@ -19,7 +19,7 @@ module.exports = {
           isEmailConfirmed: true,
           isGoogleUser: true,
           isPremium: false,
-          creationDate: dateToString(new Date())
+          creationDate: new Date()
         });
         await user.save();
         return user;
