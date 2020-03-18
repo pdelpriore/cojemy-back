@@ -6,7 +6,8 @@ const {
   GraphQLSchema,
   GraphQLID,
   GraphQLList,
-  GraphQLNonNull
+  GraphQLNonNull,
+  GraphQLInt
 } = graphql;
 const { GraphQLUpload } = require("graphql-upload");
 const GraphQLDate = require("graphql-date");
@@ -33,6 +34,7 @@ const RecipeType = new GraphQLObjectType({
     title: { type: new GraphQLNonNull(GraphQLString) },
     picture: { type: GraphQLUpload },
     category: { type: new GraphQLNonNull(GraphQLString) },
+    cookTime: { type: new GraphQLNonNull(GraphQLInt) },
     date: { type: new GraphQLNonNull(GraphQLDate) },
     author: { type: new GraphQLNonNull(UserType) }
   })

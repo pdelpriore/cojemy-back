@@ -16,6 +16,10 @@ const RecipeSchema = new Schema(
       type: String,
       required: true
     },
+    cookTime: {
+      type: Number,
+      required: true
+    },
     date: {
       type: Date,
       required: true
