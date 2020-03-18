@@ -9,9 +9,9 @@ module.exports = {
     try {
       const tokenVerified = await verifyToken(email, req.cookies.id);
       if (tokenVerified) {
-        const recipes = await Recipe.find({ category: category }).populate(
-          "author"
-        );
+        const recipes = await Recipe.find({ category: category })
+          .sort({ date: -1 })
+          .populate("author");
         if (recipes.length > 0) {
           return recipes;
         } else {
