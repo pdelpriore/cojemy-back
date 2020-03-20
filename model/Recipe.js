@@ -40,8 +40,11 @@ const RecipeSchema = new Schema(
     },
     comments: [
       {
-        type: Schema.Types.ObjectId,
-        ref: "comment"
+        commentos: { type: Schema.Types.ObjectId, ref: "comment" },
+        commentator: {
+          type: Schema.Types.ObjectId,
+          ref: "user"
+        }
       }
     ]
   },
