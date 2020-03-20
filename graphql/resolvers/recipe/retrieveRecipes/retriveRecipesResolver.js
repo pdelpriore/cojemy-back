@@ -1,4 +1,6 @@
 const Recipe = require("../../../../model/Recipe");
+const User = require("../../../../model/User");
+const Comment = require("../../../../model/Comment");
 const { capitalizeFirst } = require("../../../../util/Util");
 const { strings } = require("../../../../strings/Strings");
 const { verifyToken } = require("../../../operations/token/verifyToken");
@@ -11,8 +13,10 @@ module.exports = {
       if (tokenVerified) {
         const recipes = await Recipe.find({ category: category })
           .sort({ date: -1 })
-          .populate("author")
-          .populate("comments");
+          .populate([
+            { path: "author", model: User },
+            { path: "comments", model: Comment }
+          ]);
         if (recipes.length > 0) {
           return recipes;
         } else {
