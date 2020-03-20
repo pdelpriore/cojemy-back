@@ -30,7 +30,7 @@ const UserType = new GraphQLObjectType({
 const CommentsType = new GraphQLObjectType({
   name: "Comments",
   fields: () => ({
-    commentos: { type: CommentType },
+    comment: { type: CommentType },
     commentator: { type: UserType }
   })
 });

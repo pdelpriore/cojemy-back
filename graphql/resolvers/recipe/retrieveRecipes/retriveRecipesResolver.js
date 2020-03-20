@@ -15,7 +15,7 @@ module.exports = {
           .sort({ date: -1 })
           .populate([
             { path: "author", model: User },
-            { path: "comments.commentos", model: Comment },
+            { path: "comments.comment", model: Comment },
             { path: "comments.commentator", model: User }
           ]);
         if (recipes.length > 0) {
