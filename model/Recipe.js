@@ -37,7 +37,13 @@ const RecipeSchema = new Schema(
     author: {
       type: Schema.Types.ObjectId,
       ref: "user"
-    }
+    },
+    comments: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "comment"
+      }
+    ]
   },
   { collection: "recipe" }
 );

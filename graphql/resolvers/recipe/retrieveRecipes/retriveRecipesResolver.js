@@ -11,7 +11,8 @@ module.exports = {
       if (tokenVerified) {
         const recipes = await Recipe.find({ category: category })
           .sort({ date: -1 })
-          .populate("author");
+          .populate("author")
+          .populate("comments");
         if (recipes.length > 0) {
           return recipes;
         } else {

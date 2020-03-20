@@ -1,4 +1,3 @@
-const User = require("../../../model/User");
 const {
   validateNewPassForm
 } = require("../../operations/validation/validateNewPassForm");
