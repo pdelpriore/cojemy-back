@@ -20,6 +20,16 @@ const RecipeSchema = new Schema(
       type: Number,
       required: true
     },
+    ingredients: [
+      {
+        type: String,
+        required: true
+      }
+    ],
+    description: {
+      type: String,
+      required: true
+    },
     date: {
       type: Date,
       required: true

@@ -35,6 +35,10 @@ const RecipeType = new GraphQLObjectType({
     picture: { type: GraphQLUpload },
     category: { type: new GraphQLNonNull(GraphQLString) },
     cookTime: { type: new GraphQLNonNull(GraphQLInt) },
+    ingredients: {
+      type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(GraphQLString)))
+    },
+    description: { type: new GraphQLNonNull(GraphQLString) },
     date: { type: new GraphQLNonNull(GraphQLDate) },
     author: { type: new GraphQLNonNull(UserType) }
   })
