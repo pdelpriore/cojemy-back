@@ -1,6 +1,7 @@
 const Recipe = require("../../../../model/Recipe");
 const User = require("../../../../model/User");
 const Comment = require("../../../../model/Comment");
+const Rate = require("../../../../model/Rate");
 const { capitalizeFirst } = require("../../../../util/Util");
 const { strings } = require("../../../../strings/Strings");
 const { verifyToken } = require("../../../operations/token/verifyToken");
@@ -15,8 +16,9 @@ module.exports = {
           .sort({ date: -1 })
           .populate([
             { path: "author", model: User },
+            { path: "comments.commentator", model: User },
             { path: "comments.comment", model: Comment },
-            { path: "comments.commentator", model: User }
+            { path: "comments.rate", model: Rate }
           ]);
         if (recipes.length > 0) {
           return recipes;

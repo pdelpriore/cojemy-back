@@ -27,11 +27,31 @@ const UserType = new GraphQLObjectType({
   })
 });
 
+const CommentType = new GraphQLObjectType({
+  name: "Comment",
+  fields: () => ({
+    _id: { type: new GraphQLNonNull(GraphQLID) },
+    recipe: { type: RecipeType },
+    content: { type: new GraphQLNonNull(GraphQLString) },
+    date: { type: new GraphQLNonNull(GraphQLDate) }
+  })
+});
+
+const RateType = new GraphQLObjectType({
+  name: "Rate",
+  fields: () => ({
+    _id: { type: new GraphQLNonNull(GraphQLID) },
+    recipe: { type: RecipeType },
+    value: { type: new GraphQLNonNull(GraphQLInt) }
+  })
+});
+
 const CommentsType = new GraphQLObjectType({
   name: "Comments",
   fields: () => ({
+    commentator: { type: UserType },
     comment: { type: CommentType },
-    commentator: { type: UserType }
+    rate: { type: RateType }
   })
 });
 
@@ -52,16 +72,6 @@ const RecipeType = new GraphQLObjectType({
     comments: {
       type: new GraphQLList(CommentsType)
     }
-  })
-});
-
-const CommentType = new GraphQLObjectType({
-  name: "Comment",
-  fields: () => ({
-    _id: { type: new GraphQLNonNull(GraphQLID) },
-    recipe: { type: RecipeType },
-    content: { type: new GraphQLNonNull(GraphQLString) },
-    date: { type: new GraphQLNonNull(GraphQLDate) }
   })
 });
 
