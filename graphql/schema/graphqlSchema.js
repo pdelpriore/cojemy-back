@@ -19,6 +19,7 @@ const UserType = new GraphQLObjectType({
     name: { type: new GraphQLNonNull(GraphQLString) },
     email: { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) },
+    photo: { type: GraphQLUpload },
     googlePhoto: { type: new GraphQLNonNull(GraphQLString) },
     isEmailConfirmed: { type: new GraphQLNonNull(GraphQLBoolean) },
     isGoogleUser: { type: new GraphQLNonNull(GraphQLBoolean) },
