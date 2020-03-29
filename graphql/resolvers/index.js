@@ -7,7 +7,7 @@ const signUpGoogleUserResolver = require("./signup/signUpGoogleUserResolver");
 const loginGoogleUserResolver = require("./login/loginGoogleUserResolver");
 const logoutGoogleUserResolver = require("./logout/logoutGoogleUserResolver");
 const retrieveRecipesResolver = require("./recipe/retrieveRecipes/retriveRecipesResolver");
-const addRecipeRateCommentResolver = require("./addRateComment/addRecipeRateCommentResolver");
+const addRecipeRateCommentResolver = require("./recipe/addRateComment/addRecipeRateCommentResolver");
 
 const rootResolver = {
   ...signUpResolver,
