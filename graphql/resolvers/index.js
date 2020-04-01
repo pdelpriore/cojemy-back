@@ -8,6 +8,7 @@ const loginGoogleUserResolver = require("./login/loginGoogleUserResolver");
 const logoutGoogleUserResolver = require("./logout/logoutGoogleUserResolver");
 const retrieveRecipesResolver = require("./recipe/retrieveRecipes/retriveRecipesResolver");
 const addRecipeRateCommentResolver = require("./recipe/addRateComment/addRecipeRateCommentResolver");
+const editRecipeRateCommentResolver = require("./recipe/editRateComment/editRecipeRateCommentResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -19,7 +20,8 @@ const rootResolver = {
   ...loginGoogleUserResolver,
   ...logoutGoogleUserResolver,
   ...retrieveRecipesResolver,
-  ...addRecipeRateCommentResolver
+  ...addRecipeRateCommentResolver,
+  ...editRecipeRateCommentResolver
 };
 
 module.exports = rootResolver;

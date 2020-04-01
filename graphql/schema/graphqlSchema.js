@@ -156,6 +156,17 @@ const RootMutation = new GraphQLObjectType({
         commentContent: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) }
       }
+    },
+    editRecipeRateComment: {
+      type: new GraphQLNonNull(RecipeType),
+      args: {
+        recipeId: { type: new GraphQLNonNull(GraphQLID) },
+        rateId: { type: new GraphQLNonNull(GraphQLID) },
+        rateValue: { type: new GraphQLNonNull(GraphQLInt) },
+        commentId: { type: new GraphQLNonNull(GraphQLID) },
+        commentContent: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) }
+      }
     }
   }
 });
