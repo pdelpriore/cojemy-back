@@ -50,6 +50,7 @@ const RateType = new GraphQLObjectType({
 const CommentsType = new GraphQLObjectType({
   name: "Comments",
   fields: () => ({
+    _id: { type: new GraphQLNonNull(GraphQLID) },
     commentator: { type: UserType },
     comment: { type: CommentType },
     rate: { type: RateType }
@@ -165,6 +166,16 @@ const RootMutation = new GraphQLObjectType({
         rateValue: { type: new GraphQLNonNull(GraphQLInt) },
         commentId: { type: new GraphQLNonNull(GraphQLID) },
         commentContent: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) }
+      }
+    },
+    removeRecipeRateComment: {
+      type: new GraphQLNonNull(RecipeType),
+      args: {
+        rateId: { type: new GraphQLNonNull(GraphQLID) },
+        commentId: { type: new GraphQLNonNull(GraphQLID) },
+        recipeId: { type: new GraphQLNonNull(GraphQLID) },
+        commentItemId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) }
       }
     }
