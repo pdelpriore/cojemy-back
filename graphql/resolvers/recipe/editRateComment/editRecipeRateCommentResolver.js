@@ -21,7 +21,7 @@ module.exports = {
         ).exec();
         await Comment.findOneAndUpdate(
           { _id: commentId },
-          { $set: { content: commentContent } },
+          { $set: { content: commentContent, date: new Date() } },
           { new: true }
         ).exec();
 
