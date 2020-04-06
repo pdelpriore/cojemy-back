@@ -5,49 +5,53 @@ const RecipeSchema = new Schema(
   {
     title: {
       type: String,
-      required: true
+      required: true,
     },
     picture: {
       data: Buffer,
       contentType: String,
-      required: false
+      required: false,
+    },
+    video: {
+      type: String,
+      required: false,
     },
     category: {
       type: String,
-      required: true
+      required: true,
     },
     cookTime: {
       type: Number,
-      required: true
+      required: true,
     },
     ingredients: [
       {
         type: String,
-        required: true
-      }
+        required: true,
+      },
     ],
     description: {
       type: String,
-      required: true
+      required: true,
     },
     date: {
       type: Date,
-      required: true
+      required: true,
     },
     author: {
       type: Schema.Types.ObjectId,
-      ref: "user"
+      ref: "user",
     },
     comments: [
       {
         commentator: {
           type: Schema.Types.ObjectId,
-          ref: "user"
+          ref: "user",
         },
         comment: { type: Schema.Types.ObjectId, ref: "comment" },
-        rate: { type: Schema.Types.ObjectId, ref: "rate" }
-      }
-    ]
+        rate: { type: Schema.Types.ObjectId, ref: "rate" },
+      },
+    ],
   },
   { collection: "recipe" }
 );

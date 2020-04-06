@@ -7,7 +7,7 @@ const {
   GraphQLID,
   GraphQLList,
   GraphQLNonNull,
-  GraphQLInt
+  GraphQLInt,
 } = graphql;
 const { GraphQLUpload } = require("graphql-upload");
 const GraphQLDate = require("graphql-date");
@@ -24,8 +24,8 @@ const UserType = new GraphQLObjectType({
     isEmailConfirmed: { type: new GraphQLNonNull(GraphQLBoolean) },
     isGoogleUser: { type: new GraphQLNonNull(GraphQLBoolean) },
     creationDate: { type: new GraphQLNonNull(GraphQLDate) },
-    recipes: { type: new GraphQLList(RecipeType) }
-  })
+    recipes: { type: new GraphQLList(RecipeType) },
+  }),
 });
 
 const CommentType = new GraphQLObjectType({
@@ -34,8 +34,8 @@ const CommentType = new GraphQLObjectType({
     _id: { type: new GraphQLNonNull(GraphQLID) },
     recipe: { type: RecipeType },
     content: { type: new GraphQLNonNull(GraphQLString) },
-    date: { type: new GraphQLNonNull(GraphQLDate) }
-  })
+    date: { type: new GraphQLNonNull(GraphQLDate) },
+  }),
 });
 
 const RateType = new GraphQLObjectType({
@@ -43,8 +43,8 @@ const RateType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: new GraphQLNonNull(GraphQLID) },
     recipe: { type: RecipeType },
-    value: { type: new GraphQLNonNull(GraphQLInt) }
-  })
+    value: { type: new GraphQLNonNull(GraphQLInt) },
+  }),
 });
 
 const CommentsType = new GraphQLObjectType({
@@ -53,8 +53,8 @@ const CommentsType = new GraphQLObjectType({
     _id: { type: new GraphQLNonNull(GraphQLID) },
     commentator: { type: UserType },
     comment: { type: CommentType },
-    rate: { type: RateType }
-  })
+    rate: { type: RateType },
+  }),
 });
 
 const RecipeType = new GraphQLObjectType({
@@ -63,18 +63,19 @@ const RecipeType = new GraphQLObjectType({
     _id: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: new GraphQLNonNull(GraphQLString) },
     picture: { type: GraphQLUpload },
+    video: { type: GraphQLString },
     category: { type: new GraphQLNonNull(GraphQLString) },
     cookTime: { type: new GraphQLNonNull(GraphQLInt) },
     ingredients: {
-      type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(GraphQLString)))
+      type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(GraphQLString))),
     },
     description: { type: new GraphQLNonNull(GraphQLString) },
     date: { type: new GraphQLNonNull(GraphQLDate) },
     author: { type: new GraphQLNonNull(UserType) },
     comments: {
-      type: new GraphQLList(CommentsType)
-    }
-  })
+      type: new GraphQLList(CommentsType),
+    },
+  }),
 });
 
 const RootQuery = new GraphQLObjectType({
@@ -84,10 +85,10 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
       args: {
         category: { type: new GraphQLNonNull(GraphQLString) },
-        email: { type: new GraphQLNonNull(GraphQLString) }
-      }
-    }
-  }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
+  },
 });
 
 const RootMutation = new GraphQLObjectType({
@@ -99,55 +100,55 @@ const RootMutation = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
         confirmEmail: { type: new GraphQLNonNull(GraphQLString) },
-        password: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     customerContact: {
       type: GraphQLString,
       args: {
         subject: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
-        content: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        content: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     remindPassword: {
       type: GraphQLString,
       args: {
-        email: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     login: {
       type: new GraphQLNonNull(UserType),
       args: {
         email: { type: new GraphQLNonNull(GraphQLString) },
-        password: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        password: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     logout: {
       type: GraphQLBoolean,
       args: {
-        email: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     signUpGoogleUser: {
       type: new GraphQLNonNull(UserType),
       args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
-        googlePhoto: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        googlePhoto: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     loginGoogleUser: {
       type: new GraphQLNonNull(UserType),
       args: {
-        email: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     logoutGoogleUser: {
       type: GraphQLBoolean,
       args: {
-        email: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     addRecipeRateComment: {
       type: new GraphQLNonNull(RecipeType),
@@ -155,8 +156,8 @@ const RootMutation = new GraphQLObjectType({
         recipeId: { type: new GraphQLNonNull(GraphQLID) },
         rateValue: { type: new GraphQLNonNull(GraphQLInt) },
         commentContent: { type: new GraphQLNonNull(GraphQLString) },
-        email: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     editRecipeRateComment: {
       type: new GraphQLNonNull(RecipeType),
@@ -166,8 +167,8 @@ const RootMutation = new GraphQLObjectType({
         rateValue: { type: new GraphQLNonNull(GraphQLInt) },
         commentId: { type: new GraphQLNonNull(GraphQLID) },
         commentContent: { type: new GraphQLNonNull(GraphQLString) },
-        email: { type: new GraphQLNonNull(GraphQLString) }
-      }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
     },
     removeRecipeRateComment: {
       type: new GraphQLNonNull(RecipeType),
@@ -176,13 +177,13 @@ const RootMutation = new GraphQLObjectType({
         commentId: { type: new GraphQLNonNull(GraphQLID) },
         recipeId: { type: new GraphQLNonNull(GraphQLID) },
         commentItemId: { type: new GraphQLNonNull(GraphQLID) },
-        email: { type: new GraphQLNonNull(GraphQLString) }
-      }
-    }
-  }
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
+  },
 });
 
 module.exports = new GraphQLSchema({
   query: RootQuery,
-  mutation: RootMutation
+  mutation: RootMutation,
 });
