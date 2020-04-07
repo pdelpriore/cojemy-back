@@ -5,7 +5,7 @@ const {
   emailNewPasswordId,
   emailNewPassAccessToken,
   emailNewPassRefreshToken,
-  emailNewPassExpiryToken
+  emailNewPassExpiryToken,
 } = require("../../../security/Security");
 
 const remindPassTransporter = nodemailer.createTransport({
@@ -19,11 +19,11 @@ const remindPassTransporter = nodemailer.createTransport({
     clientSecret: clientSecret,
     refreshToken: emailNewPassRefreshToken,
     accessToken: emailNewPassAccessToken,
-    expires: emailNewPassExpiryToken
+    expires: emailNewPassExpiryToken,
   },
   tls: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 });
 
 module.exports = { remindPassTransporter };

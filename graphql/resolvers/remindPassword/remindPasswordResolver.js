@@ -1,5 +1,5 @@
 const {
-  validateNewPassForm
+  validateNewPassForm,
 } = require("../../operations/validation/validateNewPassForm");
 const { isUserExist } = require("../../operations/verification/isUserExist");
 const { setNewPassword } = require("../../operations/password/setNewPassword");
@@ -25,5 +25,5 @@ module.exports = {
     } catch (err) {
       if (err) throw new Error(err);
     }
-  }
+  },
 };

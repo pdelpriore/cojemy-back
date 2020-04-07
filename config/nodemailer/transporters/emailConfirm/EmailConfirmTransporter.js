@@ -5,7 +5,7 @@ const {
   clientSecret,
   emailConfirmRefreshToken,
   emailConfirmAccessToken,
-  emailConfirmExpiryToken
+  emailConfirmExpiryToken,
 } = require("../../../security/Security");
 
 const emailConfirmTransporter = nodemailer.createTransport({
@@ -19,11 +19,11 @@ const emailConfirmTransporter = nodemailer.createTransport({
     clientSecret: clientSecret,
     refreshToken: emailConfirmRefreshToken,
     accessToken: emailConfirmAccessToken,
-    expires: emailConfirmExpiryToken
+    expires: emailConfirmExpiryToken,
   },
   tls: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 });
 
 module.exports = { emailConfirmTransporter };

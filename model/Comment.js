@@ -5,16 +5,16 @@ const CommentSchema = new Schema(
   {
     recipe: {
       type: Schema.Types.ObjectId,
-      ref: "recipe"
+      ref: "recipe",
     },
     content: {
       type: String,
-      required: true
+      required: true,
     },
     date: {
       type: Date,
-      required: true
-    }
+      required: true,
+    },
   },
   { collection: "comment" }
 );

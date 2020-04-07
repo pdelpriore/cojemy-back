@@ -1,8 +1,8 @@
 const {
-  validateCustomerContactForm
+  validateCustomerContactForm,
 } = require("../../operations/validation/validateCustomerContactForm");
 const {
-  sendCustomerContactEmail
+  sendCustomerContactEmail,
 } = require("../../operations/email/sendCustomerContactEmail");
 const { strings } = require("../../../strings/Strings");
 
@@ -15,5 +15,5 @@ module.exports = {
     } catch (err) {
       if (err) throw new Error(err);
     }
-  }
+  },
 };

@@ -19,7 +19,7 @@ module.exports = {
           isEmailConfirmed: true,
           isGoogleUser: true,
           isPremium: false,
-          creationDate: new Date()
+          creationDate: new Date(),
         });
         await user.save();
         return user;
@@ -27,5 +27,5 @@ module.exports = {
     } catch (err) {
       if (err) throw err;
     }
-  }
+  },
 };

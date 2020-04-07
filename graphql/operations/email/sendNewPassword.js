@@ -1,5 +1,5 @@
 const {
-  remindPassTransporter
+  remindPassTransporter,
 } = require("../../../config/nodemailer/transporters/remindPass/RemindPassTransporter");
 const { emailNewPasswordId } = require("../../../config/security/Security");
 
@@ -68,7 +68,7 @@ const sendNewPassword = async (name, password, email) => {
           </table>
         </body>
       </html>
-      `
+      `,
     };
     remindPassTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {

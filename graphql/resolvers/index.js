@@ -23,7 +23,7 @@ const rootResolver = {
   ...retrieveRecipesResolver,
   ...addRecipeRateCommentResolver,
   ...editRecipeRateCommentResolver,
-  ...removeRecipeRateComment
+  ...removeRecipeRateComment,
 };
 
 module.exports = rootResolver;

@@ -1,7 +1,7 @@
 const { strings } = require("../../../strings/Strings");
 const { capitalizeFirst } = require("../../../util/Util");
 
-const isEmailConfirmed = async isEmailConfirmed => {
+const isEmailConfirmed = async (isEmailConfirmed) => {
   const result = await new Promise((resolve, reject) => {
     try {
       if (isEmailConfirmed) {

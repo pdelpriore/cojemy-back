@@ -12,7 +12,7 @@ const checkRequest = () => {
         }
         for (ip in countIps) {
           if (countIps[ip] >= 10) {
-            fs.appendFile("loginIpsBlackListed.txt", ip + "\n", err => {
+            fs.appendFile("loginIpsBlackListed.txt", ip + "\n", (err) => {
               if (err) throw err;
             });
           }

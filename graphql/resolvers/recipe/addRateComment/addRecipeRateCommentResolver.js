@@ -18,21 +18,21 @@ module.exports = {
         const recipe = await Recipe.findById(recipeId);
         let rate = new Rate({
           recipe: recipe,
-          value: rateValue
+          value: rateValue,
         });
         await rate.save();
         let comment = new Comment({
           recipe: recipe,
           content: commentContent,
-          date: new Date()
+          date: new Date(),
         });
         await comment.save();
         const recipeUpdated = await Recipe.findOneAndUpdate(
           { _id: recipeId },
           {
             $push: {
-              comments: { commentator: user, comment: comment, rate: rate }
-            }
+              comments: { commentator: user, comment: comment, rate: rate },
+            },
           },
           { new: true }
         )
@@ -40,7 +40,7 @@ module.exports = {
             { path: "author", model: User },
             { path: "comments.commentator", model: User },
             { path: "comments.comment", model: Comment },
-            { path: "comments.rate", model: Rate }
+            { path: "comments.rate", model: Rate },
           ])
           .exec();
         return recipeUpdated;
@@ -50,5 +50,5 @@ module.exports = {
     } catch (err) {
       if (err) throw err;
     }
-  }
+  },
 };

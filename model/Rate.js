@@ -5,12 +5,12 @@ const RateSchema = new Schema(
   {
     recipe: {
       type: Schema.Types.ObjectId,
-      ref: "recipe"
+      ref: "recipe",
     },
     value: {
       type: Number,
-      required: true
-    }
+      required: true,
+    },
   },
   { collection: "rate" }
 );

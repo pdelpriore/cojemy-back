@@ -5,47 +5,47 @@ const UserSchema = new Schema(
   {
     name: {
       type: String,
-      required: true
+      required: true,
     },
     email: {
       type: String,
-      required: true
+      required: true,
     },
     password: {
       type: String,
-      required: true
+      required: true,
     },
     photo: {
       data: Buffer,
       contentType: String,
-      required: false
+      required: false,
     },
     googlePhoto: {
       type: String,
-      require: true
+      require: true,
     },
     isEmailConfirmed: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isGoogleUser: {
       type: Boolean,
-      required: true
+      required: true,
     },
     isPremium: {
       type: Boolean,
-      required: true
+      required: true,
     },
     creationDate: {
       type: Date,
-      required: true
+      required: true,
     },
     recipes: [
       {
         type: Schema.Types.ObjectId,
-        ref: "recipe"
-      }
-    ]
+        ref: "recipe",
+      },
+    ],
   },
   { collection: "user" }
 );

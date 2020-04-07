@@ -1,12 +1,12 @@
-const capitalize = text => {
+const capitalize = (text) => {
   return text
     .toLowerCase()
     .split(" ")
-    .map(word => word.charAt(0).toUpperCase() + word.slice(1))
+    .map((word) => word.charAt(0).toUpperCase() + word.slice(1))
     .join(" ");
 };
 
-const capitalizeFirst = text => {
+const capitalizeFirst = (text) => {
   return text.charAt(0).toUpperCase() + text.slice(1);
 };
 

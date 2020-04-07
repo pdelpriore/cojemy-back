@@ -2,7 +2,7 @@ const User = require("../model/User");
 const { verifyToken } = require("../graphql/operations/token/verifyToken");
 const { strings } = require("../strings/Strings");
 
-module.exports = app => {
+module.exports = (app) => {
   app.get(strings.path.EMAIL_CONFIRM, async (req, res) => {
     try {
       const tokenVerified = await verifyToken(

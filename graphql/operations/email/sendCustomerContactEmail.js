@@ -1,5 +1,5 @@
 const {
-  emailContactTransporter
+  emailContactTransporter,
 } = require("../../../config/nodemailer/transporters/contact/ContactTransporter");
 const { emailContactId } = require("../../../config/security/Security");
 const { strings } = require("../../../strings/Strings");
@@ -52,7 +52,7 @@ const sendCustomerContactEmail = async (subject, email, content) => {
             ${content}
           </p>
         </body>
-      </html>`
+      </html>`,
     };
     emailContactTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {

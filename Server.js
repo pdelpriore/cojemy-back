@@ -16,7 +16,7 @@ const checkRequest = require("./util/checkRequest");
 app.use(
   cors({
     credentials: true,
-    origin: strings.path.ORIGIN_FRONT
+    origin: strings.path.ORIGIN_FRONT,
   })
 );
 app.use(cookieParser());
@@ -28,7 +28,7 @@ app.use(
     schema: graphqlSchema,
     rootValue: rootResolver,
     graphiql: true,
-    context: { req, res }
+    context: { req, res },
   }))
 );
 

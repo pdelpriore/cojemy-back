@@ -1,13 +1,13 @@
 const { isUserExist } = require("../../operations/verification/isUserExist");
 const {
-  isPasswordCorrect
+  isPasswordCorrect,
 } = require("../../operations/verification/isPasswordCorrect");
 const {
-  isEmailConfirmed
+  isEmailConfirmed,
 } = require("../../operations/verification/isEmailConfirmed");
 const { generateToken } = require("../../operations/token/generateToken");
 const {
-  protectAgainstHack
+  protectAgainstHack,
 } = require("../../operations/hack/protectAgainstHack");
 const { capitalizeFirst } = require("../../../util/Util");
 const { strings } = require("../../../strings/Strings");
@@ -22,7 +22,7 @@ module.exports = {
         await isPasswordCorrect(password, user.password);
         const token = await generateToken(user.email);
         res.cookie("id", token, {
-          httpOnly: true
+          httpOnly: true,
           //on production set secure true
           //secure: true
         });
@@ -33,5 +33,5 @@ module.exports = {
     } catch (err) {
       if (err) throw err;
     }
-  }
+  },
 };

@@ -7,7 +7,7 @@ const dbConnection = async () => {
   try {
     const dbConnected = await mongoose.connect(strings.path.MONGODB, {
       useNewUrlParser: true,
-      useUnifiedTopology: true
+      useUnifiedTopology: true,
     });
     if (dbConnected) console.log(capitalizeFirst(strings.notification.DB));
   } catch (err) {

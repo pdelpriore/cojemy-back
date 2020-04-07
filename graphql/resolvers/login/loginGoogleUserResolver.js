@@ -2,7 +2,7 @@ const { isUserExist } = require("../../operations/verification/isUserExist");
 const { strings } = require("../../../strings/Strings");
 const { capitalizeFirst } = require("../../../util/Util");
 const {
-  verifyGoogleIdToken
+  verifyGoogleIdToken,
 } = require("../../operations/token/verifyGoogleIdToken");
 const { generateToken } = require("../../operations/token/generateToken");
 
@@ -17,7 +17,7 @@ module.exports = {
         if (googleIdTokenVerified) {
           const token = await generateToken(user.email);
           res.cookie("id", token, {
-            httpOnly: true
+            httpOnly: true,
             //on production set secure true
             //secure: true
           });
@@ -31,5 +31,5 @@ module.exports = {
     } catch (err) {
       if (err) throw err;
     }
-  }
+  },
 };

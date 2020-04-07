@@ -2,7 +2,7 @@ const {
   IdClient,
   clientSecret,
   redirectUrl,
-  codeEmailNewPass
+  codeEmailNewPass,
 } = require("../config/security/Security");
 const { google } = require("googleapis");
 
@@ -16,12 +16,12 @@ const generateGoogleAuthUrl = () => {
   const GMAIL_SCOPES = [
     "https://mail.google.com/",
     "https://www.googleapis.com/auth/gmail.compose",
-    "https://www.googleapis.com/auth/gmail.send"
+    "https://www.googleapis.com/auth/gmail.send",
   ];
 
   const url = oauth2Client.generateAuthUrl({
     access_type: "offline",
-    scope: GMAIL_SCOPES
+    scope: GMAIL_SCOPES,
   });
 
   //console.log(url);

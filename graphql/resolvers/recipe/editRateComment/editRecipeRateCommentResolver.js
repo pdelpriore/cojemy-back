@@ -31,7 +31,7 @@ module.exports = {
           { path: "author", model: User },
           { path: "comments.commentator", model: User },
           { path: "comments.comment", model: Comment },
-          { path: "comments.rate", model: Rate }
+          { path: "comments.rate", model: Rate },
         ]);
 
         return recipeWithRateCommentUpdated;
@@ -41,5 +41,5 @@ module.exports = {
     } catch (err) {
       if (err) throw err;
     }
-  }
+  },
 };

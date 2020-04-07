@@ -1,5 +1,5 @@
 const {
-  emailConfirmTransporter
+  emailConfirmTransporter,
 } = require("../../../config/nodemailer/transporters/emailConfirm/EmailConfirmTransporter");
 const { emailConfirmId } = require("../../../config/security/Security");
 
@@ -72,7 +72,7 @@ const sendEmailConfirm = async (name, email, token) => {
             </tr>
           </table>
         </body>
-      </html>`
+      </html>`,
     };
     emailConfirmTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {

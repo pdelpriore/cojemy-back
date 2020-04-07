@@ -1,7 +1,7 @@
 const User = require("../../../model/User");
 const { hashPassword } = require("../../operations/password/hashPassword");
 const {
-  validateSignupForm
+  validateSignupForm,
 } = require("../../operations/validation/validateSignUpForm");
 const { strings } = require("../../../strings/Strings");
 const { capitalizeFirst, dateToString } = require("../../../util/Util");
@@ -24,7 +24,7 @@ module.exports = {
           isEmailConfirmed: false,
           isGoogleUser: false,
           isPremium: false,
-          creationDate: new Date()
+          creationDate: new Date(),
         });
         await user.save();
         let token = await generateToken(email);
@@ -34,5 +34,5 @@ module.exports = {
     } catch (err) {
       if (err) throw err;
     }
-  }
+  },
 };

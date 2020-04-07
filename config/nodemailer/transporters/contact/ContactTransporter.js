@@ -5,7 +5,7 @@ const {
   clientSecret,
   emailContactRefreshToken,
   emailContactAccessToken,
-  emailContactExpiryToken
+  emailContactExpiryToken,
 } = require("../../../security/Security");
 
 const emailContactTransporter = nodemailer.createTransport({
@@ -19,11 +19,11 @@ const emailContactTransporter = nodemailer.createTransport({
     clientSecret: clientSecret,
     refreshToken: emailContactRefreshToken,
     accessToken: emailContactAccessToken,
-    expires: emailContactExpiryToken
+    expires: emailContactExpiryToken,
   },
   tls: {
-    rejectUnauthorized: false
-  }
+    rejectUnauthorized: false,
+  },
 });
 
 module.exports = { emailContactTransporter };
