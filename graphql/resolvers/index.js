@@ -9,7 +9,8 @@ const logoutGoogleUserResolver = require("./logout/logoutGoogleUserResolver");
 const retrieveRecipesResolver = require("./recipe/retrieveRecipes/retriveRecipesResolver");
 const addRecipeRateCommentResolver = require("./recipe/addRateComment/addRecipeRateCommentResolver");
 const editRecipeRateCommentResolver = require("./recipe/editRateComment/editRecipeRateCommentResolver");
-const removeRecipeRateComment = require("./recipe/removeRateComment/removeRecipeRateCommentResolver");
+const removeRecipeRateCommentResolver = require("./recipe/removeRateComment/removeRecipeRateCommentResolver");
+const searchRecipeResolver = require("./recipe/searchRecipe/searchRecipeResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -23,7 +24,8 @@ const rootResolver = {
   ...retrieveRecipesResolver,
   ...addRecipeRateCommentResolver,
   ...editRecipeRateCommentResolver,
-  ...removeRecipeRateComment,
+  ...removeRecipeRateCommentResolver,
+  ...searchRecipeResolver,
 };
 
 module.exports = rootResolver;

@@ -88,6 +88,13 @@ const RootQuery = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },
+    searchRecipe: {
+      type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
+      args: {
+        recipeTitle: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
   },
 });
 
