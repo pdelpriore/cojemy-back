@@ -8,30 +8,53 @@ const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
   retrieveRecipes: async ({ category, email }, { req }) => {
-    //if category === news szukaj po dacie z ostatniej doby else reszte
-    try {
-      const tokenVerified = await verifyToken(email, req.cookies.id);
-      if (tokenVerified) {
-        const recipes = await Recipe.find({ category: category })
-          .sort({ date: -1 })
-          .populate([
-            { path: "author", model: User },
-            { path: "comments.commentator", model: User },
-            { path: "comments.comment", model: Comment },
-            { path: "comments.rate", model: Rate },
-          ]);
-        if (recipes.length > 0) {
-          return recipes;
-        } else {
-          throw new Error(
-            capitalizeFirst(strings.errors.retrieveRecipes.NO_RECIPES)
-          );
+    const tokenVerified = await verifyToken(email, req.cookies.id);
+    if (tokenVerified) {
+      if (category === strings.retrieveRecipes.CAT_NEWS) {
+        try {
+          const recipesNewest = await Recipe.find({
+            date: { $gt: new Date().getTime() - 1000 * 3600 * 24 },
+          })
+            .sort({ date: -1 })
+            .populate([
+              { path: "author", model: User },
+              { path: "comments.commentator", model: User },
+              { path: "comments.comment", model: Comment },
+              { path: "comments.rate", model: Rate },
+            ]);
+          if (recipesNewest.length > 0) {
+            return recipesNewest;
+          } else {
+            throw new Error(
+              capitalizeFirst(strings.errors.retrieveRecipes.NO_RECIPES)
+            );
+          }
+        } catch (err) {
+          if (err) throw err;
         }
       } else {
-        throw new Error(capitalizeFirst(strings.errors.token.ERROR));
+        try {
+          const recipes = await Recipe.find({ category: category })
+            .sort({ date: -1 })
+            .populate([
+              { path: "author", model: User },
+              { path: "comments.commentator", model: User },
+              { path: "comments.comment", model: Comment },
+              { path: "comments.rate", model: Rate },
+            ]);
+          if (recipes.length > 0) {
+            return recipes;
+          } else {
+            throw new Error(
+              capitalizeFirst(strings.errors.retrieveRecipes.NO_RECIPES)
+            );
+          }
+        } catch (err) {
+          if (err) throw err;
+        }
       }
-    } catch (err) {
-      if (err) throw err;
+    } else {
+      throw new Error(capitalizeFirst(strings.errors.token.ERROR));
     }
   },
 };

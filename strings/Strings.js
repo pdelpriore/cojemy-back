@@ -24,6 +24,9 @@ const strings = Object.freeze({
   signupGoogleUser: {
     NO_PASSWORD: "password not required",
   },
+  retrieveRecipes: {
+    CAT_NEWS: "news",
+  },
   errors: {
     signup: {
       USER_EXISTS: "utilisateur déjà inscrit.",
