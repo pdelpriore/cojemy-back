@@ -11,6 +11,7 @@ const addRecipeRateCommentResolver = require("./recipe/addRateComment/addRecipeR
 const editRecipeRateCommentResolver = require("./recipe/editRateComment/editRecipeRateCommentResolver");
 const removeRecipeRateCommentResolver = require("./recipe/removeRateComment/removeRecipeRateCommentResolver");
 const searchRecipeResolver = require("./recipe/searchRecipe/searchRecipeResolver");
+const retrieveMyRecipesResolver = require("./recipe/retrieveMyRecipes/retrieveMyRecipesResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -26,6 +27,7 @@ const rootResolver = {
   ...editRecipeRateCommentResolver,
   ...removeRecipeRateCommentResolver,
   ...searchRecipeResolver,
+  ...retrieveMyRecipesResolver,
 };
 
 module.exports = rootResolver;
