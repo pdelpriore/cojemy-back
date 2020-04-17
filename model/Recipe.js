@@ -8,8 +8,7 @@ const RecipeSchema = new Schema(
       required: true,
     },
     picture: {
-      data: Buffer,
-      contentType: String,
+      type: String,
       required: false,
     },
     video: {
