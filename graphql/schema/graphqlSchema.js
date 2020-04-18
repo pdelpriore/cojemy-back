@@ -157,12 +157,6 @@ const RootMutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },
-    logoutGoogleUser: {
-      type: GraphQLBoolean,
-      args: {
-        email: { type: new GraphQLNonNull(GraphQLString) },
-      },
-    },
     addRecipeRateComment: {
       type: new GraphQLNonNull(RecipeType),
       args: {
