@@ -30,7 +30,7 @@ module.exports = {
           video: video,
           category: category,
           cookTime: cookTime,
-          ingredients: ingredients.toString().split(","),
+          ingredients: ingredients,
           description: description,
           date: new Date(),
           author: user,
