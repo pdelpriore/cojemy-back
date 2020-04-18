@@ -5,7 +5,6 @@ const loginResolver = require("./login/loginResolver");
 const logoutResolver = require("./logout/logoutResolver");
 const signUpGoogleUserResolver = require("./signup/signUpGoogleUserResolver");
 const loginGoogleUserResolver = require("./login/loginGoogleUserResolver");
-const logoutGoogleUserResolver = require("./logout/logoutGoogleUserResolver");
 const retrieveRecipesResolver = require("./recipe/retrieveRecipes/retriveRecipesResolver");
 const addRecipeRateCommentResolver = require("./recipe/addRateComment/addRecipeRateCommentResolver");
 const editRecipeRateCommentResolver = require("./recipe/editRateComment/editRecipeRateCommentResolver");
@@ -22,7 +21,6 @@ const rootResolver = {
   ...logoutResolver,
   ...signUpGoogleUserResolver,
   ...loginGoogleUserResolver,
-  ...logoutGoogleUserResolver,
   ...retrieveRecipesResolver,
   ...addRecipeRateCommentResolver,
   ...editRecipeRateCommentResolver,
