@@ -62,7 +62,7 @@ const RecipeType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: new GraphQLNonNull(GraphQLString) },
-    picture: { type: GraphQLString },
+    picture: { type: GraphQLUpload },
     video: { type: GraphQLString },
     category: { type: new GraphQLNonNull(GraphQLString) },
     cookTime: { type: new GraphQLNonNull(GraphQLInt) },
