@@ -4,7 +4,7 @@ const {
   validateSignupForm,
 } = require("../../operations/validation/validateSignUpForm");
 const { strings } = require("../../../strings/Strings");
-const { capitalizeFirst, dateToString } = require("../../../util/Util");
+const { capitalizeFirst } = require("../../../util/Util");
 const { generateToken } = require("../../operations/token/generateToken");
 const { sendEmailConfirm } = require("../../operations/email/sendEmailConfirm");
 

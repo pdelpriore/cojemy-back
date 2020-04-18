@@ -1,5 +1,5 @@
 const User = require("../../../model/User");
-const { capitalizeFirst, dateToString } = require("../../../util/Util");
+const { capitalizeFirst } = require("../../../util/Util");
 const { strings } = require("../../../strings/Strings");
 
 module.exports = {
