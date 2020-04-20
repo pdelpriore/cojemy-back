@@ -7,6 +7,7 @@ const rootResolver = require("./graphql/resolvers/index");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const path = require("path");
 const { strings } = require("./strings/Strings");
 const { capitalizeFirst } = require("./util/Util");
 const emailConfirmation = require("./routes/emailConfirmation");
@@ -22,6 +23,8 @@ app.use(
 app.use(cookieParser());
 app.use(bodyParser.json({ limit: "1mb" }));
 app.use(bodyParser.urlencoded({ limit: "1mb", extended: true }));
+
+app.use(express.static(path.join(__dirname, "uploads")));
 
 app.use(
   strings.path.GRAPHQL,

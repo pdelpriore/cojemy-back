@@ -1,7 +1,8 @@
 const fs = require("fs");
 const path = require("path");
+const randomstring = require("randomstring");
 
-const uploadImage = async (recipeImage, email) => {
+const uploadImage = async (recipeImage) => {
   const imagePath = await new Promise((resolve, reject) => {
     fs.writeFile(
       path.join(
@@ -12,7 +13,7 @@ const uploadImage = async (recipeImage, email) => {
         "uploads",
         "imgs",
         "recipes",
-        `${email}_${recipeImage.imageName}`
+        `${randomstring.generate(20)}_${recipeImage.imageName}`
       ),
       recipeImage.image.replace(/^data:image\/\w+;base64,/, ""),
       { encoding: "base64" },
