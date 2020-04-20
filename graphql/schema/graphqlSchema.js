@@ -1,6 +1,7 @@
 const graphql = require("graphql");
 const {
   GraphQLObjectType,
+  GraphQLInputObjectType,
   GraphQLString,
   GraphQLBoolean,
   GraphQLSchema,
@@ -9,8 +10,15 @@ const {
   GraphQLNonNull,
   GraphQLInt,
 } = graphql;
-const { GraphQLUpload } = require("graphql-upload");
 const GraphQLDate = require("graphql-date");
+
+const RecipeImageInputType = new GraphQLInputObjectType({
+  name: "RecipeImage",
+  fields: () => ({
+    image: { type: new GraphQLNonNull(GraphQLString) },
+    imageName: { type: new GraphQLNonNull(GraphQLString) },
+  }),
+});
 
 const UserType = new GraphQLObjectType({
   name: "User",
@@ -62,7 +70,7 @@ const RecipeType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: new GraphQLNonNull(GraphQLID) },
     title: { type: new GraphQLNonNull(GraphQLString) },
-    picture: { type: GraphQLUpload },
+    picture: { type: GraphQLString },
     video: { type: GraphQLString },
     category: { type: new GraphQLNonNull(GraphQLString) },
     cookTime: { type: new GraphQLNonNull(GraphQLInt) },
@@ -191,7 +199,7 @@ const RootMutation = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
       args: {
         title: { type: new GraphQLNonNull(GraphQLString) },
-        image: { type: GraphQLString },
+        recipeImage: { type: RecipeImageInputType },
         video: { type: GraphQLString },
         category: { type: new GraphQLNonNull(GraphQLString) },
         cookTime: { type: new GraphQLNonNull(GraphQLInt) },

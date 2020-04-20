@@ -5,12 +5,13 @@ const User = require("../../../../model/User");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 const { strings } = require("../../../../strings/Strings");
 const { capitalizeFirst } = require("../../../../util/Util");
+const { uploadImage } = require("../../../operations/image/uploadImage");
 
 module.exports = {
   addMyRecipe: async (
     {
       title,
-      image,
+      recipeImage,
       video,
       category,
       cookTime,
@@ -23,10 +24,11 @@ module.exports = {
     try {
       const tokenVerified = await verifyToken(email, req.cookies.id);
       if (tokenVerified) {
+        const imagePath = await uploadImage(recipeImage, email);
         const user = await User.findOne({ email: email });
         let recipe = new Recipe({
           title: title,
-          picture: image,
+          picture: imagePath,
           video: video,
           category: category,
           cookTime: cookTime,

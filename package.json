@@ -29,7 +29,6 @@
     "googleapis": "^47.0.0",
     "graphql": "^14.6.0",
     "graphql-date": "^1.0.3",
-    "graphql-upload": "^10.0.0",
     "jsonwebtoken": "^8.5.1",
     "lodash": "^4.17.15",
     "mongoose": "^5.9.1",
