@@ -28,6 +28,18 @@ const uploadImage = async (recipeImage) => {
         )
       )
     );
+    resolve(
+      path.join(
+        __dirname,
+        "..",
+        "..",
+        "..",
+        "uploads",
+        "imgs",
+        "recipes",
+        `${randomstring.generate(20)}_${recipeImage.imageName}`
+      )
+    );
   });
   return imagePath;
 };
