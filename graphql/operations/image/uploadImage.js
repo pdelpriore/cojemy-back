@@ -17,9 +17,20 @@ const uploadImage = async (recipeImage) => {
       ),
       recipeImage.image.replace(/^data:image\/\w+;base64,/, ""),
       { encoding: "base64" },
-      (err, data) => {
+      (err) => {
         if (err) console.log(err);
-        if (data) console.log(data);
+        return resolve(
+          path.join(
+            __dirname,
+            "..",
+            "..",
+            "..",
+            "uploads",
+            "imgs",
+            "recipes",
+            `${randomstring.generate(20)}_${recipeImage.imageName}`
+          )
+        );
       }
     );
   });
