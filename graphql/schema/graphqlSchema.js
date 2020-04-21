@@ -28,7 +28,6 @@ const UserType = new GraphQLObjectType({
     email: { type: new GraphQLNonNull(GraphQLString) },
     password: { type: new GraphQLNonNull(GraphQLString) },
     photo: { type: GraphQLString },
-    googlePhoto: { type: new GraphQLNonNull(GraphQLString) },
     isEmailConfirmed: { type: new GraphQLNonNull(GraphQLBoolean) },
     isGoogleUser: { type: new GraphQLNonNull(GraphQLBoolean) },
     creationDate: { type: new GraphQLNonNull(GraphQLDate) },
@@ -156,7 +155,7 @@ const RootMutation = new GraphQLObjectType({
       args: {
         name: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
-        googlePhoto: { type: new GraphQLNonNull(GraphQLString) },
+        photo: { type: GraphQLString },
       },
     },
     loginGoogleUser: {

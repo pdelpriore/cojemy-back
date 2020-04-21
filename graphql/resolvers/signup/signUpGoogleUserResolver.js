@@ -3,7 +3,7 @@ const { capitalizeFirst } = require("../../../util/Util");
 const { strings } = require("../../../strings/Strings");
 
 module.exports = {
-  signUpGoogleUser: async ({ name, email, googlePhoto }) => {
+  signUpGoogleUser: async ({ name, email, photo }) => {
     try {
       const user = await User.findOne({ email: email }, { password: 0 });
       if (user) {
@@ -15,7 +15,7 @@ module.exports = {
           name: name,
           email: email.toLowerCase(),
           password: strings.signupGoogleUser.NO_PASSWORD,
-          googlePhoto: googlePhoto,
+          photo: photo,
           isEmailConfirmed: true,
           isGoogleUser: true,
           isPremium: false,
