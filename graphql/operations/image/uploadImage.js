@@ -22,22 +22,13 @@ const uploadImage = async (recipeImage) => {
             "uploads",
             "imgs",
             "recipes",
-            `${randomstring.generate(20)}_${recipeImage.imageName}`
+            `${randomstring.generate(20)}-${recipeImage.imageName}`
           )
         )
       );
 
     resolve(
-      path.join(
-        __dirname,
-        "..",
-        "..",
-        "..",
-        "uploads",
-        "imgs",
-        "recipes",
-        `${randomstring.generate(20)}_${recipeImage.imageName}`
-      )
+      `/imgs/recipes/${randomstring.generate(20)}-${recipeImage.imageName}`
     );
   });
   return imagePath;
