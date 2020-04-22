@@ -5,7 +5,7 @@ const { strings } = require("../../../strings/Strings");
 module.exports = {
   signUpGoogleUser: async ({ name, email, photo }) => {
     try {
-      const user = await User.findOne({ email: email }, { password: 0 });
+      const user = await User.findOne({ email: email });
       if (user) {
         throw new Error(
           capitalizeFirst(strings.errors.signupGoogleUser.USER_EXISTS)

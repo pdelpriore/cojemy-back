@@ -5,7 +5,7 @@ const User = require("../../../model/User");
 const generateToken = async (email) => {
   const tokenGenerated = await new Promise(async (resolve, reject) => {
     try {
-      const user = await User.findOne({ email: email }, { password: 0 });
+      const user = await User.findOne({ email: email });
       if (user) {
         const token = jwt.sign(
           { userId: user._id, email: user.email },
