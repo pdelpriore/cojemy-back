@@ -21,8 +21,8 @@ app.use(
   })
 );
 app.use(cookieParser());
-app.use(bodyParser.json({ limit: "1mb" }));
-app.use(bodyParser.urlencoded({ limit: "1mb", extended: true }));
+app.use(bodyParser.json({ limit: "170kb" }));
+app.use(bodyParser.urlencoded({ limit: "170kb", extended: true }));
 
 app.use(express.static(path.join(__dirname, "uploads")));
 
