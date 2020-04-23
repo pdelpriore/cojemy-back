@@ -60,6 +60,9 @@ const strings = Object.freeze({
     retrieveRecipes: {
       NO_RECIPES: "pas de recettes.",
     },
+    addNewRecipe: {
+      RECIPE_EXISTS: "recette déjà existe.",
+    },
   },
 });
 
