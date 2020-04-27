@@ -30,6 +30,7 @@ module.exports = {
         const imagePath =
           recipeImage && (await checkRecipeImage(recipeId, recipeImage));
         const user = await User.findOne({ email: email });
+
         await Recipe.findOneAndUpdate(
           { _id: recipeId },
           {
@@ -45,6 +46,21 @@ module.exports = {
           },
           { new: true }
         ).exec();
+
+        const isRecipeVideoOrPictureExist = Recipe.findById(recipeId);
+        if (isRecipeVideoOrPictureExist.video === undefined) {
+          await Recipe.findOneAndUpdate(
+            { _id: recipeId },
+            { $unset: { video: 1 } },
+            { new: true }
+          ).exec();
+        } else if (isRecipeVideoOrPictureExist.picture === undefined) {
+          await Recipe.findOneAndUpdate(
+            { _id: recipeId },
+            { $unset: { picture: 1 } },
+            { new: true }
+          ).exec();
+        }
 
         const userRecipes = await Recipe.find({
           _id: { $in: user.recipes },
