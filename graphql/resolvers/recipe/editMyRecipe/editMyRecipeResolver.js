@@ -5,7 +5,9 @@ const User = require("../../../../model/User");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 const { strings } = require("../../../../strings/Strings");
 const { capitalizeFirst } = require("../../../../util/Util");
-const { uploadImage } = require("../../../operations/image/uploadImage");
+const {
+  checkRecipeImage,
+} = require("../../../operations/image/checkRecipeImage");
 
 module.exports = {
   editMyRecipe: async (
@@ -25,8 +27,36 @@ module.exports = {
     try {
       const tokenVerified = await verifyToken(email, req.cookies.id);
       if (tokenVerified) {
-        console.log(recipeImage.imageName);
-        console.log(ingredients.split(","));
+        const imagePath =
+          recipeImage && (await checkRecipeImage(recipeId, recipeImage));
+        const user = await User.findOne({ email: email });
+        await Recipe.findOneAndUpdate(
+          { _id: recipeId },
+          {
+            $set: {
+              title: title,
+              picture: imagePath,
+              video: video,
+              category: category,
+              cookTime: cookTime,
+              ingredients: ingredients.split(","),
+              description: description,
+            },
+          },
+          { new: true }
+        ).exec();
+
+        const userRecipes = await Recipe.find({
+          _id: { $in: user.recipes },
+        })
+          .sort({ date: -1 })
+          .populate([
+            { path: "author", model: User },
+            { path: "comments.commentator", model: User },
+            { path: "comments.comment", model: Comment },
+            { path: "comments.rate", model: Rate },
+          ]);
+        return userRecipes;
       } else {
         throw new Error(capitalizeFirst(strings.errors.token.ERROR));
       }
