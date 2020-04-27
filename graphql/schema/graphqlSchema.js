@@ -209,6 +209,20 @@ const RootMutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },
+    editMyRecipe: {
+      type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
+      args: {
+        recipeId: { type: new GraphQLNonNull(GraphQLID) },
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        recipeImage: { type: RecipeImageInputType },
+        video: { type: GraphQLString },
+        category: { type: new GraphQLNonNull(GraphQLString) },
+        cookTime: { type: new GraphQLNonNull(GraphQLInt) },
+        ingredients: { type: new GraphQLNonNull(GraphQLString) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
   },
 });
 
