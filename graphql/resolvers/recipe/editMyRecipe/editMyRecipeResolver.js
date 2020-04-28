@@ -40,24 +40,18 @@ module.exports = {
               video: video,
               category: category,
               cookTime: cookTime,
-              ingredients: ingredients.split(","),
+              ingredients: ingredients,
               description: description,
             },
           },
           { new: true }
         ).exec();
 
-        const isRecipeVideoOrPictureExist = Recipe.findById(recipeId);
-        if (isRecipeVideoOrPictureExist.video === undefined) {
+        const isRecipeVideoExist = Recipe.findById(recipeId);
+        if (isRecipeVideoExist.video === undefined) {
           await Recipe.findOneAndUpdate(
             { _id: recipeId },
             { $unset: { video: 1 } },
-            { new: true }
-          ).exec();
-        } else if (isRecipeVideoOrPictureExist.picture === undefined) {
-          await Recipe.findOneAndUpdate(
-            { _id: recipeId },
-            { $unset: { picture: 1 } },
             { new: true }
           ).exec();
         }

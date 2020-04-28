@@ -25,7 +25,7 @@ const checkRecipeImage = async (recipeId, recipeImage) => {
           if (err) console.log(err);
         }
       );
-      const newPath = recipeImage && (await uploadImage(recipeImage));
+      const newPath = await uploadImage(recipeImage);
       resolve(newPath);
     }
   });

@@ -218,7 +218,9 @@ const RootMutation = new GraphQLObjectType({
         video: { type: GraphQLString },
         category: { type: new GraphQLNonNull(GraphQLString) },
         cookTime: { type: new GraphQLNonNull(GraphQLInt) },
-        ingredients: { type: new GraphQLNonNull(GraphQLString) },
+        ingredients: {
+          type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(GraphQLString))),
+        },
         description: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
       },

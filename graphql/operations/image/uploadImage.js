@@ -6,6 +6,7 @@ const stream = require("stream");
 const uploadImage = async (recipeImage) => {
   const imagePath = await new Promise((resolve, reject) => {
     const imageName = `${randomstring.generate(20)}-${recipeImage.imageName}`;
+
     new stream.PassThrough()
       .end(
         new Buffer.from(
