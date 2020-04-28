@@ -27,8 +27,7 @@ module.exports = {
     try {
       const tokenVerified = await verifyToken(email, req.cookies.id);
       if (tokenVerified) {
-        const imagePath =
-          recipeImage && (await checkRecipeImage(recipeId, recipeImage));
+        const imagePath = await checkRecipeImage(recipeId, recipeImage);
         const user = await User.findOne({ email: email });
 
         await Recipe.findOneAndUpdate(
