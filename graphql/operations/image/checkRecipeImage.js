@@ -8,7 +8,11 @@ const checkRecipeImage = async (recipeId, recipeImage) => {
     const recipe = await Recipe.findById(recipeId);
     const recipeImageName =
       recipe.picture && recipe.picture.split("/").slice(3).toString();
-    if (recipeImageName === recipeImage && recipeImage.imageName) {
+    if (
+      recipeImageName === recipeImage &&
+      recipeImage !== undefined &&
+      recipeImage.imageName
+    ) {
       resolve(recipe.picture);
     } else {
       recipeImageName &&

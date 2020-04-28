@@ -46,15 +46,6 @@ module.exports = {
           { new: true }
         ).exec();
 
-        const isRecipeVideoExist = Recipe.findById(recipeId);
-        if (isRecipeVideoExist.video === undefined) {
-          await Recipe.findOneAndUpdate(
-            { _id: recipeId },
-            { $unset: { video: 1 } },
-            { new: true }
-          ).exec();
-        }
-
         const userRecipes = await Recipe.find({
           _id: { $in: user.recipes },
         })
