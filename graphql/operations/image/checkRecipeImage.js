@@ -8,14 +8,32 @@ const checkRecipeImage = async (recipeId, recipeImage) => {
     const recipe = await Recipe.findById(recipeId);
     const recipeImageName =
       recipe.picture && recipe.picture.split("/").slice(3).toString();
-    if (
-      recipeImageName === recipeImage &&
-      recipeImage !== undefined &&
-      recipeImage.imageName
-    ) {
-      resolve(recipe.picture);
+    if (recipeImage) {
+      if (recipeImageName === recipeImage.imageName) {
+        resolve(recipe.picture);
+      } else {
+        if (recipeImageName) {
+          fs.unlink(
+            path.join(
+              __dirname,
+              "..",
+              "..",
+              "..",
+              "uploads",
+              "imgs",
+              "recipes",
+              `${recipeImageName}`
+            ),
+            (err) => {
+              if (err) console.log(err);
+            }
+          );
+        }
+        const newPath = await uploadImage(recipeImage);
+        resolve(newPath);
+      }
     } else {
-      recipeImageName &&
+      if (recipeImageName) {
         fs.unlink(
           path.join(
             __dirname,
@@ -31,8 +49,8 @@ const checkRecipeImage = async (recipeId, recipeImage) => {
             if (err) console.log(err);
           }
         );
-      const newPath = recipeImage && (await uploadImage(recipeImage));
-      resolve(newPath);
+      }
+      resolve(null);
     }
   });
   return imagePath;
