@@ -1,6 +1,5 @@
 const Recipe = require("../../../model/Recipe");
-const fs = require("fs");
-const path = require("path");
+const { removeImage } = require("./removeImage");
 const { uploadImage } = require("./uploadImage");
 
 const checkRecipeImage = async (recipeId, recipeImage) => {
@@ -13,42 +12,14 @@ const checkRecipeImage = async (recipeId, recipeImage) => {
         resolve(recipe.picture);
       } else {
         if (recipeImageName) {
-          fs.unlink(
-            path.join(
-              __dirname,
-              "..",
-              "..",
-              "..",
-              "uploads",
-              "imgs",
-              "recipes",
-              `${recipeImageName}`
-            ),
-            (err) => {
-              if (err) console.log(err);
-            }
-          );
+          removeImage(recipeImageName);
         }
         const newPath = await uploadImage(recipeImage);
         resolve(newPath);
       }
     } else {
       if (recipeImageName) {
-        fs.unlink(
-          path.join(
-            __dirname,
-            "..",
-            "..",
-            "..",
-            "uploads",
-            "imgs",
-            "recipes",
-            `${recipeImageName}`
-          ),
-          (err) => {
-            if (err) console.log(err);
-          }
-        );
+        removeImage(recipeImageName);
       }
       resolve(null);
     }
