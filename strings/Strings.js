@@ -66,6 +66,8 @@ const strings = Object.freeze({
       COOK_TIME_ZERO: "temps de cuisson incorrect",
       COOK_TIME_ERROR: "temps de cuisson trop large",
       INGREDIENTS_ERROR: "ingredients contiennent un élément vide",
+      IMAGE_UNACCEPTABLE: "image inappropriée",
+      VIDEO_UNACCEPTABLE: "vidéo inappropriée",
     },
     retrieveRecipes: {
       NO_RECIPES: "pas de recettes.",

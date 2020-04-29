@@ -25,6 +25,31 @@ const validateMyRecipeForm = async (
       );
     } else if (
       recipeImage &&
+      [
+        "xxx",
+        "porn",
+        "teen",
+        "milf",
+        "tits",
+        "pussy",
+        "cock",
+        "sex",
+        "penis",
+        "cum",
+        "sperme",
+        "baise",
+        "enculé",
+        "deepthroat",
+        "anal",
+        "sodomie",
+        "bite",
+      ].some((element) => recipeImage.imageName.includes(element))
+    ) {
+      throw new Error(
+        capitalizeFirst(strings.errors.validateMyRecipeForm.IMAGE_UNACCEPTABLE)
+      );
+    } else if (
+      recipeImage &&
       new Buffer.from(
         recipeImage.image.replace(/^data:image\/\w+;base64,/, ""),
         "base64"
@@ -39,6 +64,32 @@ const validateMyRecipeForm = async (
     ) {
       throw new Error(
         capitalizeFirst(strings.errors.validateMyRecipeForm.VIDEO_ERROR)
+      );
+    } else if (
+      video &&
+      [
+        "xxx",
+        "porn",
+        "teen",
+        "milf",
+        "tits",
+        "pussy",
+        "cock",
+        "sex",
+        "penis",
+        "cum",
+        "sperme",
+        "redtube",
+        "baise",
+        "enculé",
+        "deepthroat",
+        "anal",
+        "sodomie",
+        "bite",
+      ].some((element) => video.includes(element))
+    ) {
+      throw new Error(
+        capitalizeFirst(strings.errors.validateMyRecipeForm.VIDEO_UNACCEPTABLE)
       );
     } else if (
       ![
