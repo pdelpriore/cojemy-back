@@ -3,6 +3,9 @@ const Rate = require("../../../../model/Rate");
 const Comment = require("../../../../model/Comment");
 const User = require("../../../../model/User");
 const { verifyToken } = require("../../../operations/token/verifyToken");
+const {
+  validateMyRecipeForm,
+} = require("../../../operations/validation/validateMyRecipeForm");
 const { strings } = require("../../../../strings/Strings");
 const { capitalizeFirst } = require("../../../../util/Util");
 const { uploadImage } = require("../../../operations/image/uploadImage");
@@ -29,7 +32,16 @@ module.exports = {
           category: category,
         });
         if (recipeExists === null) {
+          await validateMyRecipeForm(
+            title,
+            recipeImage,
+            video,
+            category,
+            cookTime,
+            ingredients
+          );
           const imagePath = recipeImage && (await uploadImage(recipeImage));
+
           const user = await User.findOne({ email: email });
           let recipe = new Recipe({
             title: title,

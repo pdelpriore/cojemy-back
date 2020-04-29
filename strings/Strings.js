@@ -57,6 +57,16 @@ const strings = Object.freeze({
       WRONG_PASSWORD:
         "ton mot de passe doit contenir au moins: \n 1. Une chiffre \n 2. Un caractère minuscule \n 3. Un caractère majuscule \n 4. Huit caractères",
     },
+    validateMyRecipeForm: {
+      TITLE_LENGTH: "title trop long",
+      IMAGE_FORMAT: "format d'image incorrecte",
+      IMAGE_SIZE: "image trop large",
+      VIDEO_ERROR: "adresse de vidéo incorrecte",
+      CATEGORY_ERROR: "catégorie non acceptée",
+      COOK_TIME_ZERO: "temps de cuisson incorrect",
+      COOK_TIME_ERROR: "temps de cuisson trop large",
+      INGREDIENTS_ERROR: "ingredients contiennent un élément vide",
+    },
     retrieveRecipes: {
       NO_RECIPES: "pas de recettes.",
     },
