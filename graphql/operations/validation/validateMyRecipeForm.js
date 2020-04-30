@@ -7,12 +7,40 @@ const validateMyRecipeForm = async (
   video,
   category,
   cookTime,
-  ingredients
+  ingredients,
+  description
 ) => {
   const validateResult = await new Promise((resolve, reject) => {
     if (title.length > 21) {
       throw new Error(
         capitalizeFirst(strings.errors.validateMyRecipeForm.TITLE_LENGTH)
+      );
+    } else if (
+      [
+        "xxx",
+        "porn",
+        "teen",
+        "milf",
+        "tits",
+        "pussy",
+        "cock",
+        "sex",
+        "penis",
+        "cum",
+        "sperme",
+        "baise",
+        "enculé",
+        "deepthroat",
+        "anal",
+        "sodomie",
+        "bite",
+      ].some(
+        (element) =>
+          title.includes(element) || title.includes(capitalizeFirst(element))
+      )
+    ) {
+      throw new Error(
+        capitalizeFirst(strings.errors.validateMyRecipeForm.TITLE_UNACCEPTABLE)
       );
     } else if (
       recipeImage &&
@@ -116,7 +144,34 @@ const validateMyRecipeForm = async (
       throw new Error(
         capitalizeFirst(strings.errors.validateMyRecipeForm.INGREDIENTS_ERROR)
       );
-    } else {
+    } else if (
+      [
+        "xxx",
+        "porn",
+        "teen",
+        "milf",
+        "tits",
+        "pussy",
+        "cock",
+        "sex",
+        "penis",
+        "cum",
+        "sperme",
+        "baise",
+        "enculé",
+        "deepthroat",
+        "anal",
+        "sodomie",
+        "bite",
+      ].some((element) => description.includes(element))
+    ) {
+      throw new Error(
+        capitalizeFirst(
+          strings.errors.validateMyRecipeForm.DESCRIPTION_UNACCEPTABLE
+        )
+      );
+    }
+    {
       resolve();
     }
   });

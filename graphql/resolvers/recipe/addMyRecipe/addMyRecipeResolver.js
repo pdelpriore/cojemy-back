@@ -38,7 +38,8 @@ module.exports = {
             video,
             category,
             cookTime,
-            ingredients
+            ingredients,
+            description
           );
           const imagePath = recipeImage && (await uploadImage(recipeImage));
 

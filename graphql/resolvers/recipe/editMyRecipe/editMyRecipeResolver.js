@@ -33,7 +33,8 @@ module.exports = {
           video,
           category,
           cookTime,
-          ingredients
+          ingredients,
+          description
         );
         const imagePath = await checkRecipeImage(recipeId, recipeImage);
 

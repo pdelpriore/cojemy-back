@@ -68,6 +68,8 @@ const strings = Object.freeze({
       INGREDIENTS_ERROR: "ingredients contiennent un élément vide",
       IMAGE_UNACCEPTABLE: "image inappropriée",
       VIDEO_UNACCEPTABLE: "vidéo inappropriée",
+      TITLE_UNACCEPTABLE: "titre inapproprié",
+      DESCRIPTION_UNACCEPTABLE: "description inappropriée",
     },
     retrieveRecipes: {
       NO_RECIPES: "pas de recettes.",
