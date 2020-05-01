@@ -16,7 +16,7 @@ module.exports = {
             date: { $gt: new Date().getTime() - 1000 * 3600 * 24 },
           })
             .sort({ date: -1 })
-            .skip(skip)
+            .skip((skip - 1) * limit)
             .limit(limit)
             .populate([
               { path: "author", model: User },
@@ -38,7 +38,7 @@ module.exports = {
         try {
           const recipes = await Recipe.find({ category: category })
             .sort({ date: -1 })
-            .skip(skip)
+            .skip((skip - 1) * limit)
             .limit(limit)
             .populate([
               { path: "author", model: User },
