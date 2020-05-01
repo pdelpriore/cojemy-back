@@ -93,6 +93,8 @@ const RootQuery = new GraphQLObjectType({
       args: {
         category: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
+        skip: { type: new GraphQLNonNull(GraphQLInt) },
+        limit: { type: new GraphQLNonNull(GraphQLInt) },
       },
     },
     searchRecipe: {

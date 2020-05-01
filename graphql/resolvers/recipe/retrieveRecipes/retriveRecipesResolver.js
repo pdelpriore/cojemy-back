@@ -7,7 +7,7 @@ const { strings } = require("../../../../strings/Strings");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
-  retrieveRecipes: async ({ category, email }, { req }) => {
+  retrieveRecipes: async ({ category, email, skip, limit }, { req }) => {
     const tokenVerified = await verifyToken(email, req.cookies.id);
     if (tokenVerified) {
       if (category === strings.retrieveRecipes.CAT_NEWS) {
@@ -16,6 +16,8 @@ module.exports = {
             date: { $gt: new Date().getTime() - 1000 * 3600 * 24 },
           })
             .sort({ date: -1 })
+            .skip(skip)
+            .limit(limit)
             .populate([
               { path: "author", model: User },
               { path: "comments.commentator", model: User },
@@ -36,6 +38,8 @@ module.exports = {
         try {
           const recipes = await Recipe.find({ category: category })
             .sort({ date: -1 })
+            .skip(skip)
+            .limit(limit)
             .populate([
               { path: "author", model: User },
               { path: "comments.commentator", model: User },
