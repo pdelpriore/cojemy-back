@@ -170,8 +170,7 @@ const validateMyRecipeForm = async (
           strings.errors.validateMyRecipeForm.DESCRIPTION_UNACCEPTABLE
         )
       );
-    }
-    {
+    } else {
       resolve();
     }
   });
