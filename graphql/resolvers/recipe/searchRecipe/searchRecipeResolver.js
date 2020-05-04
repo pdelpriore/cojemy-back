@@ -5,7 +5,6 @@ const Rate = require("../../../../model/Rate");
 const { capitalizeFirst } = require("../../../../util/Util");
 const { strings } = require("../../../../strings/Strings");
 const { verifyToken } = require("../../../operations/token/verifyToken");
-const { capitalize } = require("../../../../util/Util");
 
 module.exports = {
   searchRecipe: async ({ recipeTitle, email }, { req }) => {
@@ -13,7 +12,7 @@ module.exports = {
       const tokenVerified = await verifyToken(email, req.cookies.id);
       if (tokenVerified) {
         const recipes = await Recipe.find({
-          title: { $regex: `.*${capitalize(recipeTitle)}.*` },
+          title: { $regex: `.*${recipeTitle}.*`, $options: "i" },
         })
           .sort({ date: -1 })
           .populate([
