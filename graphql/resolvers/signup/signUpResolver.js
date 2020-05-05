@@ -11,9 +11,16 @@ const { sendEmailConfirm } = require("../../operations/email/sendEmailConfirm");
 module.exports = {
   signUp: async ({ name, email, confirmEmail, password }) => {
     try {
-      const user = await User.findOne({ email: email });
-      if (user) {
-        throw new Error(capitalizeFirst(strings.errors.signup.USER_EXISTS));
+      const userEmail = await User.findOne({ email: email });
+      const userName = await User.findOne({ name: name });
+      if (userEmail) {
+        throw new Error(
+          capitalizeFirst(strings.errors.signup.USER_EMAIL_EXISTS)
+        );
+      } else if (userName) {
+        throw new Error(
+          capitalizeFirst(strings.errors.signup.USER_NAME_EXISTS)
+        );
       } else {
         await validateSignupForm(name, email, confirmEmail, password);
         let passwordHashed = await hashPassword(password);

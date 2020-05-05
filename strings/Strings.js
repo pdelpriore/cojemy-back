@@ -29,7 +29,8 @@ const strings = Object.freeze({
   },
   errors: {
     signup: {
-      USER_EXISTS: "utilisateur déjà inscrit.",
+      USER_EMAIL_EXISTS: "email déjà pris.",
+      USER_NAME_EXISTS: "nom d'utilisateur déjà existe.",
     },
     signupGoogleUser: {
       USER_EXISTS: "utilisateur déjà inscrit.",
