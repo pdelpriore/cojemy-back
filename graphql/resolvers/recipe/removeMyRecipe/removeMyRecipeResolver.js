@@ -15,7 +15,8 @@ module.exports = {
         const recipe = await Recipe.findById(recipeId);
         const recipeImageName =
           recipe.picture && recipe.picture.split("/").slice(3).toString();
-        if (recipeImageName) removeImage(recipeImageName);
+        if (recipeImageName)
+          removeImage(recipeImageName, strings.imageTypes.RECIPE);
 
         let recipeComments = recipe.comments.map((item) => item.comment);
         let recipeRates = recipe.comments.map((item) => item.rate);

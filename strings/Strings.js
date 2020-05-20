@@ -27,6 +27,10 @@ const strings = Object.freeze({
   retrieveRecipes: {
     CAT_NEWS: "news",
   },
+  imageTypes: {
+    RECIPE: "recipes",
+    USER: "user",
+  },
   errors: {
     signup: {
       USER_EMAIL_EXISTS: "email déjà pris.",

@@ -41,7 +41,9 @@ module.exports = {
             ingredients,
             description
           );
-          const imagePath = recipeImage && (await uploadImage(recipeImage));
+          const imagePath =
+            recipeImage &&
+            (await uploadImage(recipeImage, strings.imageTypes.RECIPE));
 
           const user = await User.findOne({ email: email });
           let recipe = new Recipe({

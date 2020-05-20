@@ -1,6 +1,7 @@
 const Recipe = require("../../../model/Recipe");
 const { removeImage } = require("./removeImage");
 const { uploadImage } = require("./uploadImage");
+const { strings } = require("../../../strings/Strings");
 
 const checkRecipeImage = async (recipeId, recipeImage) => {
   const imagePath = await new Promise(async (resolve, reject) => {
@@ -12,14 +13,17 @@ const checkRecipeImage = async (recipeId, recipeImage) => {
         resolve(recipe.picture);
       } else {
         if (recipeImageName) {
-          removeImage(recipeImageName);
+          removeImage(recipeImageName, strings.imageTypes.RECIPE);
         }
-        const newPath = await uploadImage(recipeImage);
+        const newPath = await uploadImage(
+          recipeImage,
+          strings.imageTypes.RECIPE
+        );
         resolve(newPath);
       }
     } else {
       if (recipeImageName) {
-        removeImage(recipeImageName);
+        removeImage(recipeImageName, strings.imageTypes.RECIPE);
       }
       resolve(null);
     }

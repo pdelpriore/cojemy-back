@@ -2,8 +2,9 @@ const fs = require("fs");
 const path = require("path");
 const randomstring = require("randomstring");
 const stream = require("stream");
+const { strings } = require("../../../strings/Strings");
 
-const uploadImage = async (recipeImage) => {
+const uploadImage = async (recipeImage, type) => {
   const imagePath = await new Promise((resolve, reject) => {
     const imageName = `${randomstring.generate(20)}-${recipeImage.imageName}`;
 
@@ -23,13 +24,13 @@ const uploadImage = async (recipeImage) => {
             "..",
             "uploads",
             "imgs",
-            "recipes",
+            `${type}`,
             `${imageName}`
           )
         )
       );
 
-    resolve(`/imgs/recipes/${imageName}`);
+    resolve(`/imgs/${type}/${imageName}`);
   });
   return imagePath;
 };

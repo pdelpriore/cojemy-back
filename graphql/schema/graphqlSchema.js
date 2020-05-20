@@ -12,6 +12,14 @@ const {
 } = graphql;
 const GraphQLDate = require("graphql-date");
 
+const ProfileImageInputType = new GraphQLInputObjectType({
+  name: "ProfileImage",
+  fields: () => ({
+    image: { type: new GraphQLNonNull(GraphQLString) },
+    imageName: { type: GraphQLString },
+  }),
+});
+
 const RecipeImageInputType = new GraphQLInputObjectType({
   name: "RecipeImage",
   fields: () => ({
@@ -231,6 +239,14 @@ const RootMutation = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
       args: {
         recipeId: { type: new GraphQLNonNull(GraphQLID) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
+    updateUserProfile: {
+      type: new GraphQLNonNull(UserType),
+      args: {
+        name: { type: new GraphQLNonNull(GraphQLString) },
+        profileImage: { type: ProfileImageInputType },
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },

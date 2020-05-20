@@ -1,7 +1,7 @@
 const fs = require("fs");
 const path = require("path");
 
-const removeImage = (imageName) => {
+const removeImage = (imageName, type) => {
   fs.unlink(
     path.join(
       __dirname,
@@ -10,7 +10,7 @@ const removeImage = (imageName) => {
       "..",
       "uploads",
       "imgs",
-      "recipes",
+      `${type}`,
       `${imageName}`
     ),
     (err) => {
