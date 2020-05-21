@@ -1,4 +1,5 @@
 const { strings } = require("../../../strings/Strings");
+const { unacceptableWordsArray } = require("../../../shared/testWords");
 const { capitalizeFirst } = require("../../../util/Util");
 
 const validateMyRecipeForm = async (
@@ -16,25 +17,7 @@ const validateMyRecipeForm = async (
         capitalizeFirst(strings.errors.validateMyRecipeForm.TITLE_LENGTH)
       );
     } else if (
-      [
-        "xxx",
-        "porn",
-        "teen",
-        "milf",
-        "tits",
-        "pussy",
-        "cock",
-        "sex",
-        "penis",
-        "cum",
-        "sperme",
-        "baise",
-        "enculé",
-        "deepthroat",
-        "anal",
-        "sodomie",
-        "bite",
-      ].some(
+      unacceptableWordsArray.some(
         (element) =>
           title.includes(element) || title.includes(capitalizeFirst(element))
       )
@@ -53,25 +36,9 @@ const validateMyRecipeForm = async (
       );
     } else if (
       recipeImage &&
-      [
-        "xxx",
-        "porn",
-        "teen",
-        "milf",
-        "tits",
-        "pussy",
-        "cock",
-        "sex",
-        "penis",
-        "cum",
-        "sperme",
-        "baise",
-        "enculé",
-        "deepthroat",
-        "anal",
-        "sodomie",
-        "bite",
-      ].some((element) => recipeImage.imageName.includes(element))
+      unacceptableWordsArray.some((element) =>
+        recipeImage.imageName.includes(element)
+      )
     ) {
       throw new Error(
         capitalizeFirst(strings.errors.validateMyRecipeForm.IMAGE_UNACCEPTABLE)
@@ -95,26 +62,7 @@ const validateMyRecipeForm = async (
       );
     } else if (
       video &&
-      [
-        "xxx",
-        "porn",
-        "teen",
-        "milf",
-        "tits",
-        "pussy",
-        "cock",
-        "sex",
-        "penis",
-        "cum",
-        "sperme",
-        "redtube",
-        "baise",
-        "enculé",
-        "deepthroat",
-        "anal",
-        "sodomie",
-        "bite",
-      ].some((element) => video.includes(element))
+      unacceptableWordsArray.some((element) => video.includes(element))
     ) {
       throw new Error(
         capitalizeFirst(strings.errors.validateMyRecipeForm.VIDEO_UNACCEPTABLE)
@@ -145,25 +93,7 @@ const validateMyRecipeForm = async (
         capitalizeFirst(strings.errors.validateMyRecipeForm.INGREDIENTS_ERROR)
       );
     } else if (
-      [
-        "xxx",
-        "porn",
-        "teen",
-        "milf",
-        "tits",
-        "pussy",
-        "cock",
-        "sex",
-        "penis",
-        "cum",
-        "sperme",
-        "baise",
-        "enculé",
-        "deepthroat",
-        "anal",
-        "sodomie",
-        "bite",
-      ].some((element) => description.includes(element))
+      unacceptableWordsArray.some((element) => description.includes(element))
     ) {
       throw new Error(
         capitalizeFirst(

@@ -1,4 +1,5 @@
 const { strings } = require("../../../strings/Strings");
+const { unacceptableWordsArray } = require("../../../shared/testWords");
 const { capitalizeFirst } = require("../../../util/Util");
 
 const validateUserUpdateProfileForm = async (name, profileImage) => {
@@ -20,25 +21,9 @@ const validateUserUpdateProfileForm = async (name, profileImage) => {
     } else if (
       profileImage &&
       profileImage.imageName &&
-      [
-        "xxx",
-        "porn",
-        "teen",
-        "milf",
-        "tits",
-        "pussy",
-        "cock",
-        "sex",
-        "penis",
-        "cum",
-        "sperme",
-        "baise",
-        "enculé",
-        "deepthroat",
-        "anal",
-        "sodomie",
-        "bite",
-      ].some((element) => profileImage.imageName.includes(element))
+      unacceptableWordsArray.some((element) =>
+        profileImage.imageName.includes(element)
+      )
     ) {
       throw new Error(
         capitalizeFirst(strings.errors.validateMyRecipeForm.IMAGE_UNACCEPTABLE)
