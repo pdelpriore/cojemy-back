@@ -2,6 +2,7 @@ const User = require("../../../model/User");
 const { removeImage } = require("./removeImage");
 const { uploadImage } = require("./uploadImage");
 const { strings } = require("../../../strings/Strings");
+const { userGooglePhoto } = require("../../../shared/testWords");
 
 const checkUserImage = async (email, profileImage) => {
   const imagePath = await new Promise(async (resolve, reject) => {
@@ -15,7 +16,7 @@ const checkUserImage = async (email, profileImage) => {
         } else {
           if (
             userImageName &&
-            !["googleusercontent.com"].some(
+            !userGooglePhoto.some(
               (element) => user.photo && user.photo.includes(element)
             )
           ) {
@@ -35,7 +36,7 @@ const checkUserImage = async (email, profileImage) => {
     } else {
       if (
         userImageName &&
-        !["googleusercontent.com"].some(
+        !userGooglePhoto.some(
           (element) => user.photo && user.photo.includes(element)
         )
       ) {

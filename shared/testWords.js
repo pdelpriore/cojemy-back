@@ -22,4 +22,6 @@ const unacceptableWordsArray = [
   "bite",
 ];
 
-module.exports = { unacceptableWordsArray };
+const userGooglePhoto = ["googleusercontent.com"];
+
+module.exports = { unacceptableWordsArray, userGooglePhoto };
