@@ -76,6 +76,9 @@ const strings = Object.freeze({
       TITLE_UNACCEPTABLE: "titre inapproprié",
       DESCRIPTION_UNACCEPTABLE: "description inappropriée",
     },
+    validateChangePasswordForm: {
+      USER_GOOGLE: "utlisateur google ne peut pas changer son mot de passe.",
+    },
     retrieveRecipes: {
       NO_RECIPES: "pas de recettes.",
     },

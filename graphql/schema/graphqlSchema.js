@@ -250,6 +250,15 @@ const RootMutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },
+    changeUserPassword: {
+      type: GraphQLBoolean,
+      args: {
+        currentPass: { type: new GraphQLNonNull(GraphQLString) },
+        newPass: { type: new GraphQLNonNull(GraphQLString) },
+        confirmPass: { type: new GraphQLNonNull(GraphQLString) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
   },
 });
 
