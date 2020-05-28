@@ -3,6 +3,9 @@ const Rate = require("../../../../model/Rate");
 const Comment = require("../../../../model/Comment");
 const User = require("../../../../model/User");
 const { verifyToken } = require("../../../operations/token/verifyToken");
+const {
+  validateRateCommentForm,
+} = require("../../../operations/validation/validateRateCommentForm");
 const { strings } = require("../../../../strings/Strings");
 const { capitalizeFirst } = require("../../../../util/Util");
 
@@ -14,6 +17,7 @@ module.exports = {
     try {
       const tokenVerified = await verifyToken(email, req.cookies.id);
       if (tokenVerified) {
+        await validateRateCommentForm(rateValue);
         const user = await User.findOne({ email: email });
         const recipe = await Recipe.findById(recipeId);
         let rate = new Rate({

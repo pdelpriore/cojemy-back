@@ -79,6 +79,9 @@ const strings = Object.freeze({
     validateChangePasswordForm: {
       USER_GOOGLE: "utlisateur google ne peut pas changer son mot de passe.",
     },
+    validateRateCommentForm: {
+      RATE_VALUE: "note ne peut pas être supérieure à 5.",
+    },
     retrieveRecipes: {
       NO_RECIPES: "pas de recettes.",
     },
