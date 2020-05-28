@@ -9,7 +9,6 @@ const { generateToken } = require("../../operations/token/generateToken");
 const {
   protectAgainstHack,
 } = require("../../operations/hack/protectAgainstHack");
-const { capitalizeFirst } = require("../../../util/Util");
 const { strings } = require("../../../strings/Strings");
 
 module.exports = {
@@ -27,7 +26,7 @@ module.exports = {
           //secure: true
         });
       } else {
-        throw new Error(capitalizeFirst(strings.errors.login.ERROR));
+        throw new Error(strings.errors.login.ERROR);
       }
       return user;
     } catch (err) {

@@ -1,6 +1,5 @@
 const User = require("../../../../model/User");
 const { strings } = require("../../../../strings/Strings");
-const { capitalizeFirst } = require("../../../../util/Util");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 const {
   validateUserUpdateProfileForm,
@@ -22,7 +21,7 @@ module.exports = {
         ).exec();
         return userUpdated;
       } else {
-        throw new Error(capitalizeFirst(strings.errors.token.ERROR));
+        throw new Error(strings.errors.token.ERROR);
       }
     } catch (err) {
       if (err) throw err;

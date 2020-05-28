@@ -4,7 +4,7 @@ const checkRequest = () => {
   setInterval(() => {
     let countIps = {};
     fs.readFile("loginIps.txt", (err, data) => {
-      if (err) throw err;
+      if (err) console.log(err);
       if (data !== null) {
         let loginIps = data.toString().split("\n");
         for (loginIp in loginIps) {
@@ -13,7 +13,7 @@ const checkRequest = () => {
         for (ip in countIps) {
           if (countIps[ip] >= 10) {
             fs.appendFile("loginIpsBlackListed.txt", ip + "\n", (err) => {
-              if (err) throw err;
+              if (err) console.log(err);
             });
           }
         }

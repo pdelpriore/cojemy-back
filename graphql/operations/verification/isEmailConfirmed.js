@@ -1,5 +1,4 @@
 const { strings } = require("../../../strings/Strings");
-const { capitalizeFirst } = require("../../../util/Util");
 
 const isEmailConfirmed = async (isEmailConfirmed) => {
   const result = await new Promise((resolve, reject) => {
@@ -7,7 +6,7 @@ const isEmailConfirmed = async (isEmailConfirmed) => {
       if (isEmailConfirmed) {
         resolve();
       } else {
-        reject(capitalizeFirst(strings.errors.login.EMAIL_UNCONFIRMED));
+        reject(strings.errors.login.EMAIL_UNCONFIRMED);
       }
     } catch (err) {
       if (err) throw new Error(err);

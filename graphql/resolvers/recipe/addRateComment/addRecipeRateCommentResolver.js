@@ -7,7 +7,6 @@ const {
   validateRateCommentForm,
 } = require("../../../operations/validation/validateRateCommentForm");
 const { strings } = require("../../../../strings/Strings");
-const { capitalizeFirst } = require("../../../../util/Util");
 
 module.exports = {
   addRecipeRateComment: async (
@@ -49,7 +48,7 @@ module.exports = {
           .exec();
         return recipeUpdated;
       } else {
-        throw new Error(capitalizeFirst(strings.errors.token.ERROR));
+        throw new Error(strings.errors.token.ERROR);
       }
     } catch (err) {
       if (err) throw err;

@@ -1,6 +1,5 @@
 const { isUserExist } = require("../../operations/verification/isUserExist");
 const { strings } = require("../../../strings/Strings");
-const { capitalizeFirst } = require("../../../util/Util");
 const {
   verifyGoogleIdToken,
 } = require("../../operations/token/verifyGoogleIdToken");
@@ -23,10 +22,10 @@ module.exports = {
           });
           return user;
         } else {
-          throw new Error(capitalizeFirst(strings.errors.token.ERROR));
+          throw new Error(strings.errors.token.ERROR);
         }
       } else {
-        throw new Error(capitalizeFirst(strings.errors.loginGoogleUser.ERROR));
+        throw new Error(strings.errors.loginGoogleUser.ERROR);
       }
     } catch (err) {
       if (err) throw err;

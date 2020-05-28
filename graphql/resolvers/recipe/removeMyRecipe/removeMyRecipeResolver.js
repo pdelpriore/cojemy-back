@@ -5,7 +5,6 @@ const User = require("../../../../model/User");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 const { removeImage } = require("../../../operations/image/removeImage");
 const { strings } = require("../../../../strings/Strings");
-const { capitalizeFirst } = require("../../../../util/Util");
 
 module.exports = {
   removeMyRecipe: async ({ recipeId, email }, { req }) => {
@@ -41,12 +40,10 @@ module.exports = {
             ]);
           return myRecipes;
         } else {
-          throw new Error(
-            capitalizeFirst(strings.errors.retrieveRecipes.NO_RECIPES)
-          );
+          throw new Error(strings.errors.retrieveRecipes.NO_RECIPES);
         }
       } else {
-        throw new Error(capitalizeFirst(strings.errors.token.ERROR));
+        throw new Error(strings.errors.token.ERROR);
       }
     } catch (err) {
       if (err) throw err;

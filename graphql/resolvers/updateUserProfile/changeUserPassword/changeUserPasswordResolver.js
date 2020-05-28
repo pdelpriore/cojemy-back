@@ -7,7 +7,6 @@ const {
 } = require("../../../operations/verification/isPasswordCorrect");
 const { hashPassword } = require("../../../operations/password/hashPassword");
 const { verifyToken } = require("../../../operations/token/verifyToken");
-const { capitalizeFirst } = require("../../../../util/Util");
 const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
@@ -33,13 +32,11 @@ module.exports = {
           return true;
         } else if (user.isGoogleUser) {
           throw new Error(
-            capitalizeFirst(
-              strings.errors.validateChangePasswordForm.USER_GOOGLE
-            )
+            strings.errors.validateChangePasswordForm.USER_GOOGLE
           );
         }
       } else {
-        throw new Error(capitalizeFirst(strings.errors.token.ERROR));
+        throw new Error(strings.errors.token.ERROR);
       }
     } catch (err) {
       if (err) throw err;

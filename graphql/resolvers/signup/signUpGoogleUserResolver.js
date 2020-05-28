@@ -1,5 +1,4 @@
 const User = require("../../../model/User");
-const { capitalizeFirst } = require("../../../util/Util");
 const { strings } = require("../../../strings/Strings");
 
 module.exports = {
@@ -7,9 +6,7 @@ module.exports = {
     try {
       const user = await User.findOne({ email: email });
       if (user) {
-        throw new Error(
-          capitalizeFirst(strings.errors.signupGoogleUser.USER_EXISTS)
-        );
+        throw new Error(strings.errors.signupGoogleUser.USER_EXISTS);
       } else {
         let user = new User({
           name: name,

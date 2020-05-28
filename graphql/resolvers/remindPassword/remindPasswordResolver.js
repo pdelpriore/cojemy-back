@@ -4,7 +4,6 @@ const {
 const { isUserExist } = require("../../operations/verification/isUserExist");
 const { setNewPassword } = require("../../operations/password/setNewPassword");
 const { sendNewPassword } = require("../../operations/email/sendNewPassword");
-const { capitalizeFirst } = require("../../../util/Util");
 const { strings } = require("../../../strings/Strings");
 
 module.exports = {
@@ -23,9 +22,7 @@ module.exports = {
         );
         return strings.remindPass.PASSWORD_SENT;
       } else if (user.isGoogleUser) {
-        throw new Error(
-          capitalizeFirst(strings.errors.validateChangePasswordForm.USER_GOOGLE)
-        );
+        throw new Error(strings.errors.validateChangePasswordForm.USER_GOOGLE);
       }
     } catch (err) {
       if (err) throw err;

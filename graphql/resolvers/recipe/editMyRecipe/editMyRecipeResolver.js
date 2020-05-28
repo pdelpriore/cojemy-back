@@ -4,7 +4,6 @@ const Comment = require("../../../../model/Comment");
 const User = require("../../../../model/User");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 const { strings } = require("../../../../strings/Strings");
-const { capitalizeFirst } = require("../../../../util/Util");
 const {
   validateMyRecipeForm,
 } = require("../../../operations/validation/validateMyRecipeForm");
@@ -71,7 +70,7 @@ module.exports = {
           ]);
         return userRecipes;
       } else {
-        throw new Error(capitalizeFirst(strings.errors.token.ERROR));
+        throw new Error(strings.errors.token.ERROR);
       }
     } catch (err) {
       if (err) throw err;

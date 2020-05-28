@@ -36,15 +36,17 @@ app.use(
     customFormatErrorFn: (err) => {
       if (err.message.includes("Unexpected error value")) {
         return {
-          message: err.message
-            .replace(/['"]+/g, "")
-            .split(":")
-            .slice(1)
-            .toString()
-            .trim(),
+          message: capitalizeFirst(
+            err.message
+              .replace(/['"]+/g, "")
+              .split(":")
+              .slice(1)
+              .toString()
+              .trim()
+          ),
         };
       } else {
-        return { message: err.message };
+        return { message: capitalizeFirst(err.message) };
       }
     },
   }))

@@ -1,12 +1,11 @@
 const { strings } = require("../../../strings/Strings");
 const { unacceptableWordsArray } = require("../../../shared/testWords");
-const { capitalizeFirst } = require("../../../util/Util");
 
 const validateUserUpdateProfileForm = async (name, profileImage) => {
   const validateResult = await new Promise((resolve, reject) => {
     try {
       if (name.length < 5) {
-        reject(capitalizeFirst(strings.errors.validateSignupForm.NAME_LENGTH));
+        reject(strings.errors.validateSignupForm.NAME_LENGTH);
       } else if (
         profileImage &&
         profileImage.imageName &&
@@ -14,9 +13,7 @@ const validateUserUpdateProfileForm = async (name, profileImage) => {
           profileImage.imageName.includes(element)
         )
       ) {
-        reject(
-          capitalizeFirst(strings.errors.validateMyRecipeForm.IMAGE_FORMAT)
-        );
+        reject(strings.errors.validateMyRecipeForm.IMAGE_FORMAT);
       } else if (
         profileImage &&
         profileImage.imageName &&
@@ -24,11 +21,7 @@ const validateUserUpdateProfileForm = async (name, profileImage) => {
           profileImage.imageName.includes(element)
         )
       ) {
-        reject(
-          capitalizeFirst(
-            strings.errors.validateMyRecipeForm.IMAGE_UNACCEPTABLE
-          )
-        );
+        reject(strings.errors.validateMyRecipeForm.IMAGE_UNACCEPTABLE);
       } else if (
         profileImage &&
         new Buffer.from(
@@ -36,7 +29,7 @@ const validateUserUpdateProfileForm = async (name, profileImage) => {
           "base64"
         ).byteLength > 101000
       ) {
-        reject(capitalizeFirst(strings.errors.validateMyRecipeForm.IMAGE_SIZE));
+        reject(strings.errors.validateMyRecipeForm.IMAGE_SIZE);
       } else {
         resolve();
       }

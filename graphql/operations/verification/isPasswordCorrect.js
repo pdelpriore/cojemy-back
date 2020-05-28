@@ -1,5 +1,4 @@
 const { strings } = require("../../../strings/Strings");
-const { capitalizeFirst } = require("../../../util/Util");
 const bcrypt = require("bcrypt");
 
 const isPasswordCorrect = async (password, hashedPassword) => {
@@ -9,7 +8,7 @@ const isPasswordCorrect = async (password, hashedPassword) => {
         if (comparison) {
           resolve();
         } else {
-          reject(capitalizeFirst(strings.errors.login.WRONG_PASSWORD));
+          reject(strings.errors.login.WRONG_PASSWORD);
         }
       });
     } catch (err) {

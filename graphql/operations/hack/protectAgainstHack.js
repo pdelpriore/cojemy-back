@@ -1,5 +1,4 @@
 const fs = require("fs");
-const { capitalizeFirst } = require("../../../util/Util");
 const { strings } = require("../../../strings/Strings");
 
 const protectAgainstHack = async (req) => {
@@ -10,7 +9,7 @@ const protectAgainstHack = async (req) => {
         if (data !== null) {
           let blackListed = data.toString().split("\n");
           if (blackListed.includes(req.ip)) {
-            reject(capitalizeFirst(strings.errors.login.HACK));
+            reject(strings.errors.login.HACK);
           } else {
             fs.appendFile("loginIps.txt", req.ip + "\n", (err) => {
               if (err) console.log(err);

@@ -7,7 +7,6 @@ const {
   validateMyRecipeForm,
 } = require("../../../operations/validation/validateMyRecipeForm");
 const { strings } = require("../../../../strings/Strings");
-const { capitalizeFirst } = require("../../../../util/Util");
 const { uploadImage } = require("../../../operations/image/uploadImage");
 
 module.exports = {
@@ -76,12 +75,10 @@ module.exports = {
             ]);
           return userRecipesUpdated;
         } else {
-          throw new Error(
-            capitalizeFirst(strings.errors.addNewRecipe.RECIPE_EXISTS)
-          );
+          throw new Error(strings.errors.addNewRecipe.RECIPE_EXISTS);
         }
       } else {
-        throw new Error(capitalizeFirst(strings.errors.token.ERROR));
+        throw new Error(strings.errors.token.ERROR);
       }
     } catch (err) {
       if (err) throw err;
