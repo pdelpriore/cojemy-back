@@ -33,6 +33,20 @@ app.use(
     rootValue: rootResolver,
     graphiql: true,
     context: { req, res },
+    customFormatErrorFn: (err) => {
+      if (err.message.includes("Unexpected error value")) {
+        return {
+          message: err.message
+            .replace(/['"]+/g, "")
+            .split(":")
+            .slice(1)
+            .toString()
+            .trim(),
+        };
+      } else {
+        return { message: err.message };
+      }
+    },
   }))
 );
 
