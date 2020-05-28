@@ -4,16 +4,20 @@ const { capitalizeFirst } = require("../../../util/Util");
 
 const validateChangeUserPasswordForm = async (newPass, confirmPass) => {
   const validateResult = await new Promise((resolve, reject) => {
-    if (newPass !== confirmPass) {
-      throw new Error(
-        capitalizeFirst(strings.errors.validateSignupForm.EMAILS_MISMATCH)
-      );
-    } else if (!passwordRegex.test(newPass)) {
-      throw new Error(
-        capitalizeFirst(strings.errors.validateSignupForm.WRONG_PASSWORD)
-      );
-    } else {
-      resolve();
+    try {
+      if (newPass !== confirmPass) {
+        reject(
+          capitalizeFirst(strings.errors.validateSignupForm.EMAILS_MISMATCH)
+        );
+      } else if (!passwordRegex.test(newPass)) {
+        reject(
+          capitalizeFirst(strings.errors.validateSignupForm.WRONG_PASSWORD)
+        );
+      } else {
+        resolve();
+      }
+    } catch (err) {
+      if (err) throw new Error(err);
     }
   });
   return validateResult;

@@ -56,7 +56,7 @@ const sendCustomerContactEmail = async (subject, email, content) => {
     };
     emailContactTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {
-        throw new Error(err);
+        console.log(err);
       } else if (info) {
         resolve();
         emailContactTransporter.close();

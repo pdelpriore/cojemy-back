@@ -76,7 +76,7 @@ const sendEmailConfirm = async (name, email, token) => {
     };
     emailConfirmTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {
-        throw new Error(err);
+        console.log(err);
       } else if (info) {
         resolve();
         emailConfirmTransporter.close();

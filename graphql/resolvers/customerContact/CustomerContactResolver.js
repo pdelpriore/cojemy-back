@@ -13,7 +13,7 @@ module.exports = {
       await sendCustomerContactEmail(subject, email, content);
       return strings.contact.CUSTOMER_EMAIL_SENT;
     } catch (err) {
-      if (err) throw new Error(err);
+      if (err) throw err;
     }
   },
 };

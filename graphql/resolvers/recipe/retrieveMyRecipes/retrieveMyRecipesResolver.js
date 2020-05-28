@@ -9,8 +9,8 @@ const { verifyToken } = require("../../../operations/token/verifyToken");
 module.exports = {
   retrieveMyRecipes: async ({ email }, { req }) => {
     const tokenVerified = await verifyToken(email, req.cookies.id);
-    if (tokenVerified) {
-      try {
+    try {
+      if (tokenVerified) {
         const user = await User.findOne({ email: email });
         if (user.recipes.length > 0) {
           let myRecipes = await Recipe.find({ _id: { $in: user.recipes } })
@@ -27,11 +27,11 @@ module.exports = {
             capitalizeFirst(strings.errors.retrieveRecipes.NO_RECIPES)
           );
         }
-      } catch (err) {
-        if (err) throw err;
+      } else {
+        throw new Error(capitalizeFirst(strings.errors.token.ERROR));
       }
-    } else {
-      throw new Error(capitalizeFirst(strings.errors.token.ERROR));
+    } catch (err) {
+      if (err) throw err;
     }
   },
 };
