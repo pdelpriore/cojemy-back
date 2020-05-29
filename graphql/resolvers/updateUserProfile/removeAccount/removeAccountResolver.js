@@ -41,7 +41,7 @@ module.exports = {
             (recipe) => recipe.comments.length > 0
           );
           // nalezy zrobic
-          // let recipesCommentedAndRatedByUser = await Recipe.find({ "comments.$.commentator": user._id })
+          // let recipesCommentedAndRatedByUser = await Recipe.find({ "comments.commentator": user._id })
           // i pozniej przechodzimy do forEach ponizej
 
           recipesWithComments.forEach(async (recipe) => {
