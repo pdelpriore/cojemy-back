@@ -1,6 +1,4 @@
 const Recipe = require("../../../../model/Recipe");
-const Rate = require("../../../../model/Rate");
-const Comment = require("../../../../model/Comment");
 const User = require("../../../../model/User");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 const {

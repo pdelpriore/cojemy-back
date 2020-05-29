@@ -259,6 +259,12 @@ const RootMutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },
+    removeAccount: {
+      type: GraphQLBoolean,
+      args: {
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
   },
 });
 

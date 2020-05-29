@@ -16,6 +16,7 @@ const editMyRecipeResolver = require("./recipe/editMyRecipe/editMyRecipeResolver
 const removeMyRecipeResolver = require("./recipe/removeMyRecipe/removeMyRecipeResolver");
 const updateUserProfileResolver = require("./updateUserProfile/profile/updateProfile");
 const changeUserPasswordResolver = require("./updateUserProfile/changeUserPassword/changeUserPasswordResolver");
+const removeAccountResolver = require("./updateUserProfile/removeAccount/removeAccountResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -36,6 +37,7 @@ const rootResolver = {
   ...removeMyRecipeResolver,
   ...updateUserProfileResolver,
   ...changeUserPasswordResolver,
+  ...removeAccountResolver,
 };
 
 module.exports = rootResolver;
