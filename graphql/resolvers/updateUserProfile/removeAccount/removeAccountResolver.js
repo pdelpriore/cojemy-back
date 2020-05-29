@@ -36,9 +36,13 @@ module.exports = {
             );
           });
 
+          // tu jest blad
           let recipesWithComments = recipes.filter(
             (recipe) => recipe.comments.length > 0
           );
+          // nalezy zrobic
+          // let recipesCommentedAndRatedByUser = await Recipe.find({ "comments.$.commentator": user._id })
+          // i pozniej przechodzimy do forEach ponizej
 
           recipesWithComments.forEach(async (recipe) => {
             let recipeComments = recipe.comments.map((item) => item.comment);
