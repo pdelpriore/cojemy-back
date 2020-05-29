@@ -17,11 +17,14 @@ module.exports = {
         if (recipeImageName)
           removeImage(recipeImageName, strings.imageTypes.RECIPE);
 
-        let recipeComments = recipe.comments.map((item) => item.comment);
-        let recipeRates = recipe.comments.map((item) => item.rate);
+        if (recipe.comments.length > 0) {
+          let recipeComments = recipe.comments.map((item) => item.comment);
+          let recipeRates = recipe.comments.map((item) => item.rate);
 
-        await Comment.deleteMany({ _id: { $in: recipeComments } });
-        await Rate.deleteMany({ _id: { $in: recipeRates } });
+          await Comment.deleteMany({ _id: { $in: recipeComments } });
+          await Rate.deleteMany({ _id: { $in: recipeRates } });
+        }
+
         await Recipe.findOneAndRemove({ _id: recipeId });
 
         await User.findOneAndUpdate(
