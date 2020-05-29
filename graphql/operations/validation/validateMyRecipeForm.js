@@ -1,5 +1,6 @@
 const { strings } = require("../../../strings/Strings");
 const { unacceptableWordsArray } = require("../../../shared/testWords");
+const { capitalizeFirst } = require("../../../util/Util");
 
 const validateMyRecipeForm = async (
   title,
@@ -71,7 +72,11 @@ const validateMyRecipeForm = async (
       } else if (ingredients.includes("")) {
         reject(strings.errors.validateMyRecipeForm.INGREDIENTS_ERROR);
       } else if (
-        unacceptableWordsArray.some((element) => description.includes(element))
+        unacceptableWordsArray.some(
+          (element) =>
+            description.includes(element) ||
+            description.includes(capitalizeFirst(element))
+        )
       ) {
         reject(strings.errors.validateMyRecipeForm.DESCRIPTION_UNACCEPTABLE);
       } else {

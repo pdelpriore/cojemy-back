@@ -40,8 +40,6 @@ module.exports = {
         );
         const imagePath = await checkRecipeImage(recipeId, recipeImage);
 
-        const user = await User.findOne({ email: email });
-
         await Recipe.findOneAndUpdate(
           { _id: recipeId },
           {
@@ -58,17 +56,7 @@ module.exports = {
           { new: true }
         ).exec();
 
-        const userRecipes = await Recipe.find({
-          _id: { $in: user.recipes },
-        })
-          .sort({ date: -1 })
-          .populate([
-            { path: "author", model: User },
-            { path: "comments.commentator", model: User },
-            { path: "comments.comment", model: Comment },
-            { path: "comments.rate", model: Rate },
-          ]);
-        return userRecipes;
+        return true;
       } else {
         throw new Error(strings.errors.token.ERROR);
       }

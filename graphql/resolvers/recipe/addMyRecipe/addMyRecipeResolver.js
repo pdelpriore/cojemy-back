@@ -58,22 +58,14 @@ module.exports = {
             comments: [],
           });
           await recipe.save();
-          const userWithRecipesArrayUpdated = await User.findOneAndUpdate(
+
+          await User.findOneAndUpdate(
             { email: email },
             { $push: { recipes: recipe } },
             { new: true }
           ).exec();
-          const userRecipesUpdated = await Recipe.find({
-            _id: { $in: userWithRecipesArrayUpdated.recipes },
-          })
-            .sort({ date: -1 })
-            .populate([
-              { path: "author", model: User },
-              { path: "comments.commentator", model: User },
-              { path: "comments.comment", model: Comment },
-              { path: "comments.rate", model: Rate },
-            ]);
-          return userRecipesUpdated;
+
+          return true;
         } else {
           throw new Error(strings.errors.addNewRecipe.RECIPE_EXISTS);
         }

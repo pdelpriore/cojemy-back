@@ -24,24 +24,13 @@ module.exports = {
         await Rate.deleteMany({ _id: { $in: recipeRates } });
         await Recipe.findOneAndRemove({ _id: recipeId });
 
-        const user = await User.findOneAndUpdate(
+        await User.findOneAndUpdate(
           { email: email },
           { $pull: { recipes: recipeId } },
           { new: true }
         ).exec();
-        if (user.recipes.length > 0) {
-          let myRecipes = await Recipe.find({ _id: { $in: user.recipes } })
-            .sort({ date: -1 })
-            .populate([
-              { path: "author", model: User },
-              { path: "comments.commentator", model: User },
-              { path: "comments.comment", model: Comment },
-              { path: "comments.rate", model: Rate },
-            ]);
-          return myRecipes;
-        } else {
-          throw new Error(strings.errors.retrieveRecipes.NO_RECIPES);
-        }
+
+        return true;
       } else {
         throw new Error(strings.errors.token.ERROR);
       }

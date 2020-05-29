@@ -205,7 +205,7 @@ const RootMutation = new GraphQLObjectType({
       },
     },
     addMyRecipe: {
-      type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
+      type: GraphQLBoolean,
       args: {
         title: { type: new GraphQLNonNull(GraphQLString) },
         recipeImage: { type: RecipeImageInputType },
@@ -220,7 +220,7 @@ const RootMutation = new GraphQLObjectType({
       },
     },
     editMyRecipe: {
-      type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
+      type: GraphQLBoolean,
       args: {
         recipeId: { type: new GraphQLNonNull(GraphQLID) },
         title: { type: new GraphQLNonNull(GraphQLString) },
@@ -236,7 +236,7 @@ const RootMutation = new GraphQLObjectType({
       },
     },
     removeMyRecipe: {
-      type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
+      type: GraphQLBoolean,
       args: {
         recipeId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
