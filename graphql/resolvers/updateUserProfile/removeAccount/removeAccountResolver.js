@@ -40,13 +40,15 @@ module.exports = {
         let recipesCommentedAndRatedByUser = await Recipe.find({
           "comments.commentator": user._id,
         });
-        recipesCommentedAndRatedByUser.forEach(async (recipe) => {
-          let recipeComments = recipe.comments.map((item) => item.comment);
-          let recipeRates = recipe.comments.map((item) => item.rate);
+        if (recipesCommentedAndRatedByUser.length > 0) {
+          recipesCommentedAndRatedByUser.forEach(async (recipe) => {
+            let recipeComments = recipe.comments.map((item) => item.comment);
+            let recipeRates = recipe.comments.map((item) => item.rate);
 
-          await Comment.deleteMany({ _id: { $in: recipeComments } });
-          await Rate.deleteMany({ _id: { $in: recipeRates } });
-        });
+            await Comment.deleteMany({ _id: { $in: recipeComments } });
+            await Rate.deleteMany({ _id: { $in: recipeRates } });
+          });
+        }
 
         await User.findOneAndRemove({ email: email });
         return true;
