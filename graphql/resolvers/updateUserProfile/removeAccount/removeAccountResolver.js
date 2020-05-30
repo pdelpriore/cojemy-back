@@ -25,7 +25,6 @@ module.exports = {
           );
         if (user.recipes.length > 0) {
           let recipes = await Recipe.find({ _id: { $in: user.recipes } });
-
           let recipesWithPicture = recipes.filter(
             (recipe) => recipe.picture !== null && recipe.picture !== undefined
           );
@@ -35,25 +34,20 @@ module.exports = {
               strings.imageTypes.RECIPE
             );
           });
-
-          // tu jest blad
-          let recipesWithComments = recipes.filter(
-            (recipe) => recipe.comments.length > 0
-          );
-          // nalezy zrobic
-          // let recipesCommentedAndRatedByUser = await Recipe.find({ "comments.commentator": user._id })
-          // i pozniej przechodzimy do forEach ponizej
-
-          recipesWithComments.forEach(async (recipe) => {
-            let recipeComments = recipe.comments.map((item) => item.comment);
-            let recipeRates = recipe.comments.map((item) => item.rate);
-
-            await Comment.deleteMany({ _id: { $in: recipeComments } });
-            await Rate.deleteMany({ _id: { $in: recipeRates } });
-          });
-
           await Recipe.deleteMany({ _id: { $in: user.recipes } });
         }
+
+        let recipesCommentedAndRatedByUser = await Recipe.find({
+          "comments.commentator": user._id,
+        });
+        recipesCommentedAndRatedByUser.forEach(async (recipe) => {
+          let recipeComments = recipe.comments.map((item) => item.comment);
+          let recipeRates = recipe.comments.map((item) => item.rate);
+
+          await Comment.deleteMany({ _id: { $in: recipeComments } });
+          await Rate.deleteMany({ _id: { $in: recipeRates } });
+        });
+
         await User.findOneAndRemove({ email: email });
         return true;
       } else {
