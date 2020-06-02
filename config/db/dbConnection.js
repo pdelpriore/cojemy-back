@@ -11,7 +11,7 @@ const dbConnection = async () => {
     });
     if (dbConnected) console.log(capitalizeFirst(strings.notification.DB));
   } catch (err) {
-    if (err) throw err;
+    if (err) throw new Error(err);
   }
 };
 
