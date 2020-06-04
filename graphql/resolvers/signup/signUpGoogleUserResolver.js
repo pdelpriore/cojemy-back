@@ -19,7 +19,11 @@ module.exports = {
           creationDate: new Date(),
         });
         await user.save();
-        return user;
+
+        const userWithoutPassword = (({ password, ...others }) => ({
+          ...others,
+        }))(user._doc);
+        return userWithoutPassword;
       }
     } catch (err) {
       if (err) throw err;

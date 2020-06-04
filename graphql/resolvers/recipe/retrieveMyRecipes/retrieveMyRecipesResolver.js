@@ -15,8 +15,12 @@ module.exports = {
           let myRecipes = await Recipe.find({ _id: { $in: user.recipes } })
             .sort({ date: -1 })
             .populate([
-              { path: "author", model: User },
-              { path: "comments.commentator", model: User },
+              { path: "author", select: "-password", model: User },
+              {
+                path: "comments.commentator",
+                select: "-password",
+                model: User,
+              },
               { path: "comments.comment", model: Comment },
               { path: "comments.rate", model: Rate },
             ]);

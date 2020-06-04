@@ -25,10 +25,13 @@ module.exports = {
           //on production set secure true
           //secure: true
         });
+        const userWithoutPassword = (({ password, ...others }) => ({
+          ...others,
+        }))(user._doc);
+        return userWithoutPassword;
       } else {
         throw new Error(strings.errors.login.ERROR);
       }
-      return user;
     } catch (err) {
       if (err) throw err;
     }

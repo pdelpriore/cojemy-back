@@ -20,7 +20,10 @@ module.exports = {
             //on production set secure true
             //secure: true
           });
-          return user;
+          const userWithoutPassword = (({ password, ...others }) => ({
+            ...others,
+          }))(user._doc);
+          return userWithoutPassword;
         } else {
           throw new Error(strings.errors.token.ERROR);
         }

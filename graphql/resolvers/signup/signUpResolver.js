@@ -31,7 +31,11 @@ module.exports = {
         await user.save();
         let token = await generateToken(email);
         await sendEmailConfirm(name, email, token);
-        return user;
+
+        const userWithoutPassword = (({ password, ...others }) => ({
+          ...others,
+        }))(user._doc);
+        return userWithoutPassword;
       }
     } catch (err) {
       if (err) throw err;

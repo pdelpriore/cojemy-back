@@ -19,7 +19,10 @@ module.exports = {
           { $set: { name: name, photo: imagePath } },
           { new: true }
         ).exec();
-        return userUpdated;
+        const userWithoutPassword = (({ password, ...others }) => ({
+          ...others,
+        }))(userUpdated._doc);
+        return userWithoutPassword;
       } else {
         throw new Error(strings.errors.token.ERROR);
       }
