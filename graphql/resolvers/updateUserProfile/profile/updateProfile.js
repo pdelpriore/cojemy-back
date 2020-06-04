@@ -5,6 +5,7 @@ const {
   validateUserUpdateProfileForm,
 } = require("../../../operations/validation/validateUserUpdateProfileForm");
 const { checkUserImage } = require("../../../operations/image/checkUserImage");
+const { hideUserPassword } = require("../../../../shared/hideUserPassword");
 
 module.exports = {
   updateUserProfile: async ({ name, profileImage, email }, { req }) => {
@@ -19,10 +20,8 @@ module.exports = {
           { $set: { name: name, photo: imagePath } },
           { new: true }
         ).exec();
-        const userWithoutPassword = (({ password, ...others }) => ({
-          ...others,
-        }))(userUpdated._doc);
-        return userWithoutPassword;
+
+        return hideUserPassword(userUpdated);
       } else {
         throw new Error(strings.errors.token.ERROR);
       }

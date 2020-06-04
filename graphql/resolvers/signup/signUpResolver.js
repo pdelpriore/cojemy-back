@@ -6,6 +6,7 @@ const {
 const { strings } = require("../../../strings/Strings");
 const { generateToken } = require("../../operations/token/generateToken");
 const { sendEmailConfirm } = require("../../operations/email/sendEmailConfirm");
+const { hideUserPassword } = require("../../../shared/hideUserPassword");
 
 module.exports = {
   signUp: async ({ name, email, confirmEmail, password }) => {
@@ -32,10 +33,7 @@ module.exports = {
         let token = await generateToken(email);
         await sendEmailConfirm(name, email, token);
 
-        const userWithoutPassword = (({ password, ...others }) => ({
-          ...others,
-        }))(user._doc);
-        return userWithoutPassword;
+        return hideUserPassword(user);
       }
     } catch (err) {
       if (err) throw err;

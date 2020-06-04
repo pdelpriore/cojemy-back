@@ -1,5 +1,6 @@
 const User = require("../../../model/User");
 const { strings } = require("../../../strings/Strings");
+const { hideUserPassword } = require("../../../shared/hideUserPassword");
 
 module.exports = {
   signUpGoogleUser: async ({ name, email, photo }) => {
@@ -20,10 +21,7 @@ module.exports = {
         });
         await user.save();
 
-        const userWithoutPassword = (({ password, ...others }) => ({
-          ...others,
-        }))(user._doc);
-        return userWithoutPassword;
+        return hideUserPassword(user);
       }
     } catch (err) {
       if (err) throw err;

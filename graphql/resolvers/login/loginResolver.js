@@ -10,6 +10,7 @@ const {
   protectAgainstHack,
 } = require("../../operations/hack/protectAgainstHack");
 const { strings } = require("../../../strings/Strings");
+const { hideUserPassword } = require("../../../shared/hideUserPassword");
 
 module.exports = {
   login: async ({ email, password }, { req, res }) => {
@@ -25,10 +26,8 @@ module.exports = {
           //on production set secure true
           //secure: true
         });
-        const userWithoutPassword = (({ password, ...others }) => ({
-          ...others,
-        }))(user._doc);
-        return userWithoutPassword;
+
+        return hideUserPassword(user);
       } else {
         throw new Error(strings.errors.login.ERROR);
       }
