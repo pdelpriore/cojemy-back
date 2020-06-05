@@ -11,21 +11,15 @@ module.exports = {
     try {
       const user = await isUserExist(email);
       if (user.isGoogleUser) {
-        const googleIdTokenVerified = await verifyGoogleIdToken(
-          req.get(strings.request.HEADER)
-        );
-        if (googleIdTokenVerified) {
-          const token = await generateToken(user.email);
-          res.cookie("id", token, {
-            httpOnly: true,
-            //on production set secure true
-            //secure: true
-          });
+        await verifyGoogleIdToken(req.get(strings.request.HEADER));
+        const token = await generateToken(user.email);
+        res.cookie("id", token, {
+          httpOnly: true,
+          //on production set secure true
+          //secure: true
+        });
 
-          return hideUserPassword(user);
-        } else {
-          throw new Error(strings.errors.token.ERROR);
-        }
+        return hideUserPassword(user);
       } else {
         throw new Error(strings.errors.loginGoogleUser.ERROR);
       }

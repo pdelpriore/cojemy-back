@@ -1,10 +1,14 @@
 const User = require("../../../model/User");
 const { strings } = require("../../../strings/Strings");
+const {
+  verifyGoogleIdToken,
+} = require("../../operations/token/verifyGoogleIdToken");
 const { hideUserPassword } = require("../../../shared/hideUserPassword");
 
 module.exports = {
-  signUpGoogleUser: async ({ name, email, photo }) => {
+  signUpGoogleUser: async ({ name, email, photo }, { req }) => {
     try {
+      await verifyGoogleIdToken(req.get(strings.request.HEADER));
       const user = await User.findOne({ email: email });
       if (user) {
         throw new Error(strings.errors.signupGoogleUser.USER_EXISTS);
