@@ -4,11 +4,11 @@ const { hashPassword } = require("./hashPassword");
 
 const setNewPassword = async (email) => {
   const newPasswordSet = await new Promise(async (resolve, reject) => {
-    let newPassword = generator.generate({
-      length: 10,
-      numbers: true,
-    });
     try {
+      let newPassword = generator.generate({
+        length: 10,
+        numbers: true,
+      });
       let newPasswordHashed = await hashPassword(newPassword);
       let user = await User.findOneAndUpdate(
         { email: email },
