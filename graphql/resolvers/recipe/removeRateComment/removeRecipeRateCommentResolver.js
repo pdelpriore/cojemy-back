@@ -3,7 +3,6 @@ const Rate = require("../../../../model/Rate");
 const Comment = require("../../../../model/Comment");
 const User = require("../../../../model/User");
 const { verifyToken } = require("../../../operations/token/verifyToken");
-const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
   removeRecipeRateComment: async (
@@ -11,28 +10,24 @@ module.exports = {
     { req }
   ) => {
     try {
-      const tokenVerified = await verifyToken(email, req.cookies.id);
-      if (tokenVerified) {
-        await Rate.findOneAndRemove({ _id: rateId });
-        await Comment.findOneAndRemove({ _id: commentId });
+      await verifyToken(email, req.cookies.id);
+      await Rate.findOneAndRemove({ _id: rateId });
+      await Comment.findOneAndRemove({ _id: commentId });
 
-        const recipeWithRateCommentRemoved = await Recipe.findOneAndUpdate(
-          { _id: recipeId },
-          { $pull: { comments: { _id: commentItemId } } },
-          { new: true }
-        )
-          .populate([
-            { path: "author", select: "-password", model: User },
-            { path: "comments.commentator", select: "-password", model: User },
-            { path: "comments.comment", model: Comment },
-            { path: "comments.rate", model: Rate },
-          ])
-          .exec();
+      const recipeWithRateCommentRemoved = await Recipe.findOneAndUpdate(
+        { _id: recipeId },
+        { $pull: { comments: { _id: commentItemId } } },
+        { new: true }
+      )
+        .populate([
+          { path: "author", select: "-password", model: User },
+          { path: "comments.commentator", select: "-password", model: User },
+          { path: "comments.comment", model: Comment },
+          { path: "comments.rate", model: Rate },
+        ])
+        .exec();
 
-        return recipeWithRateCommentRemoved;
-      } else {
-        throw new Error(strings.errors.token.ERROR);
-      }
+      return recipeWithRateCommentRemoved;
     } catch (err) {
       if (err) throw err;
     }

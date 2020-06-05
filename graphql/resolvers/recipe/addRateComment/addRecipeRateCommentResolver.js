@@ -6,7 +6,6 @@ const { verifyToken } = require("../../../operations/token/verifyToken");
 const {
   validateRateCommentForm,
 } = require("../../../operations/validation/validateRateCommentForm");
-const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
   addRecipeRateComment: async (
@@ -14,42 +13,38 @@ module.exports = {
     { req }
   ) => {
     try {
-      const tokenVerified = await verifyToken(email, req.cookies.id);
-      if (tokenVerified) {
-        await validateRateCommentForm(rateValue);
-        const user = await User.findOne({ email: email });
-        const recipe = await Recipe.findById(recipeId);
-        let rate = new Rate({
-          recipe: recipe,
-          value: rateValue,
-        });
-        await rate.save();
-        let comment = new Comment({
-          recipe: recipe,
-          content: commentContent,
-          date: new Date(),
-        });
-        await comment.save();
-        const recipeUpdated = await Recipe.findOneAndUpdate(
-          { _id: recipeId },
-          {
-            $push: {
-              comments: { commentator: user, comment: comment, rate: rate },
-            },
+      await verifyToken(email, req.cookies.id);
+      await validateRateCommentForm(rateValue);
+      const user = await User.findOne({ email: email });
+      const recipe = await Recipe.findById(recipeId);
+      let rate = new Rate({
+        recipe: recipe,
+        value: rateValue,
+      });
+      await rate.save();
+      let comment = new Comment({
+        recipe: recipe,
+        content: commentContent,
+        date: new Date(),
+      });
+      await comment.save();
+      const recipeUpdated = await Recipe.findOneAndUpdate(
+        { _id: recipeId },
+        {
+          $push: {
+            comments: { commentator: user, comment: comment, rate: rate },
           },
-          { new: true }
-        )
-          .populate([
-            { path: "author", select: "-password", model: User },
-            { path: "comments.commentator", select: "-password", model: User },
-            { path: "comments.comment", model: Comment },
-            { path: "comments.rate", model: Rate },
-          ])
-          .exec();
-        return recipeUpdated;
-      } else {
-        throw new Error(strings.errors.token.ERROR);
-      }
+        },
+        { new: true }
+      )
+        .populate([
+          { path: "author", select: "-password", model: User },
+          { path: "comments.commentator", select: "-password", model: User },
+          { path: "comments.comment", model: Comment },
+          { path: "comments.rate", model: Rate },
+        ])
+        .exec();
+      return recipeUpdated;
     } catch (err) {
       if (err) throw err;
     }

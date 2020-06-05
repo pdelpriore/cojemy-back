@@ -1,5 +1,4 @@
 const User = require("../../../../model/User");
-const { strings } = require("../../../../strings/Strings");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 const {
   validateUserUpdateProfileForm,
@@ -10,21 +9,17 @@ const { hideUserPassword } = require("../../../../shared/hideUserPassword");
 module.exports = {
   updateUserProfile: async ({ name, profileImage, email }, { req }) => {
     try {
-      const tokenVerified = await verifyToken(email, req.cookies.id);
-      if (tokenVerified) {
-        await validateUserUpdateProfileForm(name, profileImage);
-        const imagePath = await checkUserImage(email, profileImage);
+      await verifyToken(email, req.cookies.id);
+      await validateUserUpdateProfileForm(name, profileImage);
+      const imagePath = await checkUserImage(email, profileImage);
 
-        const userUpdated = await User.findOneAndUpdate(
-          { email: email },
-          { $set: { name: name, photo: imagePath } },
-          { new: true }
-        ).exec();
+      const userUpdated = await User.findOneAndUpdate(
+        { email: email },
+        { $set: { name: name, photo: imagePath } },
+        { new: true }
+      ).exec();
 
-        return hideUserPassword(userUpdated);
-      } else {
-        throw new Error(strings.errors.token.ERROR);
-      }
+      return hideUserPassword(userUpdated);
     } catch (err) {
       if (err) throw err;
     }
