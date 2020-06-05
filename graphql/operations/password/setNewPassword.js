@@ -8,8 +8,8 @@ const setNewPassword = async (email) => {
       length: 10,
       numbers: true,
     });
-    let newPasswordHashed = await hashPassword(newPassword);
     try {
+      let newPasswordHashed = await hashPassword(newPassword);
       let user = await User.findOneAndUpdate(
         { email: email },
         { $set: { password: newPasswordHashed } },
