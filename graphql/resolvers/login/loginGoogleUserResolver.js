@@ -9,9 +9,9 @@ const { hideUserPassword } = require("../../../shared/hideUserPassword");
 module.exports = {
   loginGoogleUser: async ({ email }, { req, res }) => {
     try {
+      await verifyGoogleIdToken(req.get(strings.request.HEADER));
       const user = await isUserExist(email);
       if (user.isGoogleUser) {
-        await verifyGoogleIdToken(req.get(strings.request.HEADER));
         const token = await generateToken(user.email);
         res.cookie("id", token, {
           httpOnly: true,
