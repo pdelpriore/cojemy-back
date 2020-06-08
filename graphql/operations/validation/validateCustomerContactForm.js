@@ -3,14 +3,10 @@ const { strings } = require("../../../strings/Strings");
 
 const validateCustomerContactForm = async (email) => {
   const validateResult = await new Promise((resolve, reject) => {
-    try {
-      if (!emailRegex.test(email)) {
-        reject(strings.errors.validateSignupForm.WRONG_EMAIL);
-      } else {
-        resolve();
-      }
-    } catch (err) {
-      if (err) throw new Error(err);
+    if (!emailRegex.test(email)) {
+      reject(strings.errors.validateSignupForm.WRONG_EMAIL);
+    } else {
+      resolve();
     }
   });
   return validateResult;

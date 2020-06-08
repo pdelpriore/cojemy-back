@@ -4,20 +4,16 @@ const { strings } = require("../../../strings/Strings");
 
 const validateSignupForm = async (name, email, confirmEmail, password) => {
   const validateResult = await new Promise((resolve, reject) => {
-    try {
-      if (email !== confirmEmail) {
-        reject(strings.errors.validateSignupForm.EMAILS_MISMATCH);
-      } else if (name.length < 5) {
-        reject(strings.errors.validateSignupForm.NAME_LENGTH);
-      } else if (!emailRegex.test(email)) {
-        reject(strings.errors.validateSignupForm.WRONG_EMAIL);
-      } else if (!passwordRegex.test(password)) {
-        reject(strings.errors.validateSignupForm.WRONG_PASSWORD);
-      } else {
-        resolve();
-      }
-    } catch (err) {
-      if (err) throw new Error(err);
+    if (email !== confirmEmail) {
+      reject(strings.errors.validateSignupForm.EMAILS_MISMATCH);
+    } else if (name.length < 5) {
+      reject(strings.errors.validateSignupForm.NAME_LENGTH);
+    } else if (!emailRegex.test(email)) {
+      reject(strings.errors.validateSignupForm.WRONG_EMAIL);
+    } else if (!passwordRegex.test(password)) {
+      reject(strings.errors.validateSignupForm.WRONG_PASSWORD);
+    } else {
+      resolve();
     }
   });
   return validateResult;
