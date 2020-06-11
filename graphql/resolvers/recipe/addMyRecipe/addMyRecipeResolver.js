@@ -17,12 +17,13 @@ module.exports = {
       cookTime,
       ingredients,
       description,
+      userId,
       email,
     },
     { req }
   ) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
       const recipeExists = await Recipe.findOne({
         title: title,
         category: category,
