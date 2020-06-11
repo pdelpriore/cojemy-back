@@ -1,9 +1,9 @@
 const { verifyToken } = require("../../operations/token/verifyToken");
 
 module.exports = {
-  logout: async ({ email }, { req, res }) => {
+  logout: async ({ userId, email }, { req, res }) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
 
       res.clearCookie("id");
       return true;
