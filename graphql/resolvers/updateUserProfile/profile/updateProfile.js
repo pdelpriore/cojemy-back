@@ -7,9 +7,9 @@ const { checkUserImage } = require("../../../operations/image/checkUserImage");
 const { hideUserPassword } = require("../../../../shared/hideUserPassword");
 
 module.exports = {
-  updateUserProfile: async ({ name, profileImage, email }, { req }) => {
+  updateUserProfile: async ({ name, profileImage, userId, email }, { req }) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
       await validateUserUpdateProfileForm(name, profileImage);
       const imagePath = await checkUserImage(email, profileImage);
 
