@@ -193,6 +193,7 @@ const RootMutation = new GraphQLObjectType({
         rateValue: { type: new GraphQLNonNull(GraphQLInt) },
         commentId: { type: new GraphQLNonNull(GraphQLID) },
         commentContent: { type: new GraphQLNonNull(GraphQLString) },
+        userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },

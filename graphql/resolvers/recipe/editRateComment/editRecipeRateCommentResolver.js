@@ -9,11 +9,11 @@ const {
 
 module.exports = {
   editRecipeRateComment: async (
-    { recipeId, rateId, rateValue, commentId, commentContent, email },
+    { recipeId, rateId, rateValue, commentId, commentContent, userId, email },
     { req }
   ) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
       await validateRateCommentForm(rateValue);
       await Rate.findOneAndUpdate(
         { _id: rateId },
