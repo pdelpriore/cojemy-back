@@ -244,6 +244,7 @@ const RootMutation = new GraphQLObjectType({
       type: GraphQLBoolean,
       args: {
         recipeId: { type: new GraphQLNonNull(GraphQLID) },
+        userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },
