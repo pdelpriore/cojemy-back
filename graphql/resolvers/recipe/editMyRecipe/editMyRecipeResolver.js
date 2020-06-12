@@ -18,12 +18,13 @@ module.exports = {
       cookTime,
       ingredients,
       description,
+      userId,
       email,
     },
     { req }
   ) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
       await validateMyRecipeForm(
         title,
         recipeImage,
