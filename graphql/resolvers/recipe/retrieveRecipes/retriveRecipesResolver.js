@@ -6,9 +6,12 @@ const { strings } = require("../../../../strings/Strings");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
-  retrieveRecipes: async ({ category, email, skip, limit }, { req }) => {
+  retrieveRecipes: async (
+    { category, userId, email, skip, limit },
+    { req }
+  ) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
       if (category === strings.retrieveRecipes.CAT_NEWS) {
         const recipesNewest = await Recipe.find({
           date: { $gt: new Date().getTime() - 1000 * 3600 * 24 },
