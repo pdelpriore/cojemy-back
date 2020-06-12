@@ -6,11 +6,11 @@ const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
   removeRecipeRateComment: async (
-    { rateId, commentId, recipeId, commentItemId, email },
+    { rateId, commentId, recipeId, commentItemId, userId, email },
     { req }
   ) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
       await Rate.findOneAndRemove({ _id: rateId });
       await Comment.findOneAndRemove({ _id: commentId });
 
