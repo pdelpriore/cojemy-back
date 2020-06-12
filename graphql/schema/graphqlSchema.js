@@ -110,6 +110,7 @@ const RootQuery = new GraphQLObjectType({
       type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(RecipeType))),
       args: {
         recipeTitle: { type: new GraphQLNonNull(GraphQLString) },
+        userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },

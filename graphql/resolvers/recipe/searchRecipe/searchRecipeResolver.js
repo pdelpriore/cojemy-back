@@ -6,9 +6,9 @@ const { strings } = require("../../../../strings/Strings");
 const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
-  searchRecipe: async ({ recipeTitle, email }, { req }) => {
+  searchRecipe: async ({ recipeTitle, userId, email }, { req }) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
       const recipes = await Recipe.find({
         title: { $regex: `.*${recipeTitle}.*`, $options: "i" },
       })
