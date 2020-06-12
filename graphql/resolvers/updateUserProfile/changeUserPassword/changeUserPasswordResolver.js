@@ -11,11 +11,11 @@ const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
   changeUserPassword: async (
-    { currentPass, newPass, confirmPass, email },
+    { currentPass, newPass, confirmPass, userId, email },
     { req }
   ) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
       const user = await User.findOne({ email: email });
 
       if (!user.isGoogleUser) {
