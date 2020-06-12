@@ -8,7 +8,12 @@ const { verifyToken } = require("../../../operations/token/verifyToken");
 module.exports = {
   retrieveMyRecipes: async ({ userId, email }, { req }) => {
     try {
-      await verifyToken(userId, email, req.cookies.id);
+      await verifyToken(
+        userId,
+        email,
+        req.cookies.id,
+        strings.tokenVerification.USER_AUTH
+      );
       const user = await User.findOne({ email: email });
       if (user.recipes.length > 0) {
         let myRecipes = await Recipe.find({ _id: { $in: user.recipes } })

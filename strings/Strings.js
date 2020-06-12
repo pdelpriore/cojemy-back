@@ -31,6 +31,10 @@ const strings = Object.freeze({
     RECIPE: "recipes",
     USER: "user",
   },
+  tokenVerification: {
+    EMAIL_CONFIRM: "emailConfirm",
+    USER_AUTH: "userAuth",
+  },
   errors: {
     signup: {
       USER_EMAIL_EXISTS: "email déjà pris.",

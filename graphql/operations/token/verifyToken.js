@@ -2,15 +2,25 @@ const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../../../config/security/Security");
 const { strings } = require("../../../strings/Strings");
 
-const verifyToken = async (userId, email, token) => {
+const verifyToken = async (userId, email, token, authType) => {
   const tokenVerified = await new Promise((resolve, reject) => {
-    jwt.verify(token, jwtSecret, (err, decoded) => {
-      if (decoded && decoded.email === email && decoded.userId === userId) {
-        resolve();
-      } else {
-        reject(strings.errors.token.ERROR);
-      }
-    });
+    if (authType === strings.tokenVerification.USER_AUTH) {
+      jwt.verify(token, jwtSecret, (err, decoded) => {
+        if (decoded && decoded.email === email && decoded.userId === userId) {
+          resolve();
+        } else {
+          reject(strings.errors.token.ERROR);
+        }
+      });
+    } else if (authType === strings.tokenVerification.EMAIL_CONFIRM) {
+      jwt.verify(token, jwtSecret, (err, decoded) => {
+        if (decoded && decoded.email === email) {
+          resolve();
+        } else {
+          reject(strings.errors.token.ERROR);
+        }
+      });
+    }
   });
   return tokenVerified;
 };

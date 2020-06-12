@@ -11,7 +11,12 @@ module.exports = {
     { req }
   ) => {
     try {
-      await verifyToken(userId, email, req.cookies.id);
+      await verifyToken(
+        userId,
+        email,
+        req.cookies.id,
+        strings.tokenVerification.USER_AUTH
+      );
       if (category === strings.retrieveRecipes.CAT_NEWS) {
         const recipesNewest = await Recipe.find({
           date: { $gt: new Date().getTime() - 1000 * 3600 * 24 },

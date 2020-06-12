@@ -8,7 +8,12 @@ const { verifyToken } = require("../../../operations/token/verifyToken");
 module.exports = {
   searchRecipe: async ({ recipeTitle, userId, email }, { req }) => {
     try {
-      await verifyToken(userId, email, req.cookies.id);
+      await verifyToken(
+        userId,
+        email,
+        req.cookies.id,
+        strings.tokenVerification.USER_AUTH
+      );
       const recipes = await Recipe.find({
         title: { $regex: `.*${recipeTitle}.*`, $options: "i" },
       })

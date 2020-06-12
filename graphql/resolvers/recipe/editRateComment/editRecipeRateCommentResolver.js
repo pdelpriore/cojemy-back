@@ -6,6 +6,7 @@ const { verifyToken } = require("../../../operations/token/verifyToken");
 const {
   validateRateCommentForm,
 } = require("../../../operations/validation/validateRateCommentForm");
+const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
   editRecipeRateComment: async (
@@ -13,7 +14,12 @@ module.exports = {
     { req }
   ) => {
     try {
-      await verifyToken(userId, email, req.cookies.id);
+      await verifyToken(
+        userId,
+        email,
+        req.cookies.id,
+        strings.tokenVerification.USER_AUTH
+      );
       await validateRateCommentForm(rateValue);
       await Rate.findOneAndUpdate(
         { _id: rateId },

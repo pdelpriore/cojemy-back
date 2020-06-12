@@ -9,7 +9,12 @@ const { strings } = require("../../../../strings/Strings");
 module.exports = {
   removeMyRecipe: async ({ recipeId, userId, email }, { req }) => {
     try {
-      await verifyToken(userId, email, req.cookies.id);
+      await verifyToken(
+        userId,
+        email,
+        req.cookies.id,
+        strings.tokenVerification.USER_AUTH
+      );
       const recipe = await Recipe.findById(recipeId);
       const recipeImageName =
         recipe.picture && recipe.picture.split("/").slice(3).toString();

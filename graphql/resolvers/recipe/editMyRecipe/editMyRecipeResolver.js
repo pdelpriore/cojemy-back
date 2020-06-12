@@ -6,6 +6,7 @@ const {
 const {
   checkRecipeImage,
 } = require("../../../operations/image/checkRecipeImage");
+const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
   editMyRecipe: async (
@@ -24,7 +25,12 @@ module.exports = {
     { req }
   ) => {
     try {
-      await verifyToken(userId, email, req.cookies.id);
+      await verifyToken(
+        userId,
+        email,
+        req.cookies.id,
+        strings.tokenVerification.USER_AUTH
+      );
       await validateMyRecipeForm(
         title,
         recipeImage,

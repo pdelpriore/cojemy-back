@@ -15,7 +15,12 @@ module.exports = {
     { req }
   ) => {
     try {
-      await verifyToken(userId, email, req.cookies.id);
+      await verifyToken(
+        userId,
+        email,
+        req.cookies.id,
+        strings.tokenVerification.USER_AUTH
+      );
       const user = await User.findOne({ email: email });
 
       if (!user.isGoogleUser) {
