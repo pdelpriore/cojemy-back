@@ -8,9 +8,9 @@ const { strings } = require("../../../../strings/Strings");
 const { userGooglePhoto } = require("../../../../shared/testWords");
 
 module.exports = {
-  removeAccount: async ({ email }, { req }) => {
+  removeAccount: async ({ userId, email }, { req }) => {
     try {
-      await verifyToken(email, req.cookies.id);
+      await verifyToken(userId, email, req.cookies.id);
       const user = await User.findOne({ email: email });
       if (
         user.photo &&
