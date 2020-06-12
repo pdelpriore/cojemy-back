@@ -3,8 +3,8 @@ const {
 } = require("../../../config/nodemailer/transporters/remindPass/RemindPassTransporter");
 const { emailNewPasswordId } = require("../../../config/security/Security");
 
-const sendNewPassword = async (name, password, email) => {
-  const newPasswordSent = await new Promise((resolve, reject) => {
+const sendNewPassword = (name, password, email) => {
+  return new Promise((resolve) => {
     const mailOptions = {
       from: `${emailNewPasswordId}`,
       to: email,
@@ -79,7 +79,6 @@ const sendNewPassword = async (name, password, email) => {
       }
     });
   });
-  return newPasswordSent;
 };
 
 module.exports = { sendNewPassword };

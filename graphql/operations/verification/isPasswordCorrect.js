@@ -1,8 +1,8 @@
 const { strings } = require("../../../strings/Strings");
 const bcrypt = require("bcrypt");
 
-const isPasswordCorrect = async (password, hashedPassword) => {
-  const result = await new Promise((resolve, reject) => {
+const isPasswordCorrect = (password, hashedPassword) => {
+  return new Promise((resolve, reject) => {
     bcrypt.compare(password, hashedPassword, (err, comparison) => {
       if (comparison) {
         resolve();
@@ -11,7 +11,6 @@ const isPasswordCorrect = async (password, hashedPassword) => {
       }
     });
   });
-  return result;
 };
 
 module.exports = { isPasswordCorrect };

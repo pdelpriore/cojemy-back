@@ -2,8 +2,8 @@ const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../../../config/security/Security");
 const User = require("../../../model/User");
 
-const generateToken = async (email) => {
-  const tokenGenerated = await new Promise(async (resolve, reject) => {
+const generateToken = (email) => {
+  return new Promise(async (resolve) => {
     try {
       const user = await User.findOne({ email: email });
       if (user) {
@@ -17,7 +17,6 @@ const generateToken = async (email) => {
       if (err) throw new Error(err);
     }
   });
-  return tokenGenerated;
 };
 
 module.exports = { generateToken };

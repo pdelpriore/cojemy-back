@@ -2,8 +2,8 @@ const User = require("../../../model/User");
 const generator = require("generate-password");
 const { hashPassword } = require("./hashPassword");
 
-const setNewPassword = async (email) => {
-  const newPasswordSet = await new Promise(async (resolve, reject) => {
+const setNewPassword = (email) => {
+  return new Promise(async (resolve) => {
     try {
       let newPassword = generator.generate({
         length: 10,
@@ -20,7 +20,6 @@ const setNewPassword = async (email) => {
       if (err) throw new Error(err);
     }
   });
-  return newPasswordSet;
 };
 
 module.exports = { setNewPassword };

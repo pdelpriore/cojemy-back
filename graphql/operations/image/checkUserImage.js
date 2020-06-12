@@ -4,48 +4,51 @@ const { uploadImage } = require("./uploadImage");
 const { strings } = require("../../../strings/Strings");
 const { userGooglePhoto } = require("../../../shared/testWords");
 
-const checkUserImage = async (email, profileImage) => {
-  const imagePath = await new Promise(async (resolve, reject) => {
-    const user = await User.findOne({ email: email });
-    const userImageName =
-      user.photo && user.photo.split("/").slice(3).toString();
-    if (profileImage) {
-      if (profileImage.imageName) {
-        if (userImageName === profileImage.imageName) {
-          resolve(user.photo);
-        } else {
-          if (
-            userImageName &&
-            !userGooglePhoto.some(
-              (element) => user.photo && user.photo.includes(element)
-            )
-          ) {
-            removeImage(userImageName, strings.imageTypes.USER);
+const checkUserImage = (email, profileImage) => {
+  return new Promise(async (resolve) => {
+    try {
+      const user = await User.findOne({ email: email });
+      const userImageName =
+        user.photo && user.photo.split("/").slice(3).toString();
+      if (profileImage) {
+        if (profileImage.imageName) {
+          if (userImageName === profileImage.imageName) {
+            resolve(user.photo);
+          } else {
+            if (
+              userImageName &&
+              !userGooglePhoto.some(
+                (element) => user.photo && user.photo.includes(element)
+              )
+            ) {
+              removeImage(userImageName, strings.imageTypes.USER);
+            }
+            const newPath = await uploadImage(
+              profileImage,
+              strings.imageTypes.USER
+            );
+            resolve(newPath);
           }
-          const newPath = await uploadImage(
-            profileImage,
-            strings.imageTypes.USER
-          );
-          resolve(newPath);
+        } else if (!profileImage.imageName) {
+          if (user.photo === profileImage.image) {
+            resolve(user.photo);
+          }
         }
-      } else if (!profileImage.imageName) {
-        if (user.photo === profileImage.image) {
-          resolve(user.photo);
+      } else {
+        if (
+          userImageName &&
+          !userGooglePhoto.some(
+            (element) => user.photo && user.photo.includes(element)
+          )
+        ) {
+          removeImage(userImageName, strings.imageTypes.USER);
         }
+        resolve(null);
       }
-    } else {
-      if (
-        userImageName &&
-        !userGooglePhoto.some(
-          (element) => user.photo && user.photo.includes(element)
-        )
-      ) {
-        removeImage(userImageName, strings.imageTypes.USER);
-      }
-      resolve(null);
+    } catch (err) {
+      if (err) throw new Error(err);
     }
   });
-  return imagePath;
 };
 
 module.exports = { checkUserImage };

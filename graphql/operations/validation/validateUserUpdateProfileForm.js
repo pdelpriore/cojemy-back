@@ -1,8 +1,8 @@
 const { strings } = require("../../../strings/Strings");
 const { unacceptableWordsArray } = require("../../../shared/testWords");
 
-const validateUserUpdateProfileForm = async (name, profileImage) => {
-  const validateResult = await new Promise((resolve, reject) => {
+const validateUserUpdateProfileForm = (name, profileImage) => {
+  return new Promise((resolve, reject) => {
     if (name.length < 5) {
       reject(strings.errors.validateSignupForm.NAME_LENGTH);
     } else if (
@@ -33,7 +33,6 @@ const validateUserUpdateProfileForm = async (name, profileImage) => {
       resolve();
     }
   });
-  return validateResult;
 };
 
 module.exports = { validateUserUpdateProfileForm };

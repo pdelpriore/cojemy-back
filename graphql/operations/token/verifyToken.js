@@ -2,8 +2,8 @@ const jwt = require("jsonwebtoken");
 const { jwtSecret } = require("../../../config/security/Security");
 const { strings } = require("../../../strings/Strings");
 
-const verifyToken = async (userId, email, token, authType) => {
-  const tokenVerified = await new Promise((resolve, reject) => {
+const verifyToken = (userId, email, token, authType) => {
+  return new Promise((resolve, reject) => {
     if (authType === strings.tokenVerification.USER_AUTH) {
       jwt.verify(token, jwtSecret, (err, decoded) => {
         if (decoded && decoded.email === email && decoded.userId === userId) {
@@ -22,7 +22,6 @@ const verifyToken = async (userId, email, token, authType) => {
       });
     }
   });
-  return tokenVerified;
 };
 
 module.exports = { verifyToken };

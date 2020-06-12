@@ -4,8 +4,8 @@ const {
 const { emailContactId } = require("../../../config/security/Security");
 const { strings } = require("../../../strings/Strings");
 
-const sendCustomerContactEmail = async (subject, email, content) => {
-  const customerContactEmailSent = await new Promise((resolve, reject) => {
+const sendCustomerContactEmail = (subject, email, content) => {
+  return new Promise((resolve) => {
     const mailOptions = {
       from: `${emailContactId}`,
       to: strings.path.SERVICE_EMAIL,
@@ -63,7 +63,6 @@ const sendCustomerContactEmail = async (subject, email, content) => {
       }
     });
   });
-  return customerContactEmailSent;
 };
 
 module.exports = { sendCustomerContactEmail };

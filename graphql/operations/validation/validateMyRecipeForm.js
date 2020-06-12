@@ -2,7 +2,7 @@ const { strings } = require("../../../strings/Strings");
 const { unacceptableWordsArray } = require("../../../shared/testWords");
 const { capitalizeFirst } = require("../../../util/Util");
 
-const validateMyRecipeForm = async (
+const validateMyRecipeForm = (
   title,
   recipeImage,
   video,
@@ -11,7 +11,7 @@ const validateMyRecipeForm = async (
   ingredients,
   description
 ) => {
-  const validateResult = await new Promise((resolve, reject) => {
+  return new Promise((resolve, reject) => {
     if (title.length > 21) {
       reject(strings.errors.validateMyRecipeForm.TITLE_LENGTH);
     } else if (
@@ -82,7 +82,6 @@ const validateMyRecipeForm = async (
       resolve();
     }
   });
-  return validateResult;
 };
 
 module.exports = { validateMyRecipeForm };

@@ -1,8 +1,8 @@
 const User = require("../../../model/User");
 const { strings } = require("../../../strings/Strings");
 
-const isUserExist = async (email) => {
-  const result = await new Promise(async (resolve, reject) => {
+const isUserExist = (email) => {
+  return new Promise(async (resolve, reject) => {
     try {
       const user = await User.findOne({ email: email });
       if (user) {
@@ -14,7 +14,6 @@ const isUserExist = async (email) => {
       if (err) throw new Error(err);
     }
   });
-  return result;
 };
 
 module.exports = { isUserExist };

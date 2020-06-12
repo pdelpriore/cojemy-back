@@ -3,8 +3,8 @@ const {
 } = require("../../../config/nodemailer/transporters/emailConfirm/EmailConfirmTransporter");
 const { emailConfirmId } = require("../../../config/security/Security");
 
-const sendEmailConfirm = async (name, email, token) => {
-  const confirmEmailSent = await new Promise((resolve, reject) => {
+const sendEmailConfirm = (name, email, token) => {
+  return new Promise((resolve) => {
     const url = `http://localhost:4000/emailconfirm/${token}/${email}`;
     const mailOptions = {
       from: `${emailConfirmId}`,
@@ -83,7 +83,6 @@ const sendEmailConfirm = async (name, email, token) => {
       }
     });
   });
-  return confirmEmailSent;
 };
 
 module.exports = { sendEmailConfirm };

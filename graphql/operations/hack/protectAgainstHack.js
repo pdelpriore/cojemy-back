@@ -1,8 +1,8 @@
 const fs = require("fs");
 const { strings } = require("../../../strings/Strings");
 
-const protectAgainstHack = async (req) => {
-  const result = await new Promise((resolve, reject) => {
+const protectAgainstHack = (req) => {
+  return new Promise((resolve, reject) => {
     fs.readFile("loginIpsBlackListed.txt", (err, data) => {
       if (err) console.log(err);
       if (data !== null) {
@@ -18,7 +18,6 @@ const protectAgainstHack = async (req) => {
       }
     });
   });
-  return result;
 };
 
 module.exports = { protectAgainstHack };

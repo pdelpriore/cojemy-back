@@ -4,8 +4,8 @@ const randomstring = require("randomstring");
 const stream = require("stream");
 const { strings } = require("../../../strings/Strings");
 
-const uploadImage = async (imageObj, type) => {
-  const imagePath = await new Promise((resolve, reject) => {
+const uploadImage = (imageObj, type) => {
+  return new Promise((resolve) => {
     const imageName = `${randomstring.generate(20)}-${imageObj.imageName}`;
 
     new stream.PassThrough()
@@ -32,7 +32,6 @@ const uploadImage = async (imageObj, type) => {
 
     resolve(`/imgs/${type}/${imageName}`);
   });
-  return imagePath;
 };
 
 module.exports = { uploadImage };

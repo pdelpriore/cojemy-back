@@ -1,8 +1,8 @@
 const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])[0-9a-zA-Z]{8,}$/;
 const { strings } = require("../../../strings/Strings");
 
-const validateChangeUserPasswordForm = async (newPass, confirmPass) => {
-  const validateResult = await new Promise((resolve, reject) => {
+const validateChangeUserPasswordForm = (newPass, confirmPass) => {
+  return new Promise((resolve, reject) => {
     if (newPass !== confirmPass) {
       reject(strings.errors.validateSignupForm.EMAILS_MISMATCH);
     } else if (!passwordRegex.test(newPass)) {
@@ -11,7 +11,6 @@ const validateChangeUserPasswordForm = async (newPass, confirmPass) => {
       resolve();
     }
   });
-  return validateResult;
 };
 
 module.exports = { validateChangeUserPasswordForm };
