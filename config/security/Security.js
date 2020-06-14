@@ -30,6 +30,7 @@ const emailContactPass = "DeXoS25%*$IO(!?aPP";
 const emailNewPasswordId = "no.reply.qm.newpass@gmail.com";
 const emailNewPasswordPass = "NEw%!PaSsspo-.?$k(o";
 const jwtSecret = "SUp%!(cnEpAAS$/!";
+const jwtEncryptionKey = "jE%sT?$Okk18/!";
 
 module.exports = {
   IdClient,
@@ -47,5 +48,6 @@ module.exports = {
   emailNewPassAccessToken,
   emailNewPassRefreshToken,
   emailNewPassExpiryToken,
-  jwtSecret
+  jwtSecret,
+  jwtEncryptionKey,
 };
