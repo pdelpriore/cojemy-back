@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-import * as jwtEncrypt from "jwt-token-encrypt";
+const cryptoJS = require("crypto-js");
 const {
   jwtSecret,
   jwtEncryptionKey,
@@ -11,28 +11,11 @@ const generateToken = (email) => {
     try {
       const user = await User.findOne({ email: email });
       if (user) {
-        // const token = jwt.sign(
-        //   { userId: user._id, email: user.email },
-        //   jwtSecret
-        // );
-        // resolve(token);
-        const token = await jwtEncrypt.generateJWT(
-          {
-            secret: jwtSecret,
-          },
-          {
-            role: "user",
-          },
-          {
-            key: jwtEncryptionKey,
-            algorithm: "aes-256-cbc",
-          },
-          {
-            userId: user._id,
-            email: email,
-          }
+        const token = jwt.sign(
+          { userId: user._id, email: user.email },
+          jwtSecret
         );
-        resolve(token);
+        resolve(cryptoJS.AES.encrypt(token, jwtEncryptionKey).toString());
       }
     } catch (err) {
       if (err) throw new Error(err);

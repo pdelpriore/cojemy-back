@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-import * as jwtEncrypt from "jwt-token-encrypt";
+const cryptoJS = require("crypto-js");
 const {
   jwtSecret,
   jwtEncryptionKey,
@@ -8,41 +8,26 @@ const { strings } = require("../../../strings/Strings");
 
 const verifyToken = (userId, email, token, authType) => {
   return new Promise((resolve, reject) => {
+    const tokenDecrypted = cryptoJS.AES.decrypt(
+      token,
+      jwtEncryptionKey
+    ).toString(cryptoJS.enc.Utf8);
     if (authType === strings.tokenVerification.USER_AUTH) {
-      const decoded = jwtEncrypt.readJWT(token, {
-        key: jwtEncryptionKey,
-        algorithm: "aes-256-cbc",
+      jwt.verify(tokenDecrypted, jwtSecret, (err, decoded) => {
+        if (decoded && decoded.email === email && decoded.userId === userId) {
+          resolve();
+        } else {
+          reject(strings.errors.token.ERROR);
+        }
       });
-      console.log(decoded);
-      // if (decoded && decoded.email === email && decoded.userId === userId) {
-      //   resolve();
-      // } else {
-      //   reject(strings.errors.token.ERROR);
-      // }
-      // jwt.verify(token, jwtSecret, (err, decoded) => {
-      //   if (decoded && decoded.email === email && decoded.userId === userId) {
-      //     resolve();
-      //   } else {
-      //     reject(strings.errors.token.ERROR);
-      //   }
-      // });
     } else if (authType === strings.tokenVerification.EMAIL_CONFIRM) {
-      const decoded = jwtEncrypt.readJWT(token, {
-        key: jwtEncryptionKey,
-        algorithm: "aes-256-cbc",
+      jwt.verify(tokenDecrypted, jwtSecret, (err, decoded) => {
+        if (decoded && decoded.email === email) {
+          resolve();
+        } else {
+          reject(strings.errors.token.ERROR);
+        }
       });
-      // if (decoded && decoded.email === email) {
-      //   resolve();
-      // } else {
-      //   reject(strings.errors.token.ERROR);
-      // }
-      // jwt.verify(token, jwtSecret, (err, decoded) => {
-      //   if (decoded && decoded.email === email) {
-      //     resolve();
-      //   } else {
-      //     reject(strings.errors.token.ERROR);
-      //   }
-      // });
     }
   });
 };
