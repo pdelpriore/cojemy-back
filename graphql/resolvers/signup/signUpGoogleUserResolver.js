@@ -8,7 +8,7 @@ const { hideUserPassword } = require("../../../shared/hideUserPassword");
 module.exports = {
   signUpGoogleUser: async ({ name, email, photo }, { req }) => {
     try {
-      await verifyGoogleIdToken(req.get(strings.request.HEADER));
+      await verifyGoogleIdToken(email, req.get(strings.request.HEADER));
       const user = await User.findOne({ email: email });
       if (user) {
         throw new Error(strings.errors.signupGoogleUser.USER_EXISTS);

@@ -9,7 +9,7 @@ const { hideUserPassword } = require("../../../shared/hideUserPassword");
 module.exports = {
   loginGoogleUser: async ({ email }, { req, res }) => {
     try {
-      await verifyGoogleIdToken(req.get(strings.request.HEADER));
+      await verifyGoogleIdToken(email, req.get(strings.request.HEADER));
       const user = await isUserExist(email);
       if (user.isGoogleUser) {
         const token = await generateToken(user.email);
