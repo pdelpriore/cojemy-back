@@ -41,6 +41,7 @@ const UserSchema = new Schema(
         ref: "recipe",
       },
     ],
+    events: [{ type: Schema.Types.ObjectId, ref: "event" }],
   },
   { collection: "user" }
 );
