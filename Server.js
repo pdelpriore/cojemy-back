@@ -13,6 +13,7 @@ const { capitalizeFirst } = require("./util/Util");
 const emailConfirmation = require("./routes/emailConfirmation");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 const checkRequest = require("./util/checkRequest");
+const hereMapRequest = require("./routes/autocompleteHereMaps");
 
 app.use(
   cors({
@@ -56,6 +57,7 @@ app.use(
   try {
     await dbConnection();
     emailConfirmation(app);
+    hereMapRequest(app);
     app.listen(strings.port, () => {
       console.log(capitalizeFirst(strings.notification.SERVER));
       //generateGoogleAuthUrl();

@@ -11,13 +11,9 @@ const EventSchema = new Schema(
       type: String,
       required: false,
     },
-    address: {
-      type: String,
-      required: true,
-    },
-    city: {
-      type: String,
-      required: true,
+    eventAddress: {
+      type: Schema.Types.ObjectId,
+      ref: "address",
     },
     description: {
       type: String,

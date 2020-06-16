@@ -3,6 +3,7 @@ const strings = Object.freeze({
     MONGODB: "mongodb://localhost:27017/quoimanger",
     GRAPHQL: "/graphql",
     EMAIL_CONFIRM: "/emailconfirm/:token/:email",
+    HERE_MAP_REQUEST: "/heremaprequest",
     REDIRECT_LOGIN: "http://localhost:3000/login",
     SERVICE_EMAIL: "paul.del.priore29@gmail.com",
     ORIGIN_FRONT: "http://localhost:3000",
