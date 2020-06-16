@@ -15,6 +15,10 @@ const EventSchema = new Schema(
       type: String,
       required: true,
     },
+    city: {
+      type: String,
+      required: true,
+    },
     description: {
       type: String,
       required: true,
@@ -27,6 +31,12 @@ const EventSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "user",
     },
+    participants: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "user",
+      },
+    ],
     eventDate: {
       type: Date,
       required: true,
