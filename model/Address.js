@@ -7,10 +7,6 @@ const AddressSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "event",
     },
-    companyName: {
-      type: String,
-      required: false,
-    },
     streetNumber: {
       type: Number,
       required: false,
