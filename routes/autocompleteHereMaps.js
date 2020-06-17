@@ -7,7 +7,9 @@ module.exports = (app) => {
     try {
       const { addressValue } = req.body;
       const response = await fetch(
-        `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?query=${addressValue}&apiKey=${hereAPIKey}`,
+        encodeURI(
+          `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?query=${addressValue}&apiKey=${hereAPIKey}`
+        ),
         {
           method: "get",
           headers: {
