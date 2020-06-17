@@ -7,9 +7,7 @@ module.exports = (app) => {
     try {
       const { addressValue } = req.body;
       const response = await fetch(
-        `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json
-                ?query=${addressValue}
-                &apiKey=${hereAPIKey}`,
+        `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?query=${addressValue}&apiKey=${hereAPIKey}`,
         {
           method: "get",
           headers: {
@@ -17,9 +15,10 @@ module.exports = (app) => {
           },
         }
       );
-      const responseData = await response.json();
-      console.log(responseData);
-      //res.status(200).send(responseData);
+      if (response.status === 200) {
+        const responseData = await response.json();
+        res.status(200).send(responseData);
+      }
     } catch (err) {
       if (err) throw err;
     }
