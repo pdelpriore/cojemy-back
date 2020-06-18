@@ -12,6 +12,7 @@ const { strings } = require("./strings/Strings");
 const { capitalizeFirst } = require("./util/Util");
 const emailConfirmation = require("./routes/emailConfirmation");
 const autocompleteHereMaps = require("./routes/autocompleteHereMaps");
+const mapLocationDetails = require("./routes/mapLocationDetails");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 const checkRequest = require("./util/checkRequest");
 
@@ -58,6 +59,7 @@ app.use(
     await dbConnection();
     emailConfirmation(app);
     autocompleteHereMaps(app);
+    mapLocationDetails(app);
     app.listen(strings.port, () => {
       console.log(capitalizeFirst(strings.notification.SERVER));
       //generateGoogleAuthUrl();
