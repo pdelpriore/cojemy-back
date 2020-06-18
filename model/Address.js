@@ -23,6 +23,14 @@ const AddressSchema = new Schema(
       type: String,
       required: true,
     },
+    latitude: {
+      type: Number,
+      required: true,
+    },
+    longitude: {
+      type: Number,
+      required: true,
+    },
   },
   { collection: "address" }
 );
