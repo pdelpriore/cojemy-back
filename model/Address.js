@@ -31,6 +31,10 @@ const AddressSchema = new Schema(
       type: Number,
       required: true,
     },
+    zoom: {
+      type: Number,
+      required: true,
+    },
   },
   { collection: "address" }
 );
