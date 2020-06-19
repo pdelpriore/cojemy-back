@@ -5,6 +5,7 @@ const strings = Object.freeze({
     EMAIL_CONFIRM: "/emailconfirm/:token/:email",
     HERE_MAP_REQUEST: "/heremaprequest",
     MAP_LOCATION_DETAILS: "/heremaplocation",
+    MAP_RENDER: "/heremaprender/:latitude/:longitude/:zoom",
     REDIRECT_LOGIN: "http://localhost:3000/login",
     SERVICE_EMAIL: "paul.del.priore29@gmail.com",
     ORIGIN_FRONT: "http://localhost:3000",
