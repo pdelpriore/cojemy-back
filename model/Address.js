@@ -16,7 +16,7 @@ const AddressSchema = new Schema(
       required: true,
     },
     postCode: {
-      type: Number,
+      type: String,
       required: true,
     },
     city: {

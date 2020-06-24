@@ -9,6 +9,7 @@ const {
   GraphQLList,
   GraphQLNonNull,
   GraphQLInt,
+  GraphQLFloat,
 } = graphql;
 const GraphQLDate = require("graphql-date");
 
@@ -25,6 +26,27 @@ const RecipeImageInputType = new GraphQLInputObjectType({
   fields: () => ({
     image: { type: new GraphQLNonNull(GraphQLString) },
     imageName: { type: new GraphQLNonNull(GraphQLString) },
+  }),
+});
+
+const EventImageInputType = new GraphQLInputObjectType({
+  name: "EventImage",
+  fields: () => ({
+    image: { type: new GraphQLNonNull(GraphQLString) },
+    imageName: { type: new GraphQLNonNull(GraphQLString) },
+  }),
+});
+
+const EventAddressInputType = new GraphQLInputObjectType({
+  name: "EventAddress",
+  fields: () => ({
+    streetNumber: { type: GraphQLInt },
+    streetName: { type: new GraphQLNonNull(GraphQLString) },
+    postCode: { type: new GraphQLNonNull(GraphQLString) },
+    city: { type: new GraphQLNonNull(GraphQLString) },
+    latitude: { type: new GraphQLNonNull(GraphQLFloat) },
+    longitude: { type: new GraphQLNonNull(GraphQLFloat) },
+    zoom: { type: new GraphQLNonNull(GraphQLInt) },
   }),
 });
 
@@ -274,6 +296,19 @@ const RootMutation = new GraphQLObjectType({
     removeAccount: {
       type: GraphQLBoolean,
       args: {
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
+    addMyEvent: {
+      type: GraphQLBoolean,
+      args: {
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        eventImage: { type: EventImageInputType },
+        addressObj: { type: new GraphQLNonNull(EventAddressInputType) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        availablePlaces: { type: new GraphQLNonNull(GraphQLInt) },
+        eventDate: { type: new GraphQLNonNull(GraphQLDate) },
         userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
