@@ -7,7 +7,7 @@ const EventSchema = new Schema(
       type: String,
       required: true,
     },
-    photo: {
+    eventImage: {
       type: String,
       required: false,
     },

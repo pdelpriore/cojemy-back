@@ -33,6 +33,7 @@ const strings = Object.freeze({
   imageTypes: {
     RECIPE: "recipes",
     USER: "user",
+    EVENT: "events",
   },
   tokenVerification: {
     EMAIL_CONFIRM: "emailConfirm",
@@ -93,7 +94,18 @@ const strings = Object.freeze({
       NO_RECIPES: "pas de recettes.",
     },
     addNewRecipe: {
-      RECIPE_EXISTS: "recette déjà existe.",
+      RECIPE_EXISTS: "nom de recette déjà existe.",
+    },
+    validateEventForm: {
+      NO_STREET: "adresse d'événement doit avoir un nom de la rue.",
+      NO_CITY: "adresse d'événement doit avoir une ville",
+      AVAILABLE_PLACES_ZERO: "nombre de places incorrect",
+      AVAILABLE_PLACES_ERROR:
+        "nombre de places ne peut pas être supérieur à 500.",
+      EVENT_DATE_ERROR: "date incorrecte.",
+    },
+    addNewEvent: {
+      EVENT_EXISTS: "nom d'événement déjà existe.",
     },
   },
 });
