@@ -32,7 +32,7 @@ const strings = Object.freeze({
   },
   imageTypes: {
     RECIPE: "recipes",
-    USER: "user",
+    USER: "users",
     EVENT: "events",
   },
   tokenVerification: {
