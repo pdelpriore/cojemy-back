@@ -65,7 +65,7 @@ module.exports = {
           description: description,
           availablePlaces: availablePlaces,
           author: user,
-          eventDate: new Date(eventDate),
+          eventDate: eventDate,
           creationDate: new Date(),
         });
         await event.save();

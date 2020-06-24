@@ -59,7 +59,7 @@ const validateEventForm = (
       reject(strings.errors.validateEventForm.AVAILABLE_PLACES_ZERO);
     } else if (availablePlaces > 500) {
       reject(strings.errors.validateEventForm.AVAILABLE_PLACES_ERROR);
-    } else if (moment(new Date(eventDate)).isBefore(new Date())) {
+    } else if (moment(eventDate).isBefore(new Date())) {
       reject(strings.errors.validateEventForm.EVENT_DATE_ERROR);
     } else {
       resolve();
