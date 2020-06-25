@@ -62,6 +62,8 @@ const UserType = new GraphQLObjectType({
     isGoogleUser: { type: new GraphQLNonNull(GraphQLBoolean) },
     creationDate: { type: new GraphQLNonNull(GraphQLDate) },
     recipes: { type: new GraphQLList(RecipeType) },
+    events: { type: new GraphQLList(EventType) },
+    eventsJoined: { type: new GraphQLList(EventType) },
   }),
 });
 
@@ -112,6 +114,37 @@ const RecipeType = new GraphQLObjectType({
     comments: {
       type: new GraphQLList(CommentsType),
     },
+  }),
+});
+
+const AddressType = new GraphQLObjectType({
+  name: "Address",
+  fields: () => ({
+    _id: { type: new GraphQLNonNull(GraphQLID) },
+    event: { type: new GraphQLNonNull(EventType) },
+    streetNumber: { type: GraphQLInt },
+    streetName: { type: new GraphQLNonNull(GraphQLString) },
+    postCode: { type: new GraphQLNonNull(GraphQLString) },
+    city: { type: new GraphQLNonNull(GraphQLString) },
+    latitude: { type: new GraphQLNonNull(GraphQLFloat) },
+    longitude: { type: new GraphQLNonNull(GraphQLFloat) },
+    zoom: { type: new GraphQLNonNull(GraphQLInt) },
+  }),
+});
+
+const EventType = new GraphQLObjectType({
+  name: "Event",
+  fields: () => ({
+    _id: { type: new GraphQLNonNull(GraphQLID) },
+    title: { type: new GraphQLNonNull(GraphQLString) },
+    eventImage: { type: GraphQLString },
+    eventAddress: { type: new GraphQLNonNull(AddressType) },
+    description: { type: new GraphQLNonNull(GraphQLString) },
+    availablePlaces: { type: new GraphQLNonNull(GraphQLInt) },
+    author: { type: new GraphQLNonNull(UserType) },
+    participants: { type: new GraphQLList(UserType) },
+    eventDate: { type: new GraphQLNonNull(GraphQLDate) },
+    creationDate: { type: new GraphQLNonNull(GraphQLDate) },
   }),
 });
 
