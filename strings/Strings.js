@@ -30,6 +30,9 @@ const strings = Object.freeze({
   retrieveRecipes: {
     CAT_NEWS: "news",
   },
+  retrieveEvents: {
+    CAT_MY_EVENTS: "myEvents",
+  },
   imageTypes: {
     RECIPE: "recipes",
     USER: "users",
@@ -92,6 +95,9 @@ const strings = Object.freeze({
     },
     retrieveRecipes: {
       NO_RECIPES: "pas de recettes.",
+    },
+    retrieveEvents: {
+      NO_EVENTS: "pas d'événements",
     },
     addNewRecipe: {
       RECIPE_EXISTS: "nom de recette déjà existe.",

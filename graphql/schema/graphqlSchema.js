@@ -178,6 +178,14 @@ const RootQuery = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },
+    retrieveEvents: {
+      type: new GraphQLNonNull(GraphQLList(GraphQLNonNull(EventType))),
+      args: {
+        category: { type: new GraphQLNonNull(GraphQLString) },
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
   },
 });
 

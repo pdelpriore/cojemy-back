@@ -18,6 +18,7 @@ const updateUserProfileResolver = require("./updateUserProfile/profile/updatePro
 const changeUserPasswordResolver = require("./updateUserProfile/changeUserPassword/changeUserPasswordResolver");
 const removeAccountResolver = require("./updateUserProfile/removeAccount/removeAccountResolver");
 const addMyEventResolver = require("./event/addMyEvent/addMyEventResolver");
+const retrieveEventsResolver = require("./event/retrieveEvents/retrieveEventsResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -40,6 +41,7 @@ const rootResolver = {
   ...changeUserPasswordResolver,
   ...removeAccountResolver,
   ...addMyEventResolver,
+  ...retrieveEventsResolver,
 };
 
 module.exports = rootResolver;
