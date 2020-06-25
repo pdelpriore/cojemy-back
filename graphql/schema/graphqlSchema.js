@@ -60,6 +60,8 @@ const UserType = new GraphQLObjectType({
     photo: { type: GraphQLString },
     isEmailConfirmed: { type: new GraphQLNonNull(GraphQLBoolean) },
     isGoogleUser: { type: new GraphQLNonNull(GraphQLBoolean) },
+    isPremium: { type: new GraphQLNonNull(GraphQLBoolean) },
+    isTrialPeriod: { type: new GraphQLNonNull(GraphQLBoolean) },
     creationDate: { type: new GraphQLNonNull(GraphQLDate) },
     recipes: { type: new GraphQLList(RecipeType) },
     events: { type: new GraphQLList(EventType) },

@@ -31,6 +31,10 @@ const UserSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    isTrialPeriod: {
+      type: Boolean,
+      required: true,
+    },
     creationDate: {
       type: Date,
       required: true,
