@@ -27,7 +27,7 @@ module.exports = {
           isEmailConfirmed: false,
           isGoogleUser: false,
           isPremium: false,
-          isTrialPeriod: false,
+          isTrialPeriod: true,
           creationDate: new Date(),
         });
         await user.save();
