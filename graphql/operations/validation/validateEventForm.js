@@ -43,10 +43,12 @@ const validateEventForm = (
       ).byteLength > 101000
     ) {
       reject(strings.errors.validateMyRecipeForm.IMAGE_SIZE);
-    } else if (!address.streetName) {
-      reject(strings.errors.validateEventForm.NO_STREET);
-    } else if (!address.city) {
-      reject(strings.errors.validateEventForm.NO_CITY);
+    } else if (address.country) {
+      if (!address.streetName && address.city) {
+        reject(strings.errors.validateEventForm.NO_STREET);
+      } else if (!address.streetName && !address.city) {
+        reject(strings.errors.validateEventForm.NO_CITY);
+      }
     } else if (
       unacceptableWordsArray.some(
         (element) =>
