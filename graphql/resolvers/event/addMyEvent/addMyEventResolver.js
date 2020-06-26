@@ -33,13 +33,16 @@ module.exports = {
         title: title,
       });
       const eventReserved = await Event.findOne({ eventDate: eventDate });
-      const addressReserved = await Address.findOne({
-        event: eventReserved,
-        streetNumber: addressObj.streetNumber,
-        streetName: addressObj.streetName,
-        city: addressObj.city,
-        country: addressObj.country,
-      });
+      const addressReserved =
+        eventReserved &&
+        (await Address.findOne({
+          event: eventReserved._id,
+          streetNumber: addressObj.streetNumber,
+          streetName: addressObj.streetName,
+          city: addressObj.city,
+          country: addressObj.country,
+        }));
+
       if (eventExists) {
         throw new Error(strings.errors.addNewEvent.EVENT_EXISTS);
       } else if (addressReserved) {
