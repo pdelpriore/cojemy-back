@@ -23,6 +23,10 @@ const AddressSchema = new Schema(
       type: String,
       required: true,
     },
+    country: {
+      type: String,
+      required: true,
+    },
     latitude: {
       type: Number,
       required: true,
