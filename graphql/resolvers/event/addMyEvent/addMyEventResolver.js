@@ -40,63 +40,62 @@ module.exports = {
         city: addressObj.city,
         country: addressObj.country,
       });
-      if (eventExists === null) {
-        if (addressReserved === null) {
-          await validateEventForm(
-            title,
-            eventImage,
-            addressObj,
-            description,
-            availablePlaces,
-            eventDate
-          );
-          const imagePath =
-            eventImage &&
-            (await uploadImage(eventImage, strings.imageTypes.EVENT));
-
-          const user = await User.findOne({ email: email });
-
-          let address = new Address({
-            streetNumber: addressObj.streetNumber,
-            streetName: addressObj.streetName,
-            postCode: addressObj.postCode,
-            city: addressObj.city,
-            latitude: addressObj.latitude,
-            longitude: addressObj.longitude,
-            zoom: addressObj.zoom,
-          });
-          await address.save();
-
-          let event = new Event({
-            title: title,
-            eventImage: imagePath,
-            eventAddress: address,
-            description: description,
-            availablePlaces: availablePlaces,
-            author: user,
-            eventDate: eventDate,
-            creationDate: new Date(),
-          });
-          await event.save();
-
-          await Address.findOneAndUpdate(
-            { _id: address },
-            { $set: { event: event } },
-            { new: true }
-          ).exec();
-
-          await User.findOneAndUpdate(
-            { email: email },
-            { $push: { events: event } },
-            { new: true }
-          ).exec();
-
-          return true;
-        } else {
-          throw new Error(strings.errors.addNewEvent.EVENT_RESERVED);
-        }
-      } else {
+      if (eventExists) {
         throw new Error(strings.errors.addNewEvent.EVENT_EXISTS);
+      } else if (addressReserved) {
+        throw new Error(strings.errors.addNewEvent.EVENT_RESERVED);
+      } else {
+        await validateEventForm(
+          title,
+          eventImage,
+          addressObj,
+          description,
+          availablePlaces,
+          eventDate
+        );
+        const imagePath =
+          eventImage &&
+          (await uploadImage(eventImage, strings.imageTypes.EVENT));
+
+        const user = await User.findOne({ email: email });
+
+        let address = new Address({
+          streetNumber: addressObj.streetNumber,
+          streetName: addressObj.streetName,
+          postCode: addressObj.postCode,
+          city: addressObj.city,
+          country: addressObj.country,
+          latitude: addressObj.latitude,
+          longitude: addressObj.longitude,
+          zoom: addressObj.zoom,
+        });
+        await address.save();
+
+        let event = new Event({
+          title: title,
+          eventImage: imagePath,
+          eventAddress: address,
+          description: description,
+          availablePlaces: availablePlaces,
+          author: user,
+          eventDate: eventDate,
+          creationDate: new Date(),
+        });
+        await event.save();
+
+        await Address.findOneAndUpdate(
+          { _id: address },
+          { $set: { event: event } },
+          { new: true }
+        ).exec();
+
+        await User.findOneAndUpdate(
+          { email: email },
+          { $push: { events: event } },
+          { new: true }
+        ).exec();
+
+        return true;
       }
     } catch (err) {
       if (err) throw err;
