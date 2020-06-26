@@ -32,57 +32,69 @@ module.exports = {
       const eventExists = await Event.findOne({
         title: title,
       });
+      const eventReserved = await Event.findOne({ eventDate: eventDate });
+      const addressReserved = await Address.findOne({
+        event: eventReserved,
+        streetNumber: addressObj.streetNumber,
+        streetName: addressObj.streetName,
+        city: addressObj.city,
+        country: addressObj.country,
+      });
       if (eventExists === null) {
-        await validateEventForm(
-          title,
-          eventImage,
-          addressObj,
-          description,
-          availablePlaces,
-          eventDate
-        );
-        const imagePath =
-          eventImage &&
-          (await uploadImage(eventImage, strings.imageTypes.EVENT));
+        if (addressReserved === null) {
+          await validateEventForm(
+            title,
+            eventImage,
+            addressObj,
+            description,
+            availablePlaces,
+            eventDate
+          );
+          const imagePath =
+            eventImage &&
+            (await uploadImage(eventImage, strings.imageTypes.EVENT));
 
-        const user = await User.findOne({ email: email });
+          const user = await User.findOne({ email: email });
 
-        let address = new Address({
-          streetNumber: addressObj.streetNumber,
-          streetName: addressObj.streetName,
-          postCode: addressObj.postCode,
-          city: addressObj.city,
-          latitude: addressObj.latitude,
-          longitude: addressObj.longitude,
-          zoom: addressObj.zoom,
-        });
-        await address.save();
+          let address = new Address({
+            streetNumber: addressObj.streetNumber,
+            streetName: addressObj.streetName,
+            postCode: addressObj.postCode,
+            city: addressObj.city,
+            latitude: addressObj.latitude,
+            longitude: addressObj.longitude,
+            zoom: addressObj.zoom,
+          });
+          await address.save();
 
-        let event = new Event({
-          title: title,
-          eventImage: imagePath,
-          eventAddress: address,
-          description: description,
-          availablePlaces: availablePlaces,
-          author: user,
-          eventDate: eventDate,
-          creationDate: new Date(),
-        });
-        await event.save();
+          let event = new Event({
+            title: title,
+            eventImage: imagePath,
+            eventAddress: address,
+            description: description,
+            availablePlaces: availablePlaces,
+            author: user,
+            eventDate: eventDate,
+            creationDate: new Date(),
+          });
+          await event.save();
 
-        await Address.findOneAndUpdate(
-          { _id: address },
-          { $set: { event: event } },
-          { new: true }
-        ).exec();
+          await Address.findOneAndUpdate(
+            { _id: address },
+            { $set: { event: event } },
+            { new: true }
+          ).exec();
 
-        await User.findOneAndUpdate(
-          { email: email },
-          { $push: { events: event } },
-          { new: true }
-        ).exec();
+          await User.findOneAndUpdate(
+            { email: email },
+            { $push: { events: event } },
+            { new: true }
+          ).exec();
 
-        return true;
+          return true;
+        } else {
+          throw new Error(strings.errors.addNewEvent.EVENT_RESERVED);
+        }
       } else {
         throw new Error(strings.errors.addNewEvent.EVENT_EXISTS);
       }
