@@ -111,7 +111,6 @@ const strings = Object.freeze({
       EVENT_DATE_ERROR: "date incorrecte.",
     },
     addNewEvent: {
-      EVENT_EXISTS: "nom d'événement déjà existe.",
       EVENT_RESERVED: "événement déjà réservé sous l'addresse saisie.",
     },
   },

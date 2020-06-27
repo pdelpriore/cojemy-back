@@ -32,7 +32,7 @@ module.exports = {
         req.cookies.id,
         strings.tokenVerification.USER_AUTH
       );
-      await isEventReserved(title, eventDate, addressObj);
+      await isEventReserved(eventDate, addressObj);
       await validateEventForm(
         title,
         eventImage,
