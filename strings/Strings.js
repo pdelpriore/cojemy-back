@@ -104,6 +104,7 @@ const strings = Object.freeze({
     },
     validateEventForm: {
       NO_STREET: "adresse d'événement doit avoir un nom de la rue.",
+      NO_STREET_NUMBER: "merci de préciser un numéro de la rue",
       NO_CITY: "adresse d'événement doit avoir une ville",
       AVAILABLE_PLACES_ZERO: "nombre de places incorrect",
       AVAILABLE_PLACES_ERROR:

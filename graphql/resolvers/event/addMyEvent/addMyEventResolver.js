@@ -32,7 +32,6 @@ module.exports = {
         req.cookies.id,
         strings.tokenVerification.USER_AUTH
       );
-      await isEventReserved(eventDate, addressObj);
       await validateEventForm(
         title,
         eventImage,
@@ -41,48 +40,84 @@ module.exports = {
         availablePlaces,
         eventDate
       );
+      await isEventReserved(eventDate, addressObj);
       const imagePath =
         eventImage && (await uploadImage(eventImage, strings.imageTypes.EVENT));
 
       const user = await User.findOne({ email: email });
 
-      let address = new Address({
+      const usedAddress = await Address.findOne({
         streetNumber: addressObj.streetNumber,
         streetName: addressObj.streetName,
-        postCode: addressObj.postCode,
         city: addressObj.city,
         country: addressObj.country,
-        latitude: addressObj.latitude,
-        longitude: addressObj.longitude,
-        zoom: addressObj.zoom,
       });
-      await address.save();
 
-      let event = new Event({
-        title: title,
-        eventImage: imagePath,
-        eventAddress: address,
-        description: description,
-        availablePlaces: availablePlaces,
-        author: user,
-        eventDate: eventDate,
-        creationDate: new Date(),
-      });
-      await event.save();
+      if (usedAddress) {
+        let event = new Event({
+          title: title,
+          eventImage: imagePath,
+          eventAddress: usedAddress,
+          description: description,
+          availablePlaces: availablePlaces,
+          author: user,
+          eventDate: eventDate,
+          creationDate: new Date(),
+        });
+        await event.save();
 
-      await Address.findOneAndUpdate(
-        { _id: address },
-        { $set: { event: event } },
-        { new: true }
-      ).exec();
+        await Address.findOneAndUpdate(
+          { _id: usedAddress._id },
+          { $push: { events: event } },
+          { new: true }
+        ).exec();
 
-      await User.findOneAndUpdate(
-        { email: email },
-        { $push: { events: event } },
-        { new: true }
-      ).exec();
+        await User.findOneAndUpdate(
+          { email: email },
+          { $push: { events: event } },
+          { new: true }
+        ).exec();
 
-      return true;
+        return true;
+      } else {
+        let address = new Address({
+          streetNumber: addressObj.streetNumber,
+          streetName: addressObj.streetName,
+          postCode: addressObj.postCode,
+          city: addressObj.city,
+          country: addressObj.country,
+          latitude: addressObj.latitude,
+          longitude: addressObj.longitude,
+          zoom: addressObj.zoom,
+        });
+        await address.save();
+
+        let event = new Event({
+          title: title,
+          eventImage: imagePath,
+          eventAddress: address,
+          description: description,
+          availablePlaces: availablePlaces,
+          author: user,
+          eventDate: eventDate,
+          creationDate: new Date(),
+        });
+        await event.save();
+
+        await Address.findOneAndUpdate(
+          { _id: address },
+          { $push: { events: event } },
+          { new: true }
+        ).exec();
+
+        await User.findOneAndUpdate(
+          { email: email },
+          { $push: { events: event } },
+          { new: true }
+        ).exec();
+
+        return true;
+      }
     } catch (err) {
       if (err) throw err;
     }

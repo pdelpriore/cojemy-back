@@ -125,7 +125,7 @@ const AddressType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: new GraphQLNonNull(GraphQLID) },
     event: { type: new GraphQLNonNull(EventType) },
-    streetNumber: { type: GraphQLInt },
+    streetNumber: { type: new GraphQLNonNull(GraphQLInt) },
     streetName: { type: new GraphQLNonNull(GraphQLString) },
     postCode: { type: new GraphQLNonNull(GraphQLString) },
     city: { type: new GraphQLNonNull(GraphQLString) },

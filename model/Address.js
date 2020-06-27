@@ -3,13 +3,15 @@ const Schema = mongoose.Schema;
 
 const AddressSchema = new Schema(
   {
-    event: {
-      type: Schema.Types.ObjectId,
-      ref: "event",
-    },
+    events: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "event",
+      },
+    ],
     streetNumber: {
       type: Number,
-      required: false,
+      required: true,
     },
     streetName: {
       type: String,
