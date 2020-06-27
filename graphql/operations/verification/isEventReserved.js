@@ -17,7 +17,7 @@ const isEventReserved = (eventDate, addressObj) => {
         reservedAddress &&
         (await Event.find({ _id: { $in: reservedAddress.events } }));
 
-      reservedEvents &&
+      if (reservedEvents) {
         reservedEvents.forEach((reservedEvent) => {
           if (
             moment(
@@ -29,6 +29,9 @@ const isEventReserved = (eventDate, addressObj) => {
             resolve();
           }
         });
+      } else {
+        resolve();
+      }
     } catch (err) {
       if (err) throw new Error(err);
     }
