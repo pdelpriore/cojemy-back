@@ -65,6 +65,8 @@ const validateMyRecipeForm = (
       reject(strings.errors.validateMyRecipeForm.CATEGORY_ERROR);
     } else if (cookTime.toString().startsWith("0")) {
       reject(strings.errors.validateMyRecipeForm.COOK_TIME_ZERO);
+    } else if (cookTime.toString().length > 3) {
+      reject(strings.errors.validateMyRecipeForm.COOK_TIME_SIZE);
     } else if (cookTime > 300) {
       reject(strings.errors.validateMyRecipeForm.COOK_TIME_ERROR);
     } else if (ingredients.includes("")) {

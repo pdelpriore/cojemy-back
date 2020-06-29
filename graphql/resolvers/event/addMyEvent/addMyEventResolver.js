@@ -20,6 +20,7 @@ module.exports = {
       description,
       availablePlaces,
       eventDate,
+      tel,
       userId,
       email,
     },
@@ -38,7 +39,8 @@ module.exports = {
         addressObj,
         description,
         availablePlaces,
-        eventDate
+        eventDate,
+        tel
       );
       await isEventReserved(eventDate, addressObj);
       const imagePath =
@@ -62,6 +64,7 @@ module.exports = {
           availablePlaces: availablePlaces,
           author: user,
           eventDate: eventDate,
+          tel: tel,
           creationDate: new Date(),
         });
         await event.save();
@@ -100,6 +103,7 @@ module.exports = {
           availablePlaces: availablePlaces,
           author: user,
           eventDate: eventDate,
+          tel: tel,
           creationDate: new Date(),
         });
         await event.save();

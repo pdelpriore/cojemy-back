@@ -148,6 +148,7 @@ const EventType = new GraphQLObjectType({
     author: { type: new GraphQLNonNull(UserType) },
     participants: { type: new GraphQLList(UserType) },
     eventDate: { type: new GraphQLNonNull(GraphQLDate) },
+    tel: { type: new GraphQLNonNull(GraphQLInt) },
     creationDate: { type: new GraphQLNonNull(GraphQLDate) },
   }),
 });
@@ -354,6 +355,7 @@ const RootMutation = new GraphQLObjectType({
         description: { type: new GraphQLNonNull(GraphQLString) },
         availablePlaces: { type: new GraphQLNonNull(GraphQLInt) },
         eventDate: { type: new GraphQLNonNull(GraphQLDate) },
+        tel: { type: new GraphQLNonNull(GraphQLInt) },
         userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
       },

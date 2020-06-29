@@ -37,6 +37,10 @@ const EventSchema = new Schema(
       type: Date,
       required: true,
     },
+    tel: {
+      type: Number,
+      required: true,
+    },
     creationDate: {
       type: Date,
       required: true,

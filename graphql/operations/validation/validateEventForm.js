@@ -9,7 +9,8 @@ const validateEventForm = (
   address,
   description,
   availablePlaces,
-  eventDate
+  eventDate,
+  tel
 ) => {
   return new Promise((resolve, reject) => {
     if (title.length > 21) {
@@ -75,6 +76,8 @@ const validateEventForm = (
       reject(strings.errors.validateEventForm.AVAILABLE_PLACES_ERROR);
     } else if (moment(eventDate).isBefore(new Date())) {
       reject(strings.errors.validateEventForm.EVENT_DATE_ERROR);
+    } else if (tel.toString().length > 9) {
+      reject(strings.errors.validateEventForm.TEL_SIZE);
     } else {
       resolve();
     }

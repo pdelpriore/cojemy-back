@@ -81,6 +81,7 @@ const strings = Object.freeze({
       CATEGORY_ERROR: "catégorie non acceptée",
       COOK_TIME_ZERO: "temps de cuisson incorrect",
       COOK_TIME_ERROR: "temps de cuisson trop large",
+      COOK_TIME_SIZE: "temps de cuisson doit contenir 3 chiffres.",
       INGREDIENTS_ERROR: "ingredients contiennent un élément vide",
       IMAGE_UNACCEPTABLE: "image inappropriée",
       VIDEO_UNACCEPTABLE: "vidéo inappropriée",
@@ -110,6 +111,7 @@ const strings = Object.freeze({
       AVAILABLE_PLACES_ERROR:
         "nombre de places ne peut pas être supérieur à 500.",
       EVENT_DATE_ERROR: "date incorrecte.",
+      TEL_SIZE: "numéro de téléphone dépasse 9 chiffres",
     },
     addNewEvent: {
       EVENT_RESERVED: "événement déjà réservé sous l'addresse saisie.",
