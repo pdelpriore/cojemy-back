@@ -100,7 +100,7 @@ const strings = Object.freeze({
       NO_EVENTS: "pas d'événements",
     },
     addNewRecipe: {
-      RECIPE_EXISTS: "nom de recette déjà existe.",
+      RECIPE_EXISTS: "tu as déjà enregistré cette recette.",
     },
     validateEventForm: {
       NO_STREET: "adresse d'événement doit avoir un nom de la rue.",
