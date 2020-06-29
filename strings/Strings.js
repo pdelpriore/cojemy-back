@@ -110,6 +110,7 @@ const strings = Object.freeze({
       AVAILABLE_PLACES_ZERO: "nombre de places incorrect",
       AVAILABLE_PLACES_ERROR:
         "nombre de places ne peut pas être supérieur à 500.",
+      AVAILABLE_PLACES_SIZE: "nombre de places doit contenir 3 chiffres.",
       EVENT_DATE_ERROR: "date incorrecte.",
       TEL_SIZE: "numéro de téléphone dépasse 9 chiffres",
     },

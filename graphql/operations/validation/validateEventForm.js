@@ -72,6 +72,8 @@ const validateEventForm = (
       reject(strings.errors.validateMyRecipeForm.DESCRIPTION_UNACCEPTABLE);
     } else if (availablePlaces.toString().startsWith("0")) {
       reject(strings.errors.validateEventForm.AVAILABLE_PLACES_ZERO);
+    } else if (availablePlaces.toString().length > 3) {
+      reject(strings.errors.validateEventForm.AVAILABLE_PLACES_SIZE);
     } else if (availablePlaces > 500) {
       reject(strings.errors.validateEventForm.AVAILABLE_PLACES_ERROR);
     } else if (moment(eventDate).isBefore(new Date())) {
