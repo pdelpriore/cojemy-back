@@ -1,6 +1,6 @@
 const { strings } = require("../../../strings/Strings");
 const { unacceptableWordsArray } = require("../../../shared/testWords");
-const { capitalizeFirst } = require("../../../util/Util");
+const { capitalize } = require("../../../util/Util");
 
 const validateMyRecipeForm = (
   title,
@@ -15,9 +15,8 @@ const validateMyRecipeForm = (
     if (title.length > 21) {
       reject(strings.errors.validateMyRecipeForm.TITLE_LENGTH);
     } else if (
-      unacceptableWordsArray.some(
-        (element) =>
-          title.includes(element) || title.includes(capitalizeFirst(element))
+      unacceptableWordsArray.some((element) =>
+        capitalize(title).includes(capitalize(element))
       )
     ) {
       reject(strings.errors.validateMyRecipeForm.TITLE_UNACCEPTABLE);
@@ -71,10 +70,8 @@ const validateMyRecipeForm = (
     } else if (ingredients.includes("")) {
       reject(strings.errors.validateMyRecipeForm.INGREDIENTS_ERROR);
     } else if (
-      unacceptableWordsArray.some(
-        (element) =>
-          description.includes(element) ||
-          description.includes(capitalizeFirst(element))
+      unacceptableWordsArray.some((element) =>
+        capitalize(description).includes(capitalize(element))
       )
     ) {
       reject(strings.errors.validateMyRecipeForm.DESCRIPTION_UNACCEPTABLE);
