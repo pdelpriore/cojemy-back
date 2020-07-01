@@ -22,8 +22,8 @@ module.exports = {
         removeImage(recipeImageName, strings.imageTypes.RECIPE);
 
       if (recipe.comments.length > 0) {
-        let recipeComments = recipe.comments.map((item) => item.comment);
-        let recipeRates = recipe.comments.map((item) => item.rate);
+        const recipeComments = recipe.comments.map((item) => item.comment);
+        const recipeRates = recipe.comments.map((item) => item.rate);
 
         await Comment.deleteMany({ _id: { $in: recipeComments } });
         await Rate.deleteMany({ _id: { $in: recipeRates } });
