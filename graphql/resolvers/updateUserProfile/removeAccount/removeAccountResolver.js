@@ -28,8 +28,8 @@ module.exports = {
           strings.imageTypes.USER
         );
       if (user.recipes.length > 0) {
-        let recipes = await Recipe.find({ _id: { $in: user.recipes } });
-        let recipesWithPicture = recipes.filter(
+        const recipes = await Recipe.find({ _id: { $in: user.recipes } });
+        const recipesWithPicture = recipes.filter(
           (recipe) => recipe.picture !== null && recipe.picture !== undefined
         );
         recipesWithPicture.forEach((recipe) => {
@@ -41,11 +41,11 @@ module.exports = {
         await Recipe.deleteMany({ _id: { $in: user.recipes } });
       }
 
-      let recipesCommentedAndRatedByUser = await Recipe.find({
+      const recipesCommentedAndRatedByUser = await Recipe.find({
         "comments.commentator": user._id,
       });
       if (recipesCommentedAndRatedByUser.length > 0) {
-        let recipeIds = recipesCommentedAndRatedByUser.map(
+        const recipeIds = recipesCommentedAndRatedByUser.map(
           (recipe) => recipe._id
         );
         recipesCommentedAndRatedByUser.forEach(async (recipe) => {

@@ -23,12 +23,12 @@ module.exports = {
       await validateRateCommentForm(rateValue);
       const user = await User.findOne({ email: email });
       const recipe = await Recipe.findById(recipeId);
-      let rate = new Rate({
+      const rate = new Rate({
         recipe: recipe,
         value: rateValue,
       });
       await rate.save();
-      let comment = new Comment({
+      const comment = new Comment({
         recipe: recipe,
         content: commentContent,
         date: new Date(),

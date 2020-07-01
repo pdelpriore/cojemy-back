@@ -16,7 +16,7 @@ module.exports = {
       );
       const user = await User.findOne({ email: email });
       if (user.recipes.length > 0) {
-        let myRecipes = await Recipe.find({ _id: { $in: user.recipes } })
+        const myRecipes = await Recipe.find({ _id: { $in: user.recipes } })
           .sort({ date: -1 })
           .populate([
             { path: "author", select: "-password", model: User },

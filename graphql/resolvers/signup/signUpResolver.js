@@ -19,8 +19,8 @@ module.exports = {
         throw new Error(strings.errors.signup.USER_NAME_EXISTS);
       } else {
         await validateSignupForm(name, email, confirmEmail, password);
-        let passwordHashed = await hashPassword(password);
-        let user = new User({
+        const passwordHashed = await hashPassword(password);
+        const user = new User({
           name: name,
           email: email.toLowerCase(),
           password: passwordHashed,
@@ -31,7 +31,7 @@ module.exports = {
           creationDate: new Date(),
         });
         await user.save();
-        let token = await generateToken(email);
+        const token = await generateToken(email);
         await sendEmailConfirm(name, email, token);
 
         return hideUserPassword(user);

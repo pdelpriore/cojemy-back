@@ -13,7 +13,7 @@ module.exports = {
       if (user) {
         throw new Error(strings.errors.signupGoogleUser.USER_EXISTS);
       } else {
-        let user = new User({
+        const user = new User({
           name: name,
           email: email.toLowerCase(),
           password: strings.signupGoogleUser.NO_PASSWORD,

@@ -56,7 +56,7 @@ module.exports = {
       });
 
       if (usedAddress) {
-        let event = new Event({
+        const event = new Event({
           title: title,
           eventImage: imagePath,
           eventAddress: usedAddress,
@@ -83,7 +83,7 @@ module.exports = {
 
         return true;
       } else {
-        let address = new Address({
+        const address = new Address({
           streetNumber: addressObj.streetNumber,
           streetName: addressObj.streetName,
           postCode: addressObj.postCode,
@@ -95,7 +95,7 @@ module.exports = {
         });
         await address.save();
 
-        let event = new Event({
+        const event = new Event({
           title: title,
           eventImage: imagePath,
           eventAddress: address,
