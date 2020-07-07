@@ -362,13 +362,6 @@ const RootMutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },
-    clearOldEvents: {
-      type: GraphQLBoolean,
-      args: {
-        userId: { type: new GraphQLNonNull(GraphQLID) },
-        email: { type: new GraphQLNonNull(GraphQLString) },
-      },
-    },
   },
 });
 
