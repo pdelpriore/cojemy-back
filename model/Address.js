@@ -9,6 +9,10 @@ const AddressSchema = new Schema(
         ref: "event",
       },
     ],
+    label: {
+      type: String,
+      required: true,
+    },
     streetNumber: {
       type: Number,
       required: true,

@@ -40,6 +40,7 @@ const EventImageInputType = new GraphQLInputObjectType({
 const EventAddressInputType = new GraphQLInputObjectType({
   name: "EventAddress",
   fields: () => ({
+    label: { type: new GraphQLNonNull(GraphQLString) },
     streetNumber: { type: GraphQLInt },
     streetName: { type: GraphQLString },
     postCode: { type: GraphQLString },
@@ -125,6 +126,7 @@ const AddressType = new GraphQLObjectType({
   fields: () => ({
     _id: { type: new GraphQLNonNull(GraphQLID) },
     event: { type: new GraphQLNonNull(EventType) },
+    label: { type: new GraphQLNonNull(GraphQLString) },
     streetNumber: { type: new GraphQLNonNull(GraphQLInt) },
     streetName: { type: new GraphQLNonNull(GraphQLString) },
     postCode: { type: new GraphQLNonNull(GraphQLString) },

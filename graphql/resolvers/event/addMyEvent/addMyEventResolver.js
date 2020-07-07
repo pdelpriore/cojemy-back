@@ -84,6 +84,7 @@ module.exports = {
         return true;
       } else {
         const address = new Address({
+          label: addressObj.label,
           streetNumber: addressObj.streetNumber,
           streetName: addressObj.streetName,
           postCode: addressObj.postCode,
