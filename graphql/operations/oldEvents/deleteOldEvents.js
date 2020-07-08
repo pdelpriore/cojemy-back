@@ -22,7 +22,17 @@ const deleteOldEvents = (email) => {
           { $pull: { events: { $in: oldEventIds } } }
         );
 
-        await Address.deleteMany({ $where: "this.events.length === 0" });
+        const addressesWithOldEventPulled = await Address.find({
+          _id: { $in: oldEventaddressIds },
+        });
+        let addressesWithNoEvents = [];
+        addressesWithOldEventPulled.forEach((address) => {
+          if (address.events.length === 0)
+            addressesWithNoEvents.push(address._id);
+        });
+        if (addressesWithNoEvents.length > 0) {
+          await Address.deleteMany({ _id: { $in: addressesWithNoEvents } });
+        }
       }
 
       if (oldEventIds.length > 0) {
