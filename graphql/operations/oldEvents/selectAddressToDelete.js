@@ -3,13 +3,15 @@ const selectAddressToDelete = (oldEventIds, addressesWithOldEvents) => {
     let oldEventIdsQuoted = oldEventIds
       .map((i) => i)
       .toString()
-      .split(",");
+      .split(",")
+      .sort();
     let addressesToDelete = [];
     addressesWithOldEvents.forEach((address) => {
       let addressesQuoted = address.events
         .map((i) => i)
         .toString()
-        .split(",");
+        .split(",")
+        .sort();
       if (
         addressesQuoted.every((val, index) => val === oldEventIdsQuoted[index])
       )
