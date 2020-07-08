@@ -8,20 +8,22 @@ const deleteOldEvents = (email) => {
       const oldEvents = await Event.find({
         eventDate: { $lt: new Date() },
       });
-      const oldEventIds = oldEvents.map((event) => event._id);
+      const oldEventIds =
+        oldEvents.length > 0 && oldEvents.map((event) => event._id);
 
       const oldEventaddressIds =
-        oldEventIds.length > 0 && oldEvents.map((event) => event.eventAddress);
+        oldEvents.length > 0 && oldEvents.map((event) => event.eventAddress);
 
-      oldEventaddressIds.length > 0 &&
-        (await Address.updateMany(
+      if (oldEventaddressIds.length > 0) {
+        await Address.updateMany(
           {
             _id: { $in: oldEventaddressIds },
           },
           { $pull: { events: { $in: oldEventIds } } }
-        ));
+        );
 
-      await Address.deleteMany({ $where: "this.events.length === 0" });
+        await Address.deleteMany({ $where: "this.events.length === 0" });
+      }
 
       if (oldEventIds.length > 0) {
         // dodac pozniej foreach jesli istnieje image to removeImage
