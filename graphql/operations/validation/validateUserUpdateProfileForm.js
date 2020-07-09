@@ -26,7 +26,7 @@ const validateUserUpdateProfileForm = (name, profileImage) => {
       new Buffer.from(
         profileImage.image.replace(/^data:image\/\w+;base64,/, ""),
         "base64"
-      ).byteLength > 101000
+      ).byteLength > 102000
     ) {
       reject(strings.errors.validateMyRecipeForm.IMAGE_SIZE);
     } else {
