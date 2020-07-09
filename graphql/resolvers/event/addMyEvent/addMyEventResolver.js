@@ -42,7 +42,7 @@ module.exports = {
         eventDate,
         tel
       );
-      await isEventReserved(eventDate, addressObj);
+      await isEventReserved(eventDate, addressObj, null);
       const imagePath =
         eventImage && (await uploadImage(eventImage, strings.imageTypes.EVENT));
 

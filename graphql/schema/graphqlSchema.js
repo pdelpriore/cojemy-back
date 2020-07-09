@@ -362,6 +362,22 @@ const RootMutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
       },
     },
+    editEvent: {
+      type: GraphQLBoolean,
+      args: {
+        title: { type: new GraphQLNonNull(GraphQLString) },
+        eventImage: { type: EventImageInputType },
+        addressObj: { type: new GraphQLNonNull(EventAddressInputType) },
+        description: { type: new GraphQLNonNull(GraphQLString) },
+        availablePlaces: { type: new GraphQLNonNull(GraphQLInt) },
+        eventDate: { type: new GraphQLNonNull(GraphQLDate) },
+        tel: { type: new GraphQLNonNull(GraphQLInt) },
+        eventId: { type: new GraphQLNonNull(GraphQLID) },
+        addressId: { type: new GraphQLNonNull(GraphQLID) },
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
   },
 });
 
