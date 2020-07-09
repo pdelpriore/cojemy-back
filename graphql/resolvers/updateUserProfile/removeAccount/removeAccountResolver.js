@@ -32,12 +32,13 @@ module.exports = {
         const recipesWithPicture = recipes.filter(
           (recipe) => recipe.picture !== null && recipe.picture !== undefined
         );
-        recipesWithPicture.forEach((recipe) => {
-          removeImage(
-            recipe.picture.split("/").slice(3).toString(),
-            strings.imageTypes.RECIPE
-          );
-        });
+        recipesWithPicture.length > 0 &&
+          recipesWithPicture.forEach((recipe) => {
+            removeImage(
+              recipe.picture.split("/").slice(3).toString(),
+              strings.imageTypes.RECIPE
+            );
+          });
         await Recipe.deleteMany({ _id: { $in: user.recipes } });
       }
 

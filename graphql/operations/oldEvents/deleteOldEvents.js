@@ -1,6 +1,8 @@
 const User = require("../../../model/User");
 const Event = require("../../../model/Event");
 const Address = require("../../../model/Address");
+const { removeImage } = require("../image/removeImage");
+const { strings } = require("../../../strings/Strings");
 
 const deleteOldEvents = (email) => {
   return new Promise(async (resolve) => {
@@ -36,7 +38,18 @@ const deleteOldEvents = (email) => {
       }
 
       if (oldEventIds.length > 0) {
-        // dodac pozniej foreach jesli istnieje image to removeImage
+        const oldEventsWithPicture = oldEvents.filter(
+          (oldEvent) =>
+            oldEvent.eventImage !== null && oldEvent.eventImage !== undefined
+        );
+        oldEventsWithPicture.length > 0 &&
+          oldEventsWithPicture.forEach((event) => {
+            removeImage(
+              event.eventImage.split("/").slice(3).toString(),
+              strings.imageTypes.EVENT
+            );
+          });
+
         await User.findOneAndUpdate(
           { email: email },
           { $pull: { events: { $in: oldEventIds } } },
