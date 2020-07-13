@@ -35,6 +35,23 @@ module.exports = {
         } else {
           throw new Error(strings.errors.retrieveEvents.NO_EVENTS);
         }
+      } else if (category === strings.retrieveEvents.CAT_ALL) {
+        const allEvents = await Event.find({})
+          .sort({ creationDate: -1 })
+          .populate([
+            { path: "eventAddress", model: Address },
+            {
+              path: "author",
+              select: "-password",
+              model: User,
+            },
+            { path: "participants", select: "-password", model: User },
+          ]);
+        if (allEvents.length > 0) {
+          return allEvents;
+        } else {
+          throw new Error(strings.errors.retrieveEvents.NO_EVENTS);
+        }
       }
     } catch (err) {
       if (err) throw err;
