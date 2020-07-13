@@ -37,7 +37,7 @@ module.exports = {
         let eventIdsFromSearchedCitys = searchedCitys.map(
           (searchedCity) => searchedCity.events
         );
-        let eventsWithSearchedCity = await Event.find({
+        let eventsFromSearchedCity = await Event.find({
           _id: { $in: eventIdsFromSearchedCitys },
         })
           .sort({ creationDate: -1 })
@@ -50,8 +50,8 @@ module.exports = {
             },
             { path: "participants", select: "-password", model: User },
           ]);
-        if (eventsWithSearchedCity.length > 0) {
-          return eventsWithSearchedCity;
+        if (eventsFromSearchedCity.length > 0) {
+          return eventsFromSearchedCity;
         } else {
           throw new Error(strings.errors.retrieveEvents.NO_EVENTS);
         }
