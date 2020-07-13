@@ -14,13 +14,12 @@ module.exports = {
         req.cookies.id,
         strings.tokenVerification.USER_AUTH
       );
-      await Address.findOneAndUpdate(
+      const addressWithEventPulled = await Address.findOneAndUpdate(
         { _id: addressId },
         { $pull: { events: eventId } },
         { new: true }
       ).exec();
 
-      const addressWithEventPulled = await Address.findById(addressId);
       if (addressWithEventPulled.events.length === 0) {
         await Address.findOneAndRemove({ _id: addressWithEventPulled._id });
       }
