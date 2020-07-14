@@ -189,6 +189,8 @@ const RootQuery = new GraphQLObjectType({
         category: { type: new GraphQLNonNull(GraphQLString) },
         userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
+        skip: { type: GraphQLInt },
+        limit: { type: GraphQLInt },
       },
     },
     searchEvents: {

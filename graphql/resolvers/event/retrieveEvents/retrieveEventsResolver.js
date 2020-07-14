@@ -8,7 +8,7 @@ const {
 } = require("../../../operations/oldEvents/deleteOldEvents");
 
 module.exports = {
-  retrieveEvents: async ({ category, userId, email }, { req }) => {
+  retrieveEvents: async ({ category, userId, email, skip, limit }, { req }) => {
     try {
       await verifyToken(
         userId,
@@ -38,6 +38,8 @@ module.exports = {
       } else if (category === strings.retrieveEvents.CAT_ALL) {
         const allEvents = await Event.find({})
           .sort({ creationDate: -1 })
+          .skip((skip - 1) * limit)
+          .limit(limit)
           .populate([
             { path: "eventAddress", model: Address },
             {
