@@ -14,7 +14,12 @@ module.exports = {
         strings.tokenVerification.USER_AUTH
       );
       if (date && !city) {
-        const eventsWithSearchedDate = await Event.find({ eventDate: date })
+        const eventsWithSearchedDate = await Event.find({
+          eventDate: {
+            $gt: new Date(date).setHours(0, 0, 0, 0),
+            $lt: new Date(date).setHours(23, 59, 59, 999),
+          },
+        })
           .sort({ creationDate: -1 })
           .populate([
             { path: "eventAddress", model: Address },
@@ -64,7 +69,10 @@ module.exports = {
         );
         let searchedEvents = await Event.find({
           _id: { $in: eventIdsFromSearchedCity },
-          eventDate: date,
+          eventDate: {
+            $gt: new Date(date).setHours(0, 0, 0, 0),
+            $lt: new Date(date).setHours(23, 59, 59, 999),
+          },
         })
           .sort({ creationDate: -1 })
           .populate([
