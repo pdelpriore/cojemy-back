@@ -54,6 +54,25 @@ module.exports = {
         } else {
           throw new Error(strings.errors.retrieveEvents.NO_EVENTS);
         }
+      } else if (category === strings.retrieveEvents.CAT_EVENTS_JOINED) {
+        const eventsJoined = await Event.find({
+          _id: { $in: user.eventsJoined },
+        })
+          .sort({ creationDate: -1 })
+          .populate([
+            { path: "eventAddress", model: Address },
+            {
+              path: "author",
+              select: "-password",
+              model: User,
+            },
+            { path: "participants", select: "-password", model: User },
+          ]);
+        if (eventsJoined.length > 0) {
+          return eventsJoined;
+        } else {
+          throw new Error(strings.errors.retrieveEvents.NO_EVENTS);
+        }
       }
     } catch (err) {
       if (err) throw err;

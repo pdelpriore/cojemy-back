@@ -33,6 +33,7 @@ const strings = Object.freeze({
   retrieveEvents: {
     CAT_MY_EVENTS: "myEvents",
     CAT_ALL: "all",
+    CAT_EVENTS_JOINED: "eventsJoined",
   },
   imageTypes: {
     RECIPE: "recipes",
