@@ -23,6 +23,7 @@ const editMyEventResolver = require("./event/editMyEvent/editMyEventResolver");
 const removeMyEventResolver = require("./event/removeMyEvent/removeMyEventResolver");
 const searchEventsResolver = require("./event/searchEvents/searchEventsResolver");
 const joinEventResolver = require("./event/joinEvent/joinEventResolver");
+const unjoinEventResolver = require("./event/unjoinEvent/unjoinEventResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -50,6 +51,7 @@ const rootResolver = {
   ...removeMyEventResolver,
   ...searchEventsResolver,
   ...joinEventResolver,
+  ...unjoinEventResolver,
 };
 
 module.exports = rootResolver;
