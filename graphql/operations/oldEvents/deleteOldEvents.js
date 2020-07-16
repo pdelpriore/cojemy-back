@@ -27,11 +27,12 @@ const deleteOldEvents = (email) => {
         const addressesWithOldEventPulled = await Address.find({
           _id: { $in: oldEventaddressIds },
         });
-        let addressesWithNoEvents = [];
-        addressesWithOldEventPulled.forEach((address) => {
-          if (address.events.length === 0)
-            addressesWithNoEvents.push(address._id);
-        });
+
+        const addressesWithNoEvents = addressesWithOldEventPulled
+          .filter(
+            (addressOldEventPulled) => addressOldEventPulled.events.length === 0
+          )
+          .map((addressNoEvents) => addressNoEvents._id);
         if (addressesWithNoEvents.length > 0) {
           await Address.deleteMany({ _id: { $in: addressesWithNoEvents } });
         }
