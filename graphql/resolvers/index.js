@@ -25,6 +25,7 @@ const searchEventsResolver = require("./event/searchEvents/searchEventsResolver"
 const joinEventResolver = require("./event/joinEvent/joinEventResolver");
 const unjoinEventResolver = require("./event/unjoinEvent/unjoinEventResolver");
 const followAuthorRecipeResolver = require("./recipe/followAuthor/followAuthorRecipeResolver");
+const unfollowAuthorRecipeResolver = require("./recipe/unfollowAuthor/unfollowAuthorRecipeResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -54,6 +55,7 @@ const rootResolver = {
   ...joinEventResolver,
   ...unjoinEventResolver,
   ...followAuthorRecipeResolver,
+  ...unfollowAuthorRecipeResolver,
 };
 
 module.exports = rootResolver;
