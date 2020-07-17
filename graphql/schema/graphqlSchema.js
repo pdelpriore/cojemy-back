@@ -68,6 +68,7 @@ const UserType = new GraphQLObjectType({
     recipes: { type: new GraphQLList(RecipeType) },
     events: { type: new GraphQLList(EventType) },
     eventsJoined: { type: new GraphQLList(EventType) },
+    followers: { type: new GraphQLList(UserType) },
   }),
 });
 
@@ -410,6 +411,15 @@ const RootMutation = new GraphQLObjectType({
       type: new GraphQLNonNull(EventType),
       args: {
         eventId: { type: new GraphQLNonNull(GraphQLID) },
+        userId: { type: new GraphQLNonNull(GraphQLID) },
+        email: { type: new GraphQLNonNull(GraphQLString) },
+      },
+    },
+    followAuthorRecipe: {
+      type: new GraphQLNonNull(RecipeType),
+      args: {
+        authorId: { type: new GraphQLNonNull(GraphQLID) },
+        recipeId: { type: new GraphQLNonNull(GraphQLID) },
         userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
       },

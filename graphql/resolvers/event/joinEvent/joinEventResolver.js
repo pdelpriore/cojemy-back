@@ -18,20 +18,23 @@ module.exports = {
         { $push: { eventsJoined: eventId } },
         { new: true }
       ).exec();
-      await Event.findOneAndUpdate(
+
+      const eventUpdated = await Event.findOneAndUpdate(
         { _id: eventId },
         { $push: { participants: userUpdated } },
         { new: true }
-      ).exec();
-      const eventUpdated = Event.findById(eventId).populate([
-        { path: "eventAddress", model: Address },
-        {
-          path: "author",
-          select: "-password",
-          model: User,
-        },
-        { path: "participants", select: "-password", model: User },
-      ]);
+      )
+        .populate([
+          { path: "eventAddress", model: Address },
+          {
+            path: "author",
+            select: "-password",
+            model: User,
+          },
+          { path: "participants", select: "-password", model: User },
+        ])
+        .exec();
+
       return eventUpdated;
     } catch (err) {
       if (err) throw err;
