@@ -25,7 +25,12 @@ module.exports = {
           .skip((skip - 1) * limit)
           .limit(limit)
           .populate([
-            { path: "author", select: "-password", model: User },
+            {
+              path: "author",
+              select: "-password",
+              model: User,
+              populate: { path: "followers", select: "-password", model: User },
+            },
             {
               path: "comments.commentator",
               select: "-password",
@@ -45,7 +50,12 @@ module.exports = {
           .skip((skip - 1) * limit)
           .limit(limit)
           .populate([
-            { path: "author", select: "-password", model: User },
+            {
+              path: "author",
+              select: "-password",
+              model: User,
+              populate: { path: "followers", select: "-password", model: User },
+            },
             {
               path: "comments.commentator",
               select: "-password",

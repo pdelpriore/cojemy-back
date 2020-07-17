@@ -19,7 +19,12 @@ module.exports = {
       })
         .sort({ date: -1 })
         .populate([
-          { path: "author", select: "-password", model: User },
+          {
+            path: "author",
+            select: "-password",
+            model: User,
+            populate: { path: "followers", select: "-password", model: User },
+          },
           { path: "comments.commentator", select: "-password", model: User },
           { path: "comments.comment", model: Comment },
           { path: "comments.rate", model: Rate },
