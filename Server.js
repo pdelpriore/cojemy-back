@@ -77,5 +77,9 @@ schedule.scheduleJob("*/10 * * * * *", () => {
   checkRequest();
 });
 schedule.scheduleJob("0 11 * * *", async () => {
-  await removeUnconfirmedUsers();
+  try {
+    await removeUnconfirmedUsers();
+  } catch (err) {
+    if (err) throw err;
+  }
 });
