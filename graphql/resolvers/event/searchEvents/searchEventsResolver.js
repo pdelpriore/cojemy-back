@@ -81,6 +81,7 @@ module.exports = {
               path: "author",
               select: "-password",
               model: User,
+              populate: { path: "followers", select: "-password", model: User },
             },
             { path: "participants", select: "-password", model: User },
           ]);
