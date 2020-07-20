@@ -66,11 +66,13 @@ const sendFollowRecipeEmail = (
                     <td align="center">
                       <img
                         style="
-                          display: inline-block;
-                          width: 60px;
-                          height: 60px;
-                          border-radius: 50%;
-                          vertical-align: middle;
+                        display: inline-block;
+                        width: 70px;
+                        height: 70px;
+                        border-radius: 4px;
+                        border: 1px solid #ddd;
+                        padding: 5px;
+                        vertical-align: middle;
                         "
                         src="cid:recipePhoto"
                       />
