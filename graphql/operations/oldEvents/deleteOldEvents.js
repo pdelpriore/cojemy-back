@@ -51,6 +51,20 @@ const deleteOldEvents = (email) => {
             );
           });
 
+        const oldEventsWithParticipants = oldEvents.filter(
+          (oldEvent) => oldEvent.participants.length > 0
+        );
+        if (oldEventsWithParticipants.length > 0) {
+          oldEventsWithParticipants.forEach(
+            async (oldEventWithParticipants) => {
+              await User.updateMany(
+                { _id: { $in: oldEventWithParticipants.participants } },
+                { $pull: { eventsJoined: oldEventWithParticipants._id } }
+              );
+            }
+          );
+        }
+
         await User.findOneAndUpdate(
           { email: email },
           { $pull: { events: { $in: oldEventIds } } },

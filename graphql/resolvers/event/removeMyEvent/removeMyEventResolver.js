@@ -31,6 +31,12 @@ module.exports = {
           strings.imageTypes.EVENT
         );
       }
+      if (event.participants.length > 0) {
+        await User.updateMany(
+          { _id: { $in: event.participants } },
+          { $pull: { eventsJoined: eventId } }
+        );
+      }
       await User.findOneAndUpdate(
         { email: email },
         { $pull: { events: eventId } },
