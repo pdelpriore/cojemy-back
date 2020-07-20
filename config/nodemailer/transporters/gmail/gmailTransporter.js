@@ -8,7 +8,7 @@ const {
   gmailExpirationToken,
 } = require("../../../security/Security");
 
-const emailContactTransporter = nodemailer.createTransport({
+const gmailTransporter = nodemailer.createTransport({
   host: "smtp.gmail.com",
   port: 465,
   secure: true,
@@ -26,4 +26,4 @@ const emailContactTransporter = nodemailer.createTransport({
   },
 });
 
-module.exports = { emailContactTransporter };
+module.exports = { gmailTransporter };

@@ -1,6 +1,6 @@
 const {
-  emailConfirmTransporter,
-} = require("../../../config/nodemailer/transporters/emailConfirm/EmailConfirmTransporter");
+  gmailTransporter,
+} = require("../../../config/nodemailer/transporters/gmail/gmailTransporter");
 const { gmailAddress } = require("../../../config/security/Security");
 
 const sendEmailConfirm = (name, email, token) => {
@@ -74,12 +74,12 @@ const sendEmailConfirm = (name, email, token) => {
         </body>
       </html>`,
     };
-    emailConfirmTransporter.sendMail(mailOptions, (err, info) => {
+    gmailTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         console.log(err);
       } else if (info) {
         resolve();
-        emailConfirmTransporter.close();
+        gmailTransporter.close();
       }
     });
   });

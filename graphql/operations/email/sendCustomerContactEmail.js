@@ -1,6 +1,6 @@
 const {
-  emailContactTransporter,
-} = require("../../../config/nodemailer/transporters/contact/ContactTransporter");
+  gmailTransporter,
+} = require("../../../config/nodemailer/transporters/gmail/gmailTransporter");
 const { gmailAddress } = require("../../../config/security/Security");
 const { strings } = require("../../../strings/Strings");
 
@@ -54,12 +54,12 @@ const sendCustomerContactEmail = (subject, email, content) => {
         </body>
       </html>`,
     };
-    emailContactTransporter.sendMail(mailOptions, (err, info) => {
+    gmailTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         console.log(err);
       } else if (info) {
         resolve();
-        emailContactTransporter.close();
+        gmailTransporter.close();
       }
     });
   });

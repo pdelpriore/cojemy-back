@@ -1,6 +1,6 @@
 const {
-  remindPassTransporter,
-} = require("../../../config/nodemailer/transporters/remindPass/RemindPassTransporter");
+  gmailTransporter,
+} = require("../../../config/nodemailer/transporters/gmail/gmailTransporter");
 const { gmailAddress } = require("../../../config/security/Security");
 
 const sendNewPassword = (name, password, email) => {
@@ -70,12 +70,12 @@ const sendNewPassword = (name, password, email) => {
       </html>
       `,
     };
-    remindPassTransporter.sendMail(mailOptions, (err, info) => {
+    gmailTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {
         console.log(err);
       } else if (info) {
         resolve();
-        remindPassTransporter.close();
+        gmailTransporter.close();
       }
     });
   });
