@@ -14,7 +14,7 @@ const sendFollowEventEmail = (
   return new Promise((resolve) => {
     const eventPhoto = eventImagePath
       ? `http://localhost:4000/${eventImagePath}`
-      : "http://localhost:4000/imgs/recipes/recipeDefaultPhoto.jpg";
+      : "http://localhost:4000/imgs/events/eventDefaultPhoto.jpg";
     const userPhoto = userImagePath
       ? `http://localhost:4000/${userImagePath}`
       : "http://localhost:4000/imgs/users/userDefaultPhoto.png";
