@@ -9,6 +9,9 @@ const {
 } = require("../../../operations/verification/isRecipeExists");
 const { strings } = require("../../../../strings/Strings");
 const { uploadImage } = require("../../../operations/image/uploadImage");
+const {
+  sendFollowRecipeEmail,
+} = require("../../../operations/email/sendFollowRecipeEmail");
 
 module.exports = {
   addMyRecipe: async (
@@ -66,6 +69,20 @@ module.exports = {
         { $push: { recipes: recipe } },
         { new: true }
       ).exec();
+
+      if (user.followers.length > 0) {
+        const followers = await User.find({
+          _id: { $in: user.followers },
+        });
+        const followersEmailList = followers.map((follower) => follower.email);
+        await sendFollowRecipeEmail(
+          user.name,
+          title,
+          followersEmailList,
+          user.photo,
+          imagePath
+        );
+      }
 
       return true;
     } catch (err) {

@@ -10,6 +10,9 @@ const {
 } = require("../../../operations/verification/isEventReserved");
 const { strings } = require("../../../../strings/Strings");
 const { uploadImage } = require("../../../operations/image/uploadImage");
+const {
+  sendFollowEventEmail,
+} = require("../../../operations/email/sendFollowEventEmail");
 
 module.exports = {
   addMyEvent: async (
@@ -81,6 +84,23 @@ module.exports = {
           { new: true }
         ).exec();
 
+        if (user.followers.length > 0) {
+          const followers = await User.find({
+            _id: { $in: user.followers },
+          });
+          const followersEmailList = followers.map(
+            (follower) => follower.email
+          );
+          await sendFollowEventEmail(
+            user.name,
+            title,
+            addressObj.city,
+            followersEmailList,
+            user.photo,
+            imagePath
+          );
+        }
+
         return true;
       } else {
         const address = new Address({
@@ -120,6 +140,23 @@ module.exports = {
           { $push: { events: event } },
           { new: true }
         ).exec();
+
+        if (user.followers.length > 0) {
+          const followers = await User.find({
+            _id: { $in: user.followers },
+          });
+          const followersEmailList = followers.map(
+            (follower) => follower.email
+          );
+          await sendFollowEventEmail(
+            user.name,
+            title,
+            addressObj.city,
+            followersEmailList,
+            user.photo,
+            imagePath
+          );
+        }
 
         return true;
       }
