@@ -26,6 +26,8 @@ const joinEventResolver = require("./event/joinEvent/joinEventResolver");
 const unjoinEventResolver = require("./event/unjoinEvent/unjoinEventResolver");
 const followAuthorRecipeResolver = require("./recipe/followAuthor/followAuthorRecipeResolver");
 const unfollowAuthorRecipeResolver = require("./recipe/unfollowAuthor/unfollowAuthorRecipeResolver");
+const followAuthorEventResolver = require("./event/followAuthor/followAuthorEventResolver");
+const unfollowAuthorEventResolver = require("./event/unfollowAuthor/unfollowAuthorEventResolver");
 
 const rootResolver = {
   ...signUpResolver,
@@ -56,6 +58,8 @@ const rootResolver = {
   ...unjoinEventResolver,
   ...followAuthorRecipeResolver,
   ...unfollowAuthorRecipeResolver,
+  ...followAuthorEventResolver,
+  ...unfollowAuthorEventResolver,
 };
 
 module.exports = rootResolver;
