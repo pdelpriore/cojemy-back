@@ -11,7 +11,7 @@ const sendCustomerContactEmail = (subject, email, content) => {
       to: strings.path.SERVICE_EMAIL,
       subject: "Co Jemy ? - Customer Contact Email",
       html: `<!DOCTYPE html>
-      <html lang="fr">
+      <html lang="pl">
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -25,34 +25,69 @@ const sendCustomerContactEmail = (subject, email, content) => {
           />
           <title></title>
         </head>
-        <body style="background-color: #A7FF83;">
+        <body style="background-color: #e2f3f5;">
           <h3
-            style="font-size: 24px; font-family: 'Nunito'; font-weight: 600; color: #071A52; text-align: center; margin-bottom: 2%;"
+            style="
+              font-size: 24px;
+              font-family: 'Nunito';
+              font-weight: 600;
+              color: #2e303f;
+              text-align: center;
+              margin-bottom: 2%;
+            "
           >
             Customer Contact Email
           </h3>
           <p
-            style="font-size: 20px; font-family: 'Open Sans'; font-weight: 400; color: #071A52; text-align: center; margin-bottom: 1%;"
+            style="
+              font-size: 20px;
+              font-family: 'Open Sans';
+              font-weight: 400;
+              color: #2e303f;
+              text-align: center;
+              margin-bottom: 1%;
+            "
           >
-            Sujet: ${subject}
+            Temat: ${subject}
           </p>
           <p
-            style="font-size: 20px; font-family: 'Open Sans'; font-weight: 400; color: #071A52; text-align: center; margin-bottom: 1%;"
+            style="
+              font-size: 20px;
+              font-family: 'Open Sans';
+              font-weight: 400;
+              color: #2e303f;
+              text-align: center;
+              margin-bottom: 1%;
+            "
           >
-            Expéditeur: ${email}
+            Nadawca: ${email}
           </p>
           <p
-            style="font-size: 20px; font-family: 'Open Sans'; font-weight: 600; color: #071A52; text-align: center;"
+            style="
+              font-size: 20px;
+              font-family: 'Open Sans';
+              font-weight: 400;
+              color: #2e303f;
+              text-align: center;
+            "
           >
-            Content:
+            Treść:
           </p>
           <p
-            style="font-size: 22px; font-family: 'Open Sans'; font-weight: 300; color: #071A52; word-wrap: break-word; white-space: pre-wrap;"
+            style="
+              font-size: 22px;
+              font-family: 'Open Sans';
+              font-weight: 300;
+              color: #2e303f;
+              word-wrap: break-word;
+              white-space: pre-wrap;
+            "
           >
             ${content}
           </p>
         </body>
-      </html>`,
+      </html>
+      `,
     };
     gmailTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {

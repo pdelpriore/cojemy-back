@@ -24,140 +24,138 @@ const sendFollowRecipeEmail = (
       to: emailList,
       subject: `Co Jemy ? - Uzytkownik ${name} dodal nowy przepis`,
       html: `<!DOCTYPE html>
-        <html lang="fr">
-          <head>
-            <meta charset="UTF-8" />
-            <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-            <link
-              href="https://fonts.googleapis.com/css?family=Nunito:400,600&display=swap"
-              rel="stylesheet"
-            />
-            <link
-              href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
-              rel="stylesheet"
-            />
-            <title></title>
-          </head>
-          <body>
-            <table width="100%" border="0" cellspacing="0" cellpadding="0">
-              <tr>
-                <td>
-                  <table
-                    style="background-color: #fff98c;"
-                    border="0"
-                    cellspacing="10"
-                    cellpadding="0"
-                  >
-                    <tr>
-                      <td align="center">
-                        <p
-                          style="
-                            font-size: 22px;
-                            font-family: 'Nunito';
-                            font-weight: 600;
-                            color: #000000;
-                          "
-                        >
-                          Nowy przepis !
-                        </p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td
+      <html lang="pl">
+        <head>
+          <meta charset="UTF-8" />
+          <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+          <link
+            href="https://fonts.googleapis.com/css?family=Nunito:400,600&display=swap"
+            rel="stylesheet"
+          />
+          <link
+            href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+            rel="stylesheet"
+          />
+          <title></title>
+        </head>
+        <body>
+          <table width="100%" border="0" cellspacing="0" cellpadding="0">
+            <tr>
+              <td>
+                <table
+                  style="background-color: #2e303f;"
+                  border="0"
+                  cellspacing="10"
+                  cellpadding="0"
+                >
+                  <tr>
+                    <td align="center">
+                      <p
                         style="
-                          display: flex;
-                          justify-content: space-evenly;
-                          align-items: center;
-                          flex-direction: row;
+                          font-size: 22px;
+                          font-family: 'Nunito';
+                          font-weight: 400;
+                          color: #ffffff;
                         "
-                        align="center"
                       >
-                        <img
-                          style="width: 60px; height: 60px; border-radius: 50%;"
-                          src="cid:recipePhoto"
-                        />
-                        <div
-                          style="
-                            font-size: 16px;
-                            font-family: 'Nunito';
-                            font-weight: 600;
-                            color: #000000;
-                            margin-left: 5%;
-                          "
-                        >
-                          ${title}
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td align="center">
-                        <p
-                          style="
-                            font-size: 16px;
-                            font-family: 'Open Sans';
-                            color: #000000;
-                          "
-                        >
-                          Dodany przez:
-                        </p>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td
+                        Nowy przepis !
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center">
+                      <img
                         style="
-                          display: flex;
-                          justify-content: space-evenly;
-                          align-items: center;
-                          flex-direction: row;
+                          display: inline-block;
+                          width: 60px;
+                          height: 60px;
+                          border-radius: 50%;
+                          vertical-align: middle;
                         "
-                        align="center"
+                        src="cid:recipePhoto"
+                      />
+                      <p
+                        style="
+                          display: inline;
+                          font-size: 16px;
+                          font-family: 'Nunito';
+                          font-weight: 400;
+                          color: #ffffff;
+                          margin-left: 5%;
+                        "
                       >
-                        <img
-                          style="width: 40px; height: 40px; border-radius: 50%;"
-                          src="cid:userPhoto"
-                        />
-                        <div
-                          style="
-                            font-size: 16px;
-                            font-family: 'Nunito';
-                            font-weight: 600;
-                            color: #000000;
-                            margin-left: 5%;
-                          "
-                        >
-                          ${name}
-                        </div>
-                      </td>
-                    </tr>
-                    <tr>
-                      <td align="center">
-                        <a
-                          href="${url}"
-                          style="
-                            font-size: 16px;
-                            font-family: 'Open Sans';
-                            color: #ffffff;
-                            text-decoration: none;
-                            border-radius: 3px;
-                            background-color: #f11213;
-                            border-top: 12px solid #f11213;
-                            border-bottom: 12px solid #f11213;
-                            border-right: 18px solid #f11213;
-                            border-left: 18px solid #f11213;
-                            display: inline-block;
-                            margin-top: 10%;
-                          "
-                          >Sprawdz</a
-                        >
-                      </td>
-                    </tr>
-                  </table>
-                </td>
-              </tr>
-            </table>
-          </body>
-        </html>
-        `,
+                        ${title}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center">
+                      <p
+                        style="
+                          font-size: 16px;
+                          font-family: 'Open Sans';
+                          color: #ffffff;
+                        "
+                      >
+                        Dodany przez:
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center">
+                      <img
+                        style="
+                          display: inline-block;
+                          width: 40px;
+                          height: 40px;
+                          border-radius: 50%;
+                          vertical-align: middle;
+                        "
+                        src="cid:userPhoto"
+                      />
+                      <p
+                        style="
+                          display: inline;
+                          font-size: 16px;
+                          font-family: 'Nunito';
+                          font-weight: 400;
+                          color: #ffffff;
+                          margin-left: 5%;
+                        "
+                      >
+                        ${name}
+                      </p>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td align="center">
+                      <a
+                        href="${url}"
+                        style="
+                          font-size: 16px;
+                          font-family: 'Open Sans';
+                          color: #ffffff;
+                          text-decoration: none;
+                          border-radius: 3px;
+                          background-color: crimson;
+                          border-top: 12px solid crimson;
+                          border-bottom: 12px solid crimson;
+                          border-right: 18px solid crimson;
+                          border-left: 18px solid crimson;
+                          display: inline-block;
+                          margin-top: 10%;
+                        "
+                        >Sprawdź</a
+                      >
+                    </td>
+                  </tr>
+                </table>
+              </td>
+            </tr>
+          </table>
+        </body>
+      </html>
+      `,
       attachments: [
         {
           filename: "recipe.jpg",

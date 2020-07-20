@@ -11,7 +11,7 @@ const sendEmailConfirm = (name, email, token) => {
       to: email,
       subject: "Co Jemy ? - Potwierdzenie adresu email",
       html: `<!DOCTYPE html>
-      <html lang="fr">
+      <html lang="pl">
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -29,32 +29,50 @@ const sendEmailConfirm = (name, email, token) => {
           <table width="100%" border="0" cellspacing="0" cellpadding="0">
             <tr>
               <td>
-                <table style="background-color: #FFF98C;" border="0" cellspacing="10" cellpadding="0">
+                <table
+                  style="background-color: #2e303f;"
+                  border="0"
+                  cellspacing="10"
+                  cellpadding="0"
+                >
                   <tr>
                     <td align="center">
                       <p
-                        style="font-size: 22px; font-family: 'Nunito'; font-weight: 600; color: #000000;"
+                        style="
+                          font-size: 22px;
+                          font-family: 'Nunito';
+                          font-weight: 400;
+                          color: #ffffff;
+                        "
                       >
-                        Quoi Manger ?
+                        Co Jemy ?
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td align="center">
                       <p
-                        style="font-size: 18px; font-weight: 600; font-family: 'Nunito'; color: #000000;"
+                        style="
+                          font-size: 18px;
+                          font-weight: 400;
+                          font-family: 'Nunito';
+                          color: #ffffff;
+                        "
                       >
-                        Bonjour ${name} !
+                        Witaj ${name} !
                       </p>
                     </td>
                   </tr>
                   <tr>
                     <td align="center">
                       <p
-                        style="font-size: 16px; font-family: 'Open Sans'; color: #000000;"
+                        style="
+                          font-size: 16px;
+                          font-family: 'Open Sans';
+                          color: #ffffff;
+                        "
                       >
-                        Merci d'avoir enregistré ton compte. Passes des bons moments
-                        sur Quoi Manger ?
+                        Dziękuję za zarejestrowanie konta. Baw się dobrze !
                       </p>
                     </td>
                   </tr>
@@ -62,8 +80,20 @@ const sendEmailConfirm = (name, email, token) => {
                     <td align="center">
                       <a
                         href="${url}"
-                        style="font-size: 16px; font-family: 'Open Sans'; color: #ffffff; text-decoration: none; border-radius: 3px; background-color: #F11213; border-top: 12px solid #F11213; border-bottom: 12px solid #F11213; border-right: 18px solid #F11213; border-left: 18px solid #F11213; display: inline-block;"
-                        >Confirme ton email</a
+                        style="
+                          font-size: 16px;
+                          font-family: 'Open Sans';
+                          color: #ffffff;
+                          text-decoration: none;
+                          border-radius: 3px;
+                          background-color: crimson;
+                          border-top: 12px solid crimson;
+                          border-bottom: 12px solid crimson;
+                          border-right: 18px solid crimson;
+                          border-left: 18px solid crimson;
+                          display: inline-block;
+                        "
+                        >Potwierdź adres mailowy</a
                       >
                     </td>
                   </tr>
@@ -72,7 +102,8 @@ const sendEmailConfirm = (name, email, token) => {
             </tr>
           </table>
         </body>
-      </html>`,
+      </html>
+      `,
     };
     gmailTransporter.sendMail(mailOptions, (err, info) => {
       if (err) {

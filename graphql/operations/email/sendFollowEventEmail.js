@@ -23,9 +23,9 @@ const sendFollowEventEmail = (
     const mailOptions = {
       from: `${gmailAddress}`,
       to: emailList,
-      subject: `Co Jemy ? - Uzytkownik ${name} organizuje nowe wydarzenie kulinarne`,
+      subject: `Co Jemy ? - Użytkownik ${name} organizuje nowe wydarzenie kulinarne`,
       html: `<!DOCTYPE html>
-      <html lang="fr">
+      <html lang="pl">
         <head>
           <meta charset="UTF-8" />
           <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -44,7 +44,7 @@ const sendFollowEventEmail = (
             <tr>
               <td>
                 <table
-                  style="background-color: #fff98c;"
+                  style="background-color: #2e303f;"
                   border="0"
                   cellspacing="10"
                   cellpadding="0"
@@ -55,8 +55,8 @@ const sendFollowEventEmail = (
                         style="
                           font-size: 22px;
                           font-family: 'Nunito';
-                          font-weight: 600;
-                          color: #000000;
+                          font-weight: 400;
+                          color: #ffffff;
                         "
                       >
                         Nowe wydarzenie kulinarne !
@@ -64,30 +64,44 @@ const sendFollowEventEmail = (
                     </td>
                   </tr>
                   <tr>
-                    <td
-                      style="
-                        display: flex;
-                        justify-content: space-evenly;
-                        align-items: center;
-                        flex-direction: row;
-                      "
-                      align="center"
-                    >
+                    <td align="center">
                       <img
-                        style="width: 60px; height: 60px; border-radius: 50%;"
+                        style="
+                          display: inline-block;
+                          width: 90px;
+                          height: 60px;
+                          border-radius: 4px;
+                          border: 1px solid #ddd;
+                          padding: 5px;
+                          vertical-align: middle;
+                        "
                         src="cid:eventPhoto"
                       />
-                      <div
-                        style="
-                          font-size: 16px;
-                          font-family: 'Nunito';
-                          font-weight: 600;
-                          color: #000000;
-                          margin-left: 5%;
-                        "
-                      >
-                        ${title}
-                        ${city}
+                      <div style="display: inline-block; vertical-align: middle;">
+                        <p
+                          style="
+                            display: inline;
+                            font-size: 16px;
+                            font-family: 'Nunito';
+                            font-weight: 400;
+                            color: #ffffff;
+                            margin-left: 5%;
+                          "
+                        >
+                          ${title}
+                        </p>
+                        <p
+                          style="
+                            display: inline;
+                            font-size: 16px;
+                            font-family: 'Nunito';
+                            font-weight: 400;
+                            color: #ffffff;
+                            margin-left: 5%;
+                          "
+                        >
+                          ${city}
+                        </p>
                       </div>
                     </td>
                   </tr>
@@ -97,7 +111,8 @@ const sendFollowEventEmail = (
                         style="
                           font-size: 16px;
                           font-family: 'Open Sans';
-                          color: #000000;
+                          font-weight: 400;
+                          color: #ffffff;
                         "
                       >
                         Dodane przez:
@@ -105,30 +120,29 @@ const sendFollowEventEmail = (
                     </td>
                   </tr>
                   <tr>
-                    <td
-                      style="
-                        display: flex;
-                        justify-content: space-evenly;
-                        align-items: center;
-                        flex-direction: row;
-                      "
-                      align="center"
-                    >
+                    <td align="center">
                       <img
-                        style="width: 40px; height: 40px; border-radius: 50%;"
+                        style="
+                          display: inline-block;
+                          width: 40px;
+                          height: 40px;
+                          border-radius: 50%;
+                          vertical-align: middle;
+                        "
                         src="cid:userPhoto"
                       />
-                      <div
+                      <p
                         style="
+                          display: inline;
                           font-size: 16px;
                           font-family: 'Nunito';
-                          font-weight: 600;
-                          color: #000000;
+                          font-weight: 400;
+                          color: #ffffff;
                           margin-left: 5%;
                         "
                       >
                         ${name}
-                      </div>
+                      </p>
                     </td>
                   </tr>
                   <tr>
@@ -141,15 +155,15 @@ const sendFollowEventEmail = (
                           color: #ffffff;
                           text-decoration: none;
                           border-radius: 3px;
-                          background-color: #f11213;
-                          border-top: 12px solid #f11213;
-                          border-bottom: 12px solid #f11213;
-                          border-right: 18px solid #f11213;
-                          border-left: 18px solid #f11213;
+                          background-color: crimson;
+                          border-top: 12px solid crimson;
+                          border-bottom: 12px solid crimson;
+                          border-right: 18px solid crimson;
+                          border-left: 18px solid crimson;
                           display: inline-block;
                           margin-top: 10%;
                         "
-                        >Sprawdz</a
+                        >Sprawdź</a
                       >
                     </td>
                   </tr>
