@@ -1,11 +1,11 @@
 const nodemailer = require("nodemailer");
 const {
-  emailContactId,
   IdClient,
   clientSecret,
-  emailContactRefreshToken,
-  emailContactAccessToken,
-  emailContactExpiryToken,
+  gmailAddress,
+  gmailAccessToken,
+  gmailRefreshToken,
+  gmailExpirationToken,
 } = require("../../../security/Security");
 
 const emailContactTransporter = nodemailer.createTransport({
@@ -14,12 +14,12 @@ const emailContactTransporter = nodemailer.createTransport({
   secure: true,
   auth: {
     type: "OAuth2",
-    user: emailContactId,
+    user: gmailAddress,
     clientId: IdClient,
     clientSecret: clientSecret,
-    refreshToken: emailContactRefreshToken,
-    accessToken: emailContactAccessToken,
-    expires: emailContactExpiryToken,
+    refreshToken: gmailRefreshToken,
+    accessToken: gmailAccessToken,
+    expires: gmailExpirationToken,
   },
   tls: {
     rejectUnauthorized: false,

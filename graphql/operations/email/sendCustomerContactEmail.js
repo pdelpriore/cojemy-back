@@ -1,15 +1,15 @@
 const {
   emailContactTransporter,
 } = require("../../../config/nodemailer/transporters/contact/ContactTransporter");
-const { emailContactId } = require("../../../config/security/Security");
+const { gmailAddress } = require("../../../config/security/Security");
 const { strings } = require("../../../strings/Strings");
 
 const sendCustomerContactEmail = (subject, email, content) => {
   return new Promise((resolve) => {
     const mailOptions = {
-      from: `${emailContactId}`,
+      from: `${gmailAddress}`,
       to: strings.path.SERVICE_EMAIL,
-      subject: "Quoi Manger ? - Customer Contact Email",
+      subject: "Co Jemy ? - Customer Contact Email",
       html: `<!DOCTYPE html>
       <html lang="fr">
         <head>

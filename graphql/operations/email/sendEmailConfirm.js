@@ -1,15 +1,15 @@
 const {
   emailConfirmTransporter,
 } = require("../../../config/nodemailer/transporters/emailConfirm/EmailConfirmTransporter");
-const { emailConfirmId } = require("../../../config/security/Security");
+const { gmailAddress } = require("../../../config/security/Security");
 
 const sendEmailConfirm = (name, email, token) => {
   return new Promise((resolve) => {
     const url = `http://localhost:4000/emailconfirm/${token}/${email}`;
     const mailOptions = {
-      from: `${emailConfirmId}`,
+      from: `${gmailAddress}`,
       to: email,
-      subject: "Quoi Manger ? - Mail de confirmation",
+      subject: "Co Jemy ? - Potwierdzenie adresu email",
       html: `<!DOCTYPE html>
       <html lang="fr">
         <head>

@@ -2,7 +2,7 @@ const {
   IdClient,
   clientSecret,
   redirectUrl,
-  codeEmailNewPass,
+  gmailCode,
 } = require("../config/security/Security");
 const { google } = require("googleapis");
 
@@ -28,7 +28,7 @@ const generateGoogleAuthUrl = () => {
 
   // let getToken = async () => {
   //   try {
-  //     const { tokens } = await oauth2Client.getToken(codeEmailNewPass);
+  //     const { tokens } = await oauth2Client.getToken(gmailCode);
   //     console.info(tokens);
   //   } catch (err) {
   //     if (err) console.log(err);

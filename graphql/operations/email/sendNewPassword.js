@@ -1,14 +1,14 @@
 const {
   remindPassTransporter,
 } = require("../../../config/nodemailer/transporters/remindPass/RemindPassTransporter");
-const { emailNewPasswordId } = require("../../../config/security/Security");
+const { gmailAddress } = require("../../../config/security/Security");
 
 const sendNewPassword = (name, password, email) => {
   return new Promise((resolve) => {
     const mailOptions = {
-      from: `${emailNewPasswordId}`,
+      from: `${gmailAddress}`,
       to: email,
-      subject: "Quoi Manger ? - Ton nouveau mot de passe",
+      subject: "Co Jemy ? - Twoje nowe haslo",
       html: `<!DOCTYPE html>
       <html lang="fr">
         <head>
