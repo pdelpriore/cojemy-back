@@ -8,7 +8,7 @@ const sendNewPassword = (name, password, email) => {
     const mailOptions = {
       from: `${gmailAddress}`,
       to: email,
-      subject: "Co Jemy ? - Twoje nowe haslo",
+      subject: "Co Jemy ? - Twoje nowe hasło",
       html: `<!DOCTYPE html>
       <html lang="pl">
         <head>

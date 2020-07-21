@@ -22,7 +22,7 @@ const sendFollowRecipeEmail = (
     const mailOptions = {
       from: `${gmailAddress}`,
       to: emailList,
-      subject: `Co Jemy ? - Uzytkownik ${name} dodal nowy przepis`,
+      subject: `Co Jemy ? - Użytkownik ${name} dodał nowy przepis`,
       html: `<!DOCTYPE html>
       <html lang="pl">
         <head>
