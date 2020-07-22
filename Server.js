@@ -1,5 +1,7 @@
 const express = require("express");
 const app = express();
+const server = require("http").createServer(app);
+const io = require("socket.io")(server);
 const { dbConnection } = require("./config/db/dbConnection");
 const graphqlHTTP = require("express-graphql");
 const graphqlSchema = require("./graphql/schema/graphqlSchema");
@@ -64,7 +66,10 @@ app.use(
     autocompleteHereMaps(app);
     mapLocationDetails(app);
     renderHereMap(app);
-    app.listen(strings.port, () => {
+    io.on("connection", (socket) => {
+      console.log("New socket client connected");
+    });
+    server.listen(strings.port, () => {
       console.log(capitalizeFirst(strings.notification.SERVER));
       //generateGoogleAuthUrl();
     });
