@@ -11,6 +11,7 @@ module.exports = (io) => {
     });
     socket.on("disconnected", async (data) => {
       await removeUserSocketData(data);
+      socket.emit("userDisconnected", true);
     });
   });
 };
