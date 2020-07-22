@@ -2,23 +2,23 @@ const Socket = require("../../model/Socket");
 
 const checkAndUpdateSocketData = (data) => {
   return new Promise(async (resolve) => {
-    const socket = await Socket.findOne({ userId: data.userId });
+    const socketData = await Socket.findOne({ userId: data.userId });
     if (
-      socket &&
-      socket.userId.toString() === data.userId.toString() &&
-      socket.userSocketId !== data.userSocketId
+      socketData &&
+      socketData.userId.toString() === data.userId.toString() &&
+      socketData.userSocketId !== data.userSocketId
     ) {
       await Socket.findOneAndUpdate(
         { userId: data.userId },
         { $set: { userSocketId: data.userSocketId } },
         { new: true }
       ).exec();
-    } else if (socket === null) {
-      const newSocket = new Socket({
+    } else if (socketData === null) {
+      const newSocketData = new Socket({
         userId: data.userId,
         userSocketId: data.userSocketId,
       });
-      await newSocket.save();
+      await newSocketData.save();
     }
     resolve();
   });
