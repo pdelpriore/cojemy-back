@@ -20,6 +20,7 @@ const renderHereMap = require("./routes/renderHereMaps");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 const checkRequest = require("./util/checkRequest");
 const { removeUnconfirmedUsers } = require("./util/removeUnconfirmedUsers");
+const ioConnection = require("./socketIo/connection/ioConnection");
 
 app.use(
   cors({
@@ -66,10 +67,9 @@ app.use(
     autocompleteHereMaps(app);
     mapLocationDetails(app);
     renderHereMap(app);
-    io.on("connection", (socket) => {
-      socket.emit("id", socket.id);
-      socket.on("userData", (data) => console.log(data));
-    });
+
+    ioConnection(io);
+
     server.listen(strings.port, () => {
       console.log(capitalizeFirst(strings.notification.SERVER));
       //generateGoogleAuthUrl();
