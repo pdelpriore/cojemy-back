@@ -67,7 +67,8 @@ app.use(
     mapLocationDetails(app);
     renderHereMap(app);
     io.on("connection", (socket) => {
-      console.log("New socket client connected");
+      socket.emit("id", socket.id);
+      socket.on("userData", (data) => console.log(data));
     });
     server.listen(strings.port, () => {
       console.log(capitalizeFirst(strings.notification.SERVER));
