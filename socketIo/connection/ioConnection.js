@@ -1,6 +1,12 @@
+const {
+  checkAndUpdateSocketData,
+} = require("../operatiorns/checkAndUpdateSocketData");
+
 module.exports = (io) => {
   io.on("connection", (socket) => {
     socket.emit("id", socket.id);
-    socket.on("userData", (data) => console.log(data));
+    socket.on("userData", async (data) => {
+      await checkAndUpdateSocketData(data);
+    });
   });
 };
