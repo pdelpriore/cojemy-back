@@ -1,7 +1,7 @@
 const {
   checkAndUpdateSocketData,
-} = require("../operatiorns/checkAndUpdateSocketData");
-const { removeUserSocketData } = require("../operatiorns/removeUserSocketData");
+} = require("../operations/checkAndUpdateSocketData");
+const { removeUserSocketData } = require("../operations/removeUserSocketData");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
