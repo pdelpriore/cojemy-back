@@ -63,6 +63,7 @@ app.use(
 (async () => {
   try {
     await dbConnection();
+
     emailConfirmation(app);
     autocompleteHereMaps(app);
     mapLocationDetails(app);
