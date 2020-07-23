@@ -10,8 +10,11 @@ module.exports = (io) => {
       await checkAndUpdateSocketData(data);
     });
     socket.on("disconnected", async (data) => {
-      await removeUserSocketData(data);
+      await removeUserSocketData(data.userId, null);
       socket.emit("userDisconnected", true);
+    });
+    socket.on("disconnect", async () => {
+      await removeUserSocketData(null, socket.id);
     });
   });
 };

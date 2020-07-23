@@ -1,11 +1,18 @@
 const Socket = require("../../model/Socket");
 
-const removeUserSocketData = (data) => {
+const removeUserSocketData = (userId, userSocketId) => {
   return new Promise(async (resolve) => {
-    await Socket.findOneAndRemove({
-      userId: data.userId,
-    });
-    resolve();
+    if (userId) {
+      await Socket.findOneAndRemove({
+        userId: userId,
+      });
+      resolve();
+    } else if (userSocketId) {
+      await Socket.findOneAndRemove({
+        userSocketId: userSocketId,
+      });
+      resolve();
+    }
   });
 };
 
