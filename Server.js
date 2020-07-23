@@ -36,6 +36,24 @@ app.use(bodyParser.urlencoded({ limit: "200kb", extended: true }));
 
 app.use(express.static(path.join(__dirname, "uploads")));
 
+// Uzyc tego middleware do weryfikowania tokena (po naprawie add, edit i remove rate/comment) !!
+
+// app.use(async (req, res, next) => {
+//   try {
+//     if (req.path === strings.path.GRAPHQL) {
+//       await verifyToken(
+//         req.body.variables.userId,
+//         req.body.variables.email,
+//         req.cookies.id,
+//         strings.tokenVerification.USER_AUTH
+//       );
+//       next();
+//     }
+//   } catch (err) {
+//     if (err) console.log(err);
+//   }
+// });
+
 app.use(
   strings.path.GRAPHQL,
   graphqlHTTP((req, res) => ({
@@ -81,7 +99,7 @@ app.use(
         );
         next();
       } catch (err) {
-        if (err) throw err;
+        if (err) console.log(err);
       }
     });
     ioConnection(io);
