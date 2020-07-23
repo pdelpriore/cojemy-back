@@ -9,6 +9,7 @@ const rootResolver = require("./graphql/resolvers/index");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
+const cookie = require("cookie");
 const path = require("path");
 const schedule = require("node-schedule");
 const { strings } = require("./strings/Strings");
@@ -21,6 +22,7 @@ const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 const checkRequest = require("./util/checkRequest");
 const { removeUnconfirmedUsers } = require("./util/removeUnconfirmedUsers");
 const ioConnection = require("./socketIo/connection/ioConnection");
+const { verifyToken } = require("./graphql/operations/token/verifyToken");
 
 app.use(
   cors({
@@ -69,6 +71,19 @@ app.use(
     mapLocationDetails(app);
     renderHereMap(app);
 
+    io.use(async (socket, next) => {
+      try {
+        await verifyToken(
+          socket.handshake.query.userId,
+          socket.handshake.query.userEmail,
+          cookie.parse(socket.handshake.headers.cookie).id,
+          strings.tokenVerification.USER_AUTH
+        );
+        next();
+      } catch (err) {
+        if (err) throw err;
+      }
+    });
     ioConnection(io);
 
     server.listen(strings.port, () => {
