@@ -2,17 +2,10 @@ const User = require("../../../../model/User");
 const Event = require("../../../../model/Event");
 const Address = require("../../../../model/Address");
 const { strings } = require("../../../../strings/Strings");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
-  searchEvents: async ({ date, city, userId, email }, { req }) => {
+  searchEvents: async ({ date, city }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       if (date && !city) {
         const eventsWithSearchedDate = await Event.find({
           eventDate: {

@@ -1,5 +1,5 @@
 const User = require("../model/User");
-const { verifyToken } = require("../graphql/operations/token/verifyToken");
+const { verifyToken } = require("../shared/verifyToken");
 const { strings } = require("../strings/Strings");
 
 module.exports = (app) => {

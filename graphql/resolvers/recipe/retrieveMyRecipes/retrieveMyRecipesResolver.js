@@ -3,17 +3,10 @@ const User = require("../../../../model/User");
 const Comment = require("../../../../model/Comment");
 const Rate = require("../../../../model/Rate");
 const { strings } = require("../../../../strings/Strings");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
-  retrieveMyRecipes: async ({ userId, email }, { req }) => {
+  retrieveMyRecipes: async ({ email }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       const user = await User.findOne({ email: email });
       if (user.recipes.length > 0) {
         const myRecipes = await Recipe.find({ _id: { $in: user.recipes } })

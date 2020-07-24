@@ -2,20 +2,13 @@ const User = require("../../../../model/User");
 const Event = require("../../../../model/Event");
 const Address = require("../../../../model/Address");
 const { strings } = require("../../../../strings/Strings");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const {
   deleteOldEvents,
 } = require("../../../operations/oldEvents/deleteOldEvents");
 
 module.exports = {
-  retrieveEvents: async ({ category, userId, email, skip, limit }, { req }) => {
+  retrieveEvents: async ({ category, email, skip, limit }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       await deleteOldEvents(email);
       const user = await User.findOne({ email: email });
       if (category === strings.retrieveEvents.CAT_MY_EVENTS) {

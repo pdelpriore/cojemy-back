@@ -2,19 +2,12 @@ const Recipe = require("../../../../model/Recipe");
 const Rate = require("../../../../model/Rate");
 const Comment = require("../../../../model/Comment");
 const User = require("../../../../model/User");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const { removeImage } = require("../../../operations/image/removeImage");
 const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
-  removeMyRecipe: async ({ recipeId, userId, email }, { req }) => {
+  removeMyRecipe: async ({ recipeId, email }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       const recipe = await Recipe.findById(recipeId);
       const recipeImageName =
         recipe.picture && recipe.picture.split("/").slice(3).toString();

@@ -3,17 +3,10 @@ const User = require("../../../../model/User");
 const Comment = require("../../../../model/Comment");
 const Rate = require("../../../../model/Rate");
 const { strings } = require("../../../../strings/Strings");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
-  searchRecipe: async ({ recipeTitle, userId, email }, { req }) => {
+  searchRecipe: async ({ recipeTitle }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       const recipes = await Recipe.find({
         title: { $regex: `.*${recipeTitle}.*`, $options: "i" },
       })

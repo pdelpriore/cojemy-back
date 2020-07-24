@@ -2,24 +2,19 @@ const Recipe = require("../../../../model/Recipe");
 const Rate = require("../../../../model/Rate");
 const Comment = require("../../../../model/Comment");
 const User = require("../../../../model/User");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const {
   validateRateCommentForm,
 } = require("../../../operations/validation/validateRateCommentForm");
 const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
-  addRecipeRateComment: async (
-    { recipeId, rateValue, commentContent, userId, email },
-    { req }
-  ) => {
+  addRecipeRateComment: async ({
+    recipeId,
+    rateValue,
+    commentContent,
+    email,
+  }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       await validateRateCommentForm(rateValue);
       const user = await User.findOne({ email: email });
       const recipe = await Recipe.findById(recipeId);

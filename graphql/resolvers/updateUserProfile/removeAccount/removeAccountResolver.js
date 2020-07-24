@@ -2,20 +2,13 @@ const Recipe = require("../../../../model/Recipe");
 const Rate = require("../../../../model/Rate");
 const Comment = require("../../../../model/Comment");
 const User = require("../../../../model/User");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const { removeImage } = require("../../../operations/image/removeImage");
 const { strings } = require("../../../../strings/Strings");
 const { userGooglePhoto } = require("../../../../shared/testWords");
 
 module.exports = {
-  removeAccount: async ({ userId, email }, { req }) => {
+  removeAccount: async ({ email }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       const user = await User.findOne({ email: email });
       if (
         user.photo &&

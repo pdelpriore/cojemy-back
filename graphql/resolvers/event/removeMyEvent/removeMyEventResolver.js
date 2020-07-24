@@ -1,19 +1,12 @@
 const User = require("../../../../model/User");
 const Address = require("../../../../model/Address");
 const Event = require("../../../../model/Event");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const { strings } = require("../../../../strings/Strings");
 const { removeImage } = require("../../../operations/image/removeImage");
 
 module.exports = {
-  removeEvent: async ({ eventId, addressId, userId, email }, { req }) => {
+  removeEvent: async ({ eventId, addressId, email }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       const addressWithEventPulled = await Address.findOneAndUpdate(
         { _id: addressId },
         { $pull: { events: eventId } },

@@ -1,18 +1,11 @@
 const User = require("../../../../model/User");
 const Address = require("../../../../model/Address");
 const Event = require("../../../../model/Event");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
-  joinEvent: async ({ eventId, userId, email }, { req }) => {
+  joinEvent: async ({ eventId, email }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       const userUpdated = await User.findOneAndUpdate(
         { email: email },
         { $push: { eventsJoined: eventId } },

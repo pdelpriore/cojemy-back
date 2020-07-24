@@ -6,21 +6,11 @@ const {
   isPasswordCorrect,
 } = require("../../../operations/verification/isPasswordCorrect");
 const { hashPassword } = require("../../../operations/password/hashPassword");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
-  changeUserPassword: async (
-    { currentPass, newPass, confirmPass, userId, email },
-    { req }
-  ) => {
+  changeUserPassword: async ({ currentPass, newPass, confirmPass, email }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       const user = await User.findOne({ email: email });
 
       if (!user.isGoogleUser) {

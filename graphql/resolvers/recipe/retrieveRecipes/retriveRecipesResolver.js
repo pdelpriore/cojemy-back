@@ -3,20 +3,10 @@ const User = require("../../../../model/User");
 const Comment = require("../../../../model/Comment");
 const Rate = require("../../../../model/Rate");
 const { strings } = require("../../../../strings/Strings");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 
 module.exports = {
-  retrieveRecipes: async (
-    { category, userId, email, skip, limit },
-    { req }
-  ) => {
+  retrieveRecipes: async ({ category, skip, limit }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       if (category === strings.retrieveRecipes.CAT_NEWS) {
         const recipesNewest = await Recipe.find({
           date: { $gt: new Date().getTime() - 1000 * 3600 * 24 },

@@ -3,13 +3,10 @@ const app = express();
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const { dbConnection } = require("./config/db/dbConnection");
-const graphqlHTTP = require("express-graphql");
-const graphqlSchema = require("./graphql/schema/graphqlSchema");
-const rootResolver = require("./graphql/resolvers/index");
+const { setGraphQL } = require("./middlewares/setGraphQL/setGraphQL");
 const cors = require("cors");
 const bodyParser = require("body-parser");
 const cookieParser = require("cookie-parser");
-const cookie = require("cookie");
 const path = require("path");
 const schedule = require("node-schedule");
 const { strings } = require("./strings/Strings");
@@ -22,7 +19,12 @@ const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 const checkRequest = require("./util/checkRequest");
 const { removeUnconfirmedUsers } = require("./util/removeUnconfirmedUsers");
 const ioConnection = require("./socketIo/connection/ioConnection");
-const { verifyToken } = require("./graphql/operations/token/verifyToken");
+const {
+  userAuthGraphQL,
+} = require("./middlewares/userAuth/graphQL/userAuthGraphQL");
+const {
+  userAuthSocketIO,
+} = require("./middlewares/userAuth/socketIO/userAuthSocketIO");
 
 app.use(
   cors({
@@ -36,49 +38,9 @@ app.use(bodyParser.urlencoded({ limit: "200kb", extended: true }));
 
 app.use(express.static(path.join(__dirname, "uploads")));
 
-// Uzyc tego middleware do weryfikowania tokena (po naprawie add, edit i remove rate/comment) !!
+app.use(userAuthGraphQL);
 
-// app.use(async (req, res, next) => {
-//   try {
-//     if (req.path === strings.path.GRAPHQL) {
-//       await verifyToken(
-//         req.body.variables.userId,
-//         req.body.variables.email,
-//         req.cookies.id,
-//         strings.tokenVerification.USER_AUTH
-//       );
-//       next();
-//     }
-//   } catch (err) {
-//     if (err) console.log(err);
-//   }
-// });
-
-app.use(
-  strings.path.GRAPHQL,
-  graphqlHTTP((req, res) => ({
-    schema: graphqlSchema,
-    rootValue: rootResolver,
-    graphiql: true,
-    context: { req, res },
-    customFormatErrorFn: (err) => {
-      if (err.message.includes("Unexpected error value")) {
-        return {
-          message: capitalizeFirst(
-            err.message
-              .replace(/['"]+/g, "")
-              .split(":")
-              .slice(1)
-              .toString()
-              .trim()
-          ),
-        };
-      } else {
-        return { message: capitalizeFirst(err.message) };
-      }
-    },
-  }))
-);
+app.use(setGraphQL());
 
 (async () => {
   try {
@@ -89,19 +51,7 @@ app.use(
     mapLocationDetails(app);
     renderHereMap(app);
 
-    io.use(async (socket, next) => {
-      try {
-        await verifyToken(
-          socket.handshake.query.userId,
-          socket.handshake.query.userEmail,
-          cookie.parse(socket.handshake.headers.cookie).id,
-          strings.tokenVerification.USER_AUTH
-        );
-        next();
-      } catch (err) {
-        if (err) console.log(err);
-      }
-    });
+    io.use(userAuthSocketIO);
     ioConnection(io);
 
     server.listen(strings.port, () => {

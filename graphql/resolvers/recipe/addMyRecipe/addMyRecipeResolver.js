@@ -1,6 +1,5 @@
 const Recipe = require("../../../../model/Recipe");
 const User = require("../../../../model/User");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const {
   validateMyRecipeForm,
 } = require("../../../operations/validation/validateMyRecipeForm");
@@ -14,27 +13,17 @@ const {
 } = require("../../../operations/email/sendFollowRecipeEmail");
 
 module.exports = {
-  addMyRecipe: async (
-    {
-      title,
-      recipeImage,
-      video,
-      category,
-      cookTime,
-      ingredients,
-      description,
-      userId,
-      email,
-    },
-    { req }
-  ) => {
+  addMyRecipe: async ({
+    title,
+    recipeImage,
+    video,
+    category,
+    cookTime,
+    ingredients,
+    description,
+    email,
+  }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       await isRecipeExists(title, category, email);
       await validateMyRecipeForm(
         title,

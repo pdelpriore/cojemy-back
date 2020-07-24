@@ -1,21 +1,11 @@
 const User = require("../../../../model/User");
 const Address = require("../../../../model/Address");
 const Event = require("../../../../model/Event");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
-  unfollowAuthorEvent: async (
-    { authorId, eventId, userId, email },
-    { req }
-  ) => {
+  unfollowAuthorEvent: async ({ authorId, eventId, userId }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       await User.findOneAndUpdate(
         { _id: authorId },
         { $pull: { followers: userId } },

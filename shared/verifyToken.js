@@ -1,10 +1,7 @@
 const jwt = require("jsonwebtoken");
 const cryptoJS = require("crypto-js");
-const {
-  jwtSecret,
-  jwtEncryptionKey,
-} = require("../../../config/security/Security");
-const { strings } = require("../../../strings/Strings");
+const { jwtSecret, jwtEncryptionKey } = require("../config/security/Security");
+const { strings } = require("../strings/Strings");
 
 const verifyToken = (userId, email, token, authType) => {
   return new Promise((resolve, reject) => {

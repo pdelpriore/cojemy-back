@@ -1,6 +1,5 @@
 const Event = require("../../../../model/Event");
 const Address = require("../../../../model/Address");
-const { verifyToken } = require("../../../operations/token/verifyToken");
 const {
   validateEventForm,
 } = require("../../../operations/validation/validateEventForm");
@@ -13,29 +12,18 @@ const {
 } = require("../../../operations/image/checkEventImage");
 
 module.exports = {
-  editEvent: async (
-    {
-      title,
-      eventImage,
-      addressObj,
-      description,
-      availablePlaces,
-      eventDate,
-      tel,
-      eventId,
-      addressId,
-      userId,
-      email,
-    },
-    { req }
-  ) => {
+  editEvent: async ({
+    title,
+    eventImage,
+    addressObj,
+    description,
+    availablePlaces,
+    eventDate,
+    tel,
+    eventId,
+    addressId,
+  }) => {
     try {
-      await verifyToken(
-        userId,
-        email,
-        req.cookies.id,
-        strings.tokenVerification.USER_AUTH
-      );
       await validateEventForm(
         title,
         eventImage,
