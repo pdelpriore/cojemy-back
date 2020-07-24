@@ -1,7 +1,5 @@
-const { strings } = require("../../../strings/Strings");
-
 module.exports = {
-  logout: async ({ res }) => {
+  logout: async ({}, { req, res }) => {
     res.clearCookie("id");
     return true;
   },
