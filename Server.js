@@ -16,8 +16,6 @@ const {
 const {
   userAuthSocketIO,
 } = require("./middlewares/userAuth/socketIO/userAuthSocketIO");
-const { strings } = require("./strings/Strings");
-const { capitalizeFirst } = require("./util/Util");
 const emailConfirmation = require("./routes/emailConfirmation");
 const autocompleteHereMaps = require("./routes/autocompleteHereMaps");
 const mapLocationDetails = require("./routes/mapLocationDetails");
@@ -25,6 +23,8 @@ const renderHereMap = require("./routes/renderHereMaps");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 const checkRequest = require("./util/checkRequest");
 const { removeUnconfirmedUsers } = require("./util/removeUnconfirmedUsers");
+const { strings } = require("./strings/Strings");
+const { capitalizeFirst } = require("./util/Util");
 
 app.use(
   cors({
