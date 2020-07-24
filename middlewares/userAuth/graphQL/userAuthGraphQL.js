@@ -4,7 +4,10 @@ const { strings } = require("../../../strings/Strings");
 const userAuthGraphQL = async (req, res, next) => {
   try {
     if (req.path === strings.path.GRAPHQL) {
-      if (req.headers.referer !== strings.path.REDIRECT_LOGIN) {
+      if (
+        req.headers.referer !== strings.path.REFERER_LOGIN_PATH &&
+        req.headers.referer !== strings.path.REFERER_SIGNUP_PATH
+      ) {
         await verifyToken(
           req.body.variables.userId,
           req.body.variables.email,
