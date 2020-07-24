@@ -39,7 +39,6 @@ app.use(bodyParser.urlencoded({ limit: "200kb", extended: true }));
 app.use(express.static(path.join(__dirname, "uploads")));
 
 app.use(userAuthGraphQL);
-
 app.use(setGraphQL());
 
 (async () => {
