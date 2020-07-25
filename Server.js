@@ -8,7 +8,7 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const schedule = require("node-schedule");
 const { dbConnection } = require("./config/db/dbConnection");
-const { setGraphQL } = require("./middlewares/setGraphQL/setGraphQL");
+const { setGraphQL } = require("./config/graphQL/setGraphQL");
 const ioConnection = require("./socketIo/connection/ioConnection");
 const {
   userAuthGraphQL,
