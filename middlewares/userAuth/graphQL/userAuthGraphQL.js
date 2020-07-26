@@ -18,6 +18,8 @@ const userAuthGraphQL = async (req, res, next) => {
       } else {
         next();
       }
+    } else {
+      next();
     }
   } catch (err) {
     if (err) res.status(401).send(strings.errors.token.ERROR);

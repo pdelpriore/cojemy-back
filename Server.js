@@ -1,5 +1,8 @@
 const express = require("express");
 const app = express();
+const graphqlHTTP = require("express-graphql");
+const graphqlSchema = require("./graphql/schema/graphqlSchema");
+const rootResolver = require("./graphql/resolvers/index");
 const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const cors = require("cors");
@@ -8,7 +11,6 @@ const cookieParser = require("cookie-parser");
 const path = require("path");
 const schedule = require("node-schedule");
 const { dbConnection } = require("./config/db/dbConnection");
-const { setGraphQL } = require("./config/graphQL/setGraphQL");
 const ioConnection = require("./socketIo/connection/ioConnection");
 const {
   userAuthGraphQL,
@@ -39,7 +41,31 @@ app.use(bodyParser.urlencoded({ limit: "200kb", extended: true }));
 app.use(express.static(path.join(__dirname, "uploads")));
 
 app.use(userAuthGraphQL);
-app.use(setGraphQL());
+app.use(
+  strings.path.GRAPHQL,
+  graphqlHTTP((req, res) => ({
+    schema: graphqlSchema,
+    rootValue: rootResolver,
+    graphiql: true,
+    context: { req, res },
+    customFormatErrorFn: (err) => {
+      if (err.message.includes("Unexpected error value")) {
+        return {
+          message: capitalizeFirst(
+            err.message
+              .replace(/['"]+/g, "")
+              .split(":")
+              .slice(1)
+              .toString()
+              .trim()
+          ),
+        };
+      } else {
+        return { message: capitalizeFirst(err.message) };
+      }
+    },
+  }))
+);
 
 (async () => {
   try {

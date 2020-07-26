@@ -1,6 +1,7 @@
 const User = require("../model/User");
 const { verifyToken } = require("../shared/verifyToken");
 const { strings } = require("../strings/Strings");
+const { capitalizeFirst } = require("../util/Util");
 
 module.exports = (app) => {
   app.get(strings.path.EMAIL_CONFIRM, async (req, res) => {
@@ -18,7 +19,8 @@ module.exports = (app) => {
       ).exec();
       if (user) res.redirect(strings.path.REDIRECT_LOGIN);
     } catch (err) {
-      if (err) res.status(401).send(strings.errors.token.ERROR);
+      if (err)
+        res.status(401).send(capitalizeFirst(strings.errors.token.ERROR));
     }
   });
 };
