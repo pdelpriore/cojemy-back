@@ -84,7 +84,7 @@ app.use(
       //generateGoogleAuthUrl();
     });
   } catch (err) {
-    if (err) throw err;
+    if (err) console.log(err);
   }
 })();
 
@@ -95,6 +95,6 @@ schedule.scheduleJob("0 11 * * *", async () => {
   try {
     await removeUnconfirmedUsers();
   } catch (err) {
-    if (err) throw err;
+    if (err) console.log(err);
   }
 });
