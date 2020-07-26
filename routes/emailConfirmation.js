@@ -18,7 +18,7 @@ module.exports = (app) => {
       ).exec();
       if (user) res.redirect(strings.path.REDIRECT_LOGIN);
     } catch (err) {
-      if (err) console.log(err);
+      if (err) res.status(401).send(strings.errors.token.ERROR);
     }
   });
 };

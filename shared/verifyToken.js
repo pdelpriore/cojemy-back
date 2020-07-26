@@ -14,7 +14,7 @@ const verifyToken = (userId, email, token, authType) => {
         if (decoded && decoded.email === email && decoded.userId === userId) {
           resolve();
         } else {
-          reject(strings.errors.token.ERROR);
+          reject();
         }
       });
     } else if (authType === strings.tokenVerification.EMAIL_CONFIRM) {
@@ -22,7 +22,7 @@ const verifyToken = (userId, email, token, authType) => {
         if (decoded && decoded.email === email) {
           resolve();
         } else {
-          reject(strings.errors.token.ERROR);
+          reject();
         }
       });
     }
