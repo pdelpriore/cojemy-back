@@ -12,7 +12,7 @@ const userAuthSocketIO = async (socket, next) => {
     );
     next();
   } catch (err) {
-    if (err) console.log(err);
+    if (err) next(new Error(strings.errors.token.ERROR));
   }
 };
 
