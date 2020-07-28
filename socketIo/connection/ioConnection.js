@@ -2,6 +2,8 @@ const {
   checkAndUpdateSocketData,
 } = require("../operations/checkAndUpdateSocketData");
 const { removeUserSocketData } = require("../operations/removeUserSocketData");
+const { searchRecipient } = require("../operations/searchRecipient");
+const { hideUselessUserData } = require("../../shared/hideUselessUserData");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -15,6 +17,19 @@ module.exports = (io) => {
     });
     socket.on("disconnect", async () => {
       await removeUserSocketData(null, socket.id);
+    });
+    socket.on("searchRecipient", async (data) => {
+      try {
+        const result = await searchRecipient(data.searchedUser);
+        if (result.length > 0) {
+          io.to(socket.id).emit(
+            "searchRecipientResult",
+            hideUselessUserData(result)
+          );
+        }
+      } catch (err) {
+        if (err) io.to(socket.id).emit("searchRecipientError", err);
+      }
     });
   });
 };

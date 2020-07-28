@@ -121,6 +121,9 @@ const strings = Object.freeze({
     addNewEvent: {
       EVENT_RESERVED: "événement déjà réservé sous l'addresse saisie.",
     },
+    mails: {
+      NO_RECIPIENT: "pas de résultat",
+    },
   },
 });
 
