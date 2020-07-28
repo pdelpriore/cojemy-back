@@ -6,12 +6,13 @@ const removeUserSocketData = (userId, userSocketId) => {
       await Socket.findOneAndRemove({
         userId: userId,
       });
-      resolve();
+      resolve(userId);
     } else if (userSocketId) {
+      const socket = await Socket.findOne({ userSocketId: userSocketId });
       await Socket.findOneAndRemove({
         userSocketId: userSocketId,
       });
-      resolve();
+      resolve(socket.userId);
     }
   });
 };

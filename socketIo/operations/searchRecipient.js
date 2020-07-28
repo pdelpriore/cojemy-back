@@ -3,14 +3,16 @@ const Socket = require("../../model/Socket");
 const { strings } = require("../../strings/Strings");
 const { capitalizeFirst } = require("../../util/Util");
 
-const searchRecipient = (searchedUser) => {
+const searchRecipient = (senderId, searchedUser) => {
   return new Promise(async (resolve, reject) => {
     try {
       const recipients = await User.find({
         name: { $regex: `.*${searchedUser}.*`, $options: "i" },
       }).limit(5);
       if (recipients.length > 0) {
-        const recipientIds = recipients.map((recipient) => recipient._id);
+        const recipientIds = recipients
+          .filter((recipient) => recipient._id !== senderId)
+          .map((recipient) => recipient._id);
         const connected = await Socket.find({ userId: { $in: recipientIds } });
         if (connected.length > 0) {
           let result = [];
