@@ -15,12 +15,12 @@ module.exports = (io) => {
       const userId = await removeUserSocketData(data.userId, null);
       if (userId) {
         socket.emit("userDisconnected", true);
-        socket.emit("userInactive", userId);
+        socket.broadcast.emit("userInactive", userId);
       }
     });
     socket.on("disconnect", async () => {
       const userId = await removeUserSocketData(null, socket.id);
-      if (userId) socket.emit("userInactive", userId);
+      if (userId) socket.broadcast.emit("userInactive", userId);
     });
     socket.on("searchRecipient", async (data) => {
       try {
