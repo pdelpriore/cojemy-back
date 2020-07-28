@@ -9,18 +9,30 @@ module.exports = (io) => {
   io.on("connection", (socket) => {
     socket.emit("id", socket.id);
     socket.on("userData", async (data) => {
-      await checkAndUpdateSocketData(data);
+      try {
+        await checkAndUpdateSocketData(data);
+      } catch (err) {
+        if (err) console.log(err);
+      }
     });
     socket.on("disconnected", async (data) => {
-      const userId = await removeUserSocketData(data.userId, null);
-      if (userId) {
-        socket.emit("userDisconnected", true);
-        socket.broadcast.emit("userInactive", userId);
+      try {
+        const userId = await removeUserSocketData(data.userId, null);
+        if (userId) {
+          socket.emit("userDisconnected", true);
+          socket.broadcast.emit("userInactive", userId);
+        }
+      } catch (err) {
+        if (err) console.log(err);
       }
     });
     socket.on("disconnect", async () => {
-      const userId = await removeUserSocketData(null, socket.id);
-      if (userId) socket.broadcast.emit("userInactive", userId);
+      try {
+        const userId = await removeUserSocketData(null, socket.id);
+        if (userId) socket.broadcast.emit("userInactive", userId);
+      } catch (err) {
+        if (err) console.log(err);
+      }
     });
     socket.on("searchRecipient", async (data) => {
       try {
