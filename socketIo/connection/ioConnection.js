@@ -1,3 +1,4 @@
+const Socket = require("../../model/Socket");
 const {
   checkAndUpdateSocketData,
 } = require("../operations/checkAndUpdateSocketData");
@@ -29,8 +30,11 @@ module.exports = (io) => {
     });
     socket.on("disconnect", async () => {
       try {
-        const userId = await removeUserSocketData(null, socket.id);
-        if (userId) socket.broadcast.emit("userInactive", userId);
+        const socketData = await Socket.findOne({ userSocketId: socket.id });
+        if (socketData) {
+          const userId = await removeUserSocketData(null, socket.id);
+          if (userId) socket.broadcast.emit("userInactive", userId);
+        }
       } catch (err) {
         if (err) console.log(err);
       }
