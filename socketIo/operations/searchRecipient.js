@@ -10,13 +10,16 @@ const searchRecipient = (senderId, searchedUser) => {
         name: { $regex: `.*${searchedUser}.*`, $options: "i" },
       }).limit(5);
       if (recipients.length > 0) {
-        const recipientIds = recipients
-          .filter((recipient) => recipient._id !== senderId)
-          .map((recipient) => recipient._id);
+        const recipientsWithoutSender = recipients.filter(
+          (recipient) => recipient._id.toString() !== senderId
+        );
+        const recipientIds = recipientsWithoutSender.map(
+          (element) => element._id
+        );
         const connected = await Socket.find({ userId: { $in: recipientIds } });
         if (connected.length > 0) {
           let result = [];
-          recipients.forEach((recipient) => {
+          recipientsWithoutSender.forEach((recipient) => {
             connected.forEach((connectedUser) => {
               if (
                 recipient._id.toString() === connectedUser.userId.toString()
@@ -30,7 +33,7 @@ const searchRecipient = (senderId, searchedUser) => {
           resolve(result);
         } else {
           let result = [];
-          recipients.forEach((recipient) => {
+          recipientsWithoutSender.forEach((recipient) => {
             result.push({ ...recipient, isConnected: false });
           });
           resolve(result);
