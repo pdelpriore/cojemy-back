@@ -11,6 +11,7 @@ module.exports = (io) => {
     socket.on("userData", async (data) => {
       try {
         await checkAndUpdateSocketData(data);
+        socket.broadcast.emit("userActive", data.userId);
       } catch (err) {
         if (err) console.log(err);
       }
