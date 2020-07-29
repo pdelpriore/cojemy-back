@@ -23,7 +23,7 @@ const checkAndUpdateSocketData = (data) => {
       }
       resolve();
     } catch (err) {
-      if (err) throw new Error(err);
+      if (err) console.log(err);
     }
   });
 };

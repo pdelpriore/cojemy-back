@@ -42,7 +42,7 @@ const searchRecipient = (senderId, searchedUser) => {
         reject(capitalizeFirst(strings.errors.mails.NO_RECIPIENT));
       }
     } catch (err) {
-      if (err) throw new Error(err);
+      if (err) console.log(err);
     }
   });
 };
