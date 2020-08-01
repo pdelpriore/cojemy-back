@@ -3,9 +3,9 @@ const Schema = mongoose.Schema;
 
 const ConversationSchema = new Schema(
   {
-    author: {
+    message: {
       type: Schema.Types.ObjectId,
-      ref: "user",
+      ref: "message",
     },
     content: {
       type: String,
