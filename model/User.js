@@ -48,6 +48,7 @@ const UserSchema = new Schema(
     events: [{ type: Schema.Types.ObjectId, ref: "event" }],
     eventsJoined: [{ type: Schema.Types.ObjectId, ref: "event" }],
     followers: [{ type: Schema.Types.ObjectId, ref: "user" }],
+    messages: [{ type: Schema.Types.ObjectId, ref: "message" }],
   },
   { collection: "user" }
 );

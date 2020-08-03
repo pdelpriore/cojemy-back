@@ -1,10 +1,15 @@
 const Socket = require("../../model/Socket");
+const User = require("../../model/User");
+const Message = require("../../model/Message");
+const Conversation = require("../../model/Conversation");
 const {
   checkAndUpdateSocketData,
 } = require("../operations/checkAndUpdateSocketData");
 const { removeUserSocketData } = require("../operations/removeUserSocketData");
 const { searchRecipient } = require("../operations/searchRecipient");
 const { hideUselessUserData } = require("../../shared/hideUselessUserData");
+const { insertNewMessage } = require("../operations/insertNewMessage");
+const { find } = require("../../model/Conversation");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -52,9 +57,49 @@ module.exports = (io) => {
         if (err) io.to(socket.id).emit("searchRecipientError", err);
       }
     });
-    socket.on("sendNewMessage", (data) => {
-      console.log(data);
-      io.to(socket.id).emit("newMessageSent", true);
+    socket.on("sendNewMessage", async (data) => {
+      try {
+        const messageSentId = await insertNewMessage(data);
+        const messageSent = await Message.findById(messageSentId);
+        const socketRecipient = await Socket.findOne({
+          userId: data.recipient,
+        });
+        if (socketRecipient) {
+          // emit all messages to the list
+          const recipient = await User.findById(socketRecipient.userId);
+          const messagesRecipient = await Message.find({
+            _id: { $in: recipient.messages },
+          });
+          const messageContentRecipient = await Conversation.find({
+            _id: { $in: messageSent.conversations },
+          });
+          if (
+            messagesRecipient.length > 0 &&
+            messageContentRecipient.length > 0
+          ) {
+            io.to(socketRecipient.userSocketId).emit("newMessageSent", {
+              messages: messagesRecipient,
+              contentSent: messageContentRecipient,
+            });
+          }
+        }
+        // else send notification email - you have a new message from
+        const sender = await User.findById(data.sender);
+        const messagesSender = await Message.find({
+          _id: { $in: sender.messages },
+        });
+        const messageContentSender = await Conversation.find({
+          _id: { $in: messageSent.conversations },
+        });
+        if (messagesSender.length > 0 && messageContentSender.length > 0) {
+          io.to(socket.id).emit("newMessageSent", {
+            messages: messagesSender,
+            contentSent: messageContentSender,
+          });
+        }
+      } catch (err) {
+        if (err) console.log(err);
+      }
     });
   });
 };
