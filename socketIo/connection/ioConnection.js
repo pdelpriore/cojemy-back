@@ -52,5 +52,9 @@ module.exports = (io) => {
         if (err) io.to(socket.id).emit("searchRecipientError", err);
       }
     });
+    socket.on("sendNewMessage", (data) => {
+      console.log(data);
+      io.to(socket.id).emit("newMessageSent", true);
+    });
   });
 };
