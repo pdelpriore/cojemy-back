@@ -9,7 +9,9 @@ const { removeUserSocketData } = require("../operations/removeUserSocketData");
 const { searchRecipient } = require("../operations/searchRecipient");
 const { hideUselessUserData } = require("../../shared/hideUselessUserData");
 const { insertNewMessage } = require("../operations/insertNewMessage");
-const { find } = require("../../model/Conversation");
+const {
+  sendNewMessageEmail,
+} = require("../operations/email/sendNewMessageEmail");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -60,13 +62,16 @@ module.exports = (io) => {
     socket.on("sendNewMessage", async (data) => {
       try {
         const messageSentId = await insertNewMessage(data);
+
         const messageSent = await Message.findById(messageSentId);
         const socketRecipient = await Socket.findOne({
           userId: data.recipient,
         });
+
+        const sender = await User.findById(data.sender);
+        const recipient = await User.findById(data.recipient);
+
         if (socketRecipient) {
-          // emit all messages to the list
-          const recipient = await User.findById(socketRecipient.userId);
           const messagesRecipient = await Message.find({
             _id: { $in: recipient.messages },
           });
@@ -82,9 +87,9 @@ module.exports = (io) => {
               contentSent: messageContentRecipient,
             });
           }
+        } else {
+          await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
         }
-        // else send notification email - you have a new message from
-        const sender = await User.findById(data.sender);
         const messagesSender = await Message.find({
           _id: { $in: sender.messages },
         });
