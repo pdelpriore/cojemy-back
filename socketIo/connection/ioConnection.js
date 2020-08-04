@@ -84,7 +84,7 @@ module.exports = (io) => {
           ) {
             io.to(socketRecipient.userSocketId).emit("newMessageSent", {
               messages: messagesRecipient,
-              contentSent: messageContentRecipient,
+              messageSent: messageContentRecipient,
             });
           }
         } else {
@@ -99,7 +99,7 @@ module.exports = (io) => {
         if (messagesSender.length > 0 && messageContentSender.length > 0) {
           io.to(socket.id).emit("newMessageSent", {
             messages: messagesSender,
-            contentSent: messageContentSender,
+            messageSent: messageContentSender,
           });
         }
       } catch (err) {
