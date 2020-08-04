@@ -80,7 +80,6 @@ module.exports = (io) => {
           }).populate({
             path: "author",
             select: [
-              "-_id",
               "-email",
               "-password",
               "-isEmailConfirmed",
@@ -116,7 +115,6 @@ module.exports = (io) => {
         }).populate({
           path: "author",
           select: [
-            "-_id",
             "-email",
             "-password",
             "-isEmailConfirmed",
