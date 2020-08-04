@@ -71,46 +71,7 @@ module.exports = (io) => {
         const sender = await User.findById(data.sender);
         const recipient = await User.findById(data.recipient);
 
-        if (socketRecipient) {
-          const messagesRecipient = await Message.find({
-            _id: { $in: recipient.messages },
-          });
-          const messageContentRecipient = await Conversation.find({
-            _id: { $in: messageSent.conversations },
-          }).populate({
-            path: "author",
-            select: [
-              "-email",
-              "-password",
-              "-isEmailConfirmed",
-              "-isGoogleUser",
-              "-isPremium",
-              "-isTrialPeriod",
-              "-creationDate",
-              "-recipes",
-              "-events",
-              "-eventsJoined",
-              "-followers",
-              "-messages",
-            ],
-            model: User,
-          });
-          if (
-            messagesRecipient.length > 0 &&
-            messageContentRecipient.length > 0
-          ) {
-            io.to(socketRecipient.userSocketId).emit("newMessageSent", {
-              messages: messagesRecipient,
-              messageSent: messageContentRecipient,
-            });
-          }
-        } else {
-          await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
-        }
-        const messagesSender = await Message.find({
-          _id: { $in: sender.messages },
-        });
-        const messageContentSender = await Conversation.find({
+        const messageContent = await Conversation.find({
           _id: { $in: messageSent.conversations },
         }).populate({
           path: "author",
@@ -130,10 +91,19 @@ module.exports = (io) => {
           ],
           model: User,
         });
-        if (messagesSender.length > 0 && messageContentSender.length > 0) {
+
+        if (socketRecipient) {
+          if (messageContent.length > 0) {
+            io.to(socketRecipient.userSocketId).emit("newMessageSent", {
+              messageSent: messageContent,
+            });
+          }
+        } else {
+          await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
+        }
+        if (messageContent.length > 0) {
           io.to(socket.id).emit("newMessageSent", {
-            messages: messagesSender,
-            messageSent: messageContentSender,
+            messageSent: messageContent,
           });
         }
       } catch (err) {

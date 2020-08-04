@@ -18,13 +18,9 @@ const insertNewMessage = (data) => {
         sender: data.sender,
         isRead: false,
         date: new Date(),
+        conversations: [conversation],
       });
       await message.save();
-      await Message.findOneAndUpdate(
-        { _id: message._id },
-        { $push: { conversations: conversation } },
-        { new: true }
-      ).exec();
 
       await Conversation.findOneAndUpdate(
         { _id: conversation._id },
