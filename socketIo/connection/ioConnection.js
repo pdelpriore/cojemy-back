@@ -77,6 +77,24 @@ module.exports = (io) => {
           });
           const messageContentRecipient = await Conversation.find({
             _id: { $in: messageSent.conversations },
+          }).populate({
+            path: "author",
+            select: [
+              "-_id",
+              "-email",
+              "-password",
+              "-isEmailConfirmed",
+              "-isGoogleUser",
+              "-isPremium",
+              "-isTrialPeriod",
+              "-creationDate",
+              "-recipes",
+              "-events",
+              "-eventsJoined",
+              "-followers",
+              "-messages",
+            ],
+            model: User,
           });
           if (
             messagesRecipient.length > 0 &&
@@ -95,6 +113,24 @@ module.exports = (io) => {
         });
         const messageContentSender = await Conversation.find({
           _id: { $in: messageSent.conversations },
+        }).populate({
+          path: "author",
+          select: [
+            "-_id",
+            "-email",
+            "-password",
+            "-isEmailConfirmed",
+            "-isGoogleUser",
+            "-isPremium",
+            "-isTrialPeriod",
+            "-creationDate",
+            "-recipes",
+            "-events",
+            "-eventsJoined",
+            "-followers",
+            "-messages",
+          ],
+          model: User,
         });
         if (messagesSender.length > 0 && messageContentSender.length > 0) {
           io.to(socket.id).emit("newMessageSent", {

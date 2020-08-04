@@ -5,7 +5,9 @@ const User = require("../../model/User");
 const insertNewMessage = (data) => {
   return new Promise(async (resolve) => {
     try {
+      const author = await User.findById(data.sender);
       const conversation = new Conversation({
+        author: author,
         content: data.content,
         date: new Date(),
       });
