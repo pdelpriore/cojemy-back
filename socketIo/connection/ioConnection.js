@@ -92,12 +92,10 @@ module.exports = (io) => {
           model: User,
         });
 
-        if (socketRecipient) {
-          if (messageContent.length > 0) {
-            io.to(socketRecipient.userSocketId).emit("newMessageSent", {
-              messageSent: messageContent,
-            });
-          }
+        if (socketRecipient && messageContent.length > 0) {
+          io.to(socketRecipient.userSocketId).emit("newMessageSent", {
+            messageSent: messageContent,
+          });
         } else {
           await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
         }
