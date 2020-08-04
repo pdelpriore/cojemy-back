@@ -2,6 +2,7 @@ const {
   gmailTransporter,
 } = require("../../../config/nodemailer/transporters/gmail/gmailTransporter");
 const { gmailAddress } = require("../../../config/security/Security");
+const { userGooglePhoto } = require("../../../shared/testWords");
 
 const sendFollowEventEmail = (
   name,
@@ -15,9 +16,15 @@ const sendFollowEventEmail = (
     const eventPhoto = eventImagePath
       ? `http://localhost:4000/${eventImagePath}`
       : "http://localhost:4000/imgs/events/eventDefaultPhoto.jpg";
-    const userPhoto = userImagePath
-      ? `http://localhost:4000/${userImagePath}`
-      : "http://localhost:4000/imgs/users/userDefaultPhoto.png";
+    const userPhoto =
+      userImagePath &&
+      userGooglePhoto.some(
+        (element) => userImagePath && userImagePath.includes(element)
+      )
+        ? userImagePath
+        : userImagePath
+        ? `http://localhost:4000/${userImagePath}`
+        : "http://localhost:4000/imgs/users/userDefaultPhoto.png";
     const url = "http://localhost:3000/myevents";
 
     const mailOptions = {
