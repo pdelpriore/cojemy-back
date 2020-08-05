@@ -6,6 +6,7 @@ const insertNewMessage = (data) => {
   return new Promise(async (resolve) => {
     try {
       const author = await User.findById(data.sender);
+
       const conversation = new Conversation({
         author: author,
         content: data.content,
@@ -39,7 +40,28 @@ const insertNewMessage = (data) => {
         { new: true }
       ).exec();
 
-      resolve(message._id);
+      const messageContent = await Conversation.find({
+        _id: conversation._id,
+      }).populate({
+        path: "author",
+        select: [
+          "-email",
+          "-password",
+          "-isEmailConfirmed",
+          "-isGoogleUser",
+          "-isPremium",
+          "-isTrialPeriod",
+          "-creationDate",
+          "-recipes",
+          "-events",
+          "-eventsJoined",
+          "-followers",
+          "-messages",
+        ],
+        model: User,
+      });
+
+      resolve(messageContent);
     } catch (err) {
       if (err) throw new Error(err);
     }

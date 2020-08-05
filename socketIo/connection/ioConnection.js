@@ -72,36 +72,14 @@ module.exports = (io) => {
     });
     socket.on("sendNewMessage", async (data) => {
       try {
-        const messageSentId = await insertNewMessage(data);
+        const messageContent = await insertNewMessage(data);
 
-        const messageSent = await Message.findById(messageSentId);
         const socketRecipient = await Socket.findOne({
           userId: data.recipient,
         });
 
         const sender = await User.findById(data.sender);
         const recipient = await User.findById(data.recipient);
-
-        const messageContent = await Conversation.find({
-          _id: { $in: messageSent.conversations },
-        }).populate({
-          path: "author",
-          select: [
-            "-email",
-            "-password",
-            "-isEmailConfirmed",
-            "-isGoogleUser",
-            "-isPremium",
-            "-isTrialPeriod",
-            "-creationDate",
-            "-recipes",
-            "-events",
-            "-eventsJoined",
-            "-followers",
-            "-messages",
-          ],
-          model: User,
-        });
 
         if (socketRecipient && messageContent.length > 0) {
           io.to(socketRecipient.userSocketId).emit("newMessageSent", {
