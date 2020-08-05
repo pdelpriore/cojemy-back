@@ -59,6 +59,9 @@ module.exports = (io) => {
         if (err) io.to(socket.id).emit("searchRecipientError", err);
       }
     });
+    socket.on("getMessages", (userId) => {
+      console.log("get messages");
+    });
     socket.on("sendNewMessage", async (data) => {
       try {
         const messageSentId = await insertNewMessage(data);
