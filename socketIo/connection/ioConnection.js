@@ -12,6 +12,7 @@ const { insertNewMessage } = require("../operations/insertNewMessage");
 const {
   sendNewMessageEmail,
 } = require("../operations/email/sendNewMessageEmail");
+const { getMessages } = require("../operations/getMessages");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -59,8 +60,15 @@ module.exports = (io) => {
         if (err) io.to(socket.id).emit("searchRecipientError", err);
       }
     });
-    socket.on("getMessages", (userId) => {
-      console.log("get messages");
+    socket.on("getMessages", async (userId) => {
+      try {
+        const messages = await getMessages(userId);
+        if (messages.length > 0) {
+          io.to(socket.id).emit("messagesRetrieved", messages);
+        }
+      } catch (err) {
+        if (err) io.to(socket.id).emit("getMessagesError", err);
+      }
     });
     socket.on("sendNewMessage", async (data) => {
       try {

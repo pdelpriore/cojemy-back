@@ -123,6 +123,7 @@ const strings = Object.freeze({
     },
     mails: {
       NO_RECIPIENT: "pas de résultat",
+      NO_MESSAGES: "pas de messages",
     },
   },
 });
