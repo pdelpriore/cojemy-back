@@ -1,7 +1,5 @@
 const Socket = require("../../model/Socket");
 const User = require("../../model/User");
-const Message = require("../../model/Message");
-const Conversation = require("../../model/Conversation");
 const {
   checkAndUpdateSocketData,
 } = require("../operations/checkAndUpdateSocketData");

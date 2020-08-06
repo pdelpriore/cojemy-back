@@ -1,6 +1,7 @@
 const User = require("../../model/User");
 const Message = require("../../model/Message");
 const Conversation = require("../../model/Conversation");
+const Socket = require("../../model/Socket");
 const { strings } = require("../../strings/Strings");
 const { capitalizeFirst } = require("../../util/Util");
 
@@ -50,6 +51,49 @@ const getMessages = (userId) => {
           model: Conversation,
         },
       ]);
+      const recipientIds = messages.map((message) => message.recipient._id);
+      const senderIds = messages.map((message) => message.sender._id);
+
+      const connectedRecipients = await Socket.find({
+        userId: { $in: recipientIds },
+      });
+      const connectedSenders = await Socket.find({
+        userId: { $in: senderIds },
+      });
+
+      let result = [];
+
+      if (connectedRecipients.length === 0 && connectedSenders.length > 0) {
+        messages.forEach((message) => {
+          connectedSenders.forEach((connectedSender) => {
+            if (
+              message.sender._id.toString() ===
+              connectedSender.userId.toString()
+            ) {
+              result.push({
+                ...message,
+                sender: { ...message.sender, isConnected: true },
+                recipient: {
+                  ...message.recipient,
+                  isConnected: false,
+                },
+              });
+            } else {
+              result.push({
+                ...message,
+                sender: { ...message.sender, isConnected: false },
+                recipient: {
+                  ...message.recipient,
+                  isConnected: false,
+                },
+              });
+            }
+          });
+        });
+      }
+
+      console.log(result[0].recipient);
+
       if (messages.length > 0) {
         resolve(messages);
       } else {
