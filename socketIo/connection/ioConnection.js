@@ -11,6 +11,7 @@ const {
   sendNewMessageEmail,
 } = require("../operations/email/sendNewMessageEmail");
 const { getMessages } = require("../operations/getMessages");
+const { extractMessageData } = require("../../shared/extractMessageData");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -62,7 +63,10 @@ module.exports = (io) => {
       try {
         const messages = await getMessages(userId);
         if (messages.length > 0) {
-          io.to(socket.id).emit("messagesRetrieved", messages);
+          io.to(socket.id).emit(
+            "messagesRetrieved",
+            extractMessageData(messages)
+          );
         }
       } catch (err) {
         if (err) io.to(socket.id).emit("getMessagesError", err);

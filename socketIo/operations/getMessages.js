@@ -71,19 +71,19 @@ const getMessages = (userId) => {
               connectedSender.userId.toString()
             ) {
               result.push({
-                ...message,
-                sender: { ...message.sender, isConnected: true },
+                ...message._doc,
+                sender: { ...message._doc.sender, isConnected: true },
                 recipient: {
-                  ...message.recipient,
+                  ...message._doc.recipient,
                   isConnected: false,
                 },
               });
             } else {
               result.push({
-                ...message,
-                sender: { ...message.sender, isConnected: false },
+                ...message._doc,
+                sender: { ...message._doc.sender, isConnected: false },
                 recipient: {
-                  ...message.recipient,
+                  ...message._doc.recipient,
                   isConnected: false,
                 },
               });
@@ -92,10 +92,8 @@ const getMessages = (userId) => {
         });
       }
 
-      console.log(result[0].recipient);
-
-      if (messages.length > 0) {
-        resolve(messages);
+      if (result.length > 0) {
+        resolve(result);
       } else {
         reject(capitalizeFirst(strings.errors.mails.NO_MESSAGES));
       }
