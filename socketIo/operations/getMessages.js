@@ -49,6 +49,23 @@ const getMessages = (userId) => {
         {
           path: "conversations",
           model: Conversation,
+          populate: {
+            path: "author",
+            select: [
+              "-password",
+              "-isEmailConfirmed",
+              "-isGoogleUser",
+              "-isPremium",
+              "-isTrialPeriod",
+              "-creationDate",
+              "-recipes",
+              "-events",
+              "-eventsJoined",
+              "-followers",
+              "-messages",
+            ],
+            model: User,
+          },
         },
       ]);
       const recipientIds = messages.map((message) => message.recipient._id);
