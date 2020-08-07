@@ -91,6 +91,98 @@ const getMessages = (userId) => {
               }
             });
           });
+        } else if (
+          connectedRecipients.length > 0 &&
+          connectedSenders.length === 0
+        ) {
+          messages.forEach((message) => {
+            connectedRecipients.forEach((connectedRecipient) => {
+              if (
+                message.recipient._id.toString() ===
+                connectedRecipient.userId.toString()
+              ) {
+                result.push({
+                  ...message,
+                  sender: { ...message.sender, isConnected: false },
+                  recipient: {
+                    ...message.recipient,
+                    isConnected: true,
+                  },
+                });
+              } else {
+                result.push({
+                  ...message,
+                  sender: { ...message.sender, isConnected: false },
+                  recipient: {
+                    ...message.recipient,
+                    isConnected: false,
+                  },
+                });
+              }
+            });
+          });
+        } else if (
+          connectedRecipients.length > 0 &&
+          connectedSenders.length > 0
+        ) {
+          messages.forEach((message) => {
+            connectedRecipients.forEach((connectedRecipient) => {
+              connectedSenders.forEach((connectedSender) => {
+                if (
+                  message.recipient._id.toString() ===
+                    connectedRecipient.userId.toString() &&
+                  message.sender._id.toString() ==
+                    connectedSender.userId.toString()
+                ) {
+                  result.push({
+                    ...message,
+                    sender: { ...message.sender, isConnected: true },
+                    recipient: {
+                      ...message.recipient,
+                      isConnected: true,
+                    },
+                  });
+                } else if (
+                  message.recipient._id.toString() ===
+                    connectedRecipient.userId.toString() &&
+                  message.sender._id.toString() !==
+                    connectedSender.userId.toString()
+                ) {
+                  result.push({
+                    ...message,
+                    sender: { ...message.sender, isConnected: false },
+                    recipient: {
+                      ...message.recipient,
+                      isConnected: true,
+                    },
+                  });
+                } else if (
+                  message.recipient._id.toString() !==
+                    connectedRecipient.userId.toString() &&
+                  message.sender._id.toString() ===
+                    connectedSender.userId.toString()
+                ) {
+                  result.push({
+                    ...message,
+                    sender: { ...message.sender, isConnected: true },
+                    recipient: {
+                      ...message.recipient,
+                      isConnected: false,
+                    },
+                  });
+                } else {
+                  result.push({
+                    ...message,
+                    sender: { ...message.sender, isConnected: false },
+                    recipient: {
+                      ...message.recipient,
+                      isConnected: false,
+                    },
+                  });
+                }
+              });
+            });
+          });
         }
       }
 
