@@ -63,33 +63,35 @@ const getMessages = (userId) => {
 
       let result = [];
 
-      if (connectedRecipients.length === 0 && connectedSenders.length > 0) {
-        messages.forEach((message) => {
-          connectedSenders.forEach((connectedSender) => {
-            if (
-              message.sender._id.toString() ===
-              connectedSender.userId.toString()
-            ) {
-              result.push({
-                ...message,
-                sender: { ...message.sender, isConnected: true },
-                recipient: {
-                  ...message.recipient,
-                  isConnected: false,
-                },
-              });
-            } else {
-              result.push({
-                ...message,
-                sender: { ...message.sender, isConnected: false },
-                recipient: {
-                  ...message.recipient,
-                  isConnected: false,
-                },
-              });
-            }
+      if (messages.length > 0) {
+        if (connectedRecipients.length === 0 && connectedSenders.length > 0) {
+          messages.forEach((message) => {
+            connectedSenders.forEach((connectedSender) => {
+              if (
+                message.sender._id.toString() ===
+                connectedSender.userId.toString()
+              ) {
+                result.push({
+                  ...message,
+                  sender: { ...message.sender, isConnected: true },
+                  recipient: {
+                    ...message.recipient,
+                    isConnected: false,
+                  },
+                });
+              } else {
+                result.push({
+                  ...message,
+                  sender: { ...message.sender, isConnected: false },
+                  recipient: {
+                    ...message.recipient,
+                    isConnected: false,
+                  },
+                });
+              }
+            });
           });
-        });
+        }
       }
 
       if (result.length > 0) {
