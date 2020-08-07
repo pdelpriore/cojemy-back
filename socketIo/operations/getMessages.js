@@ -71,19 +71,19 @@ const getMessages = (userId) => {
               connectedSender.userId.toString()
             ) {
               result.push({
-                ...message._doc,
-                sender: { ...message._doc.sender, isConnected: true },
+                ...message,
+                sender: { ...message.sender, isConnected: true },
                 recipient: {
-                  ...message._doc.recipient,
+                  ...message.recipient,
                   isConnected: false,
                 },
               });
             } else {
               result.push({
-                ...message._doc,
-                sender: { ...message._doc.sender, isConnected: false },
+                ...message,
+                sender: { ...message.sender, isConnected: false },
                 recipient: {
-                  ...message._doc.recipient,
+                  ...message.recipient,
                   isConnected: false,
                 },
               });
