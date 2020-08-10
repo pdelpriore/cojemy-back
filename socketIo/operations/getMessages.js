@@ -187,7 +187,12 @@ const getMessages = (userId) => {
                       isConnected: false,
                     },
                   });
-                } else {
+                } else if (
+                  message.recipient._id.toString() !==
+                    connectedRecipient.userId.toString() &&
+                  message.sender._id.toString() !==
+                    connectedSender.userId.toString()
+                ) {
                   result.push({
                     ...message,
                     sender: { ...message.sender, isConnected: false },
