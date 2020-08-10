@@ -12,6 +12,9 @@ const {
 } = require("../operations/email/sendNewMessageEmail");
 const { getMessages } = require("../operations/getMessages");
 const { extractMessageData } = require("../../shared/extractMessageData");
+const {
+  insertNewConversation,
+} = require("../operations/insertNewConversation");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -93,6 +96,33 @@ module.exports = (io) => {
         if (messageContent.length > 0) {
           io.to(socket.id).emit("newMessageSent", {
             messageSent: messageContent,
+          });
+        }
+      } catch (err) {
+        if (err) console.log(err);
+      }
+    });
+    socket.on("sendNewConversation", async (data) => {
+      try {
+        const newConversationContent = await insertNewConversation(data);
+
+        const socketRecipient = await Socket.findOne({
+          userId: data.recipient,
+        });
+
+        const sender = await User.findById(data.sender);
+        const recipient = await User.findById(data.recipient);
+
+        if (socketRecipient && newConversationContent.length > 0) {
+          io.to(socketRecipient.userSocketId).emit("newConversationSent", {
+            newConversationContent: newConversationContent,
+          });
+        } else {
+          await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
+        }
+        if (newConversationContent.length > 0) {
+          io.to(socket.id).emit("newConversationSent", {
+            newConversationContent: newConversationContent,
           });
         }
       } catch (err) {
