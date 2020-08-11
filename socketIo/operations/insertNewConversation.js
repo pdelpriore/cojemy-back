@@ -22,24 +22,26 @@ const insertNewConversation = (data) => {
 
       const newConversationContent = await Conversation.find({
         _id: { $in: messageUpdated.conversations },
-      }).populate({
-        path: "author",
-        select: [
-          "-email",
-          "-password",
-          "-isEmailConfirmed",
-          "-isGoogleUser",
-          "-isPremium",
-          "-isTrialPeriod",
-          "-creationDate",
-          "-recipes",
-          "-events",
-          "-eventsJoined",
-          "-followers",
-          "-messages",
-        ],
-        model: User,
-      });
+      })
+        .sort({ date: 1 })
+        .populate({
+          path: "author",
+          select: [
+            "-email",
+            "-password",
+            "-isEmailConfirmed",
+            "-isGoogleUser",
+            "-isPremium",
+            "-isTrialPeriod",
+            "-creationDate",
+            "-recipes",
+            "-events",
+            "-eventsJoined",
+            "-followers",
+            "-messages",
+          ],
+          model: User,
+        });
       resolve(newConversationContent);
     } catch (err) {
       if (err) throw new Error(err);
