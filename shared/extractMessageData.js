@@ -1,5 +1,6 @@
 const extractMessageData = (messages) => {
   return messages.map((message) => ({
+    _id: message._doc._id,
     conversations: message._doc.conversations,
     recipient: {
       ...message.recipient._doc,
