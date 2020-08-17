@@ -23,6 +23,7 @@ module.exports = (io) => {
       try {
         await checkAndUpdateSocketData(data);
         socket.broadcast.emit("userActive", data.userId);
+        socket.broadcast.emit("userActiveListInfo", data.userId);
       } catch (err) {
         if (err) console.log(err);
       }
@@ -33,6 +34,7 @@ module.exports = (io) => {
         if (userId) {
           socket.emit("userDisconnected", true);
           socket.broadcast.emit("userInactive", userId);
+          socket.broadcast.emit("userInactiveListInfo", userId);
         }
       } catch (err) {
         if (err) console.log(err);
@@ -43,7 +45,10 @@ module.exports = (io) => {
         const socketData = await Socket.findOne({ userSocketId: socket.id });
         if (socketData) {
           const userId = await removeUserSocketData(null, socket.id);
-          if (userId) socket.broadcast.emit("userInactive", userId);
+          if (userId) {
+            socket.broadcast.emit("userInactive", userId);
+            socket.broadcast.emit("userInactiveListInfo", userId);
+          }
         }
       } catch (err) {
         if (err) console.log(err);
