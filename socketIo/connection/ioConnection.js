@@ -95,9 +95,10 @@ module.exports = (io) => {
           io.to(socketRecipient.userSocketId).emit("newMessageSent", {
             messageSent: messageContent,
           });
-          io.to(socketRecipient.userSocketId).emit("newMessageSentListInfo", {
-            messageSent: messageContent,
-          });
+          io.to(socketRecipient.userSocketId).emit(
+            "newMessageSentListInfo",
+            true
+          );
         } else {
           await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
         }
@@ -105,9 +106,7 @@ module.exports = (io) => {
           io.to(socket.id).emit("newMessageSent", {
             messageSent: messageContent,
           });
-          io.to(socket.id).emit("newMessageSentListInfo", {
-            messageSent: messageContent,
-          });
+          io.to(socket.id).emit("newMessageSentListInfo", true);
         }
       } catch (err) {
         if (err) console.log(err);
