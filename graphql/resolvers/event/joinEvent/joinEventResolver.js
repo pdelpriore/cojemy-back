@@ -1,11 +1,15 @@
 const User = require("../../../../model/User");
 const Address = require("../../../../model/Address");
 const Event = require("../../../../model/Event");
-const { strings } = require("../../../../strings/Strings");
+const {
+  isEventJoined,
+} = require("../../../operations/verification/isEventJoined");
 
 module.exports = {
   joinEvent: async ({ eventId, email }) => {
     try {
+      await isEventJoined(eventId, email);
+
       const userUpdated = await User.findOneAndUpdate(
         { email: email },
         { $push: { eventsJoined: eventId } },

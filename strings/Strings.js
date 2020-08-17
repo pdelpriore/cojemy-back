@@ -125,6 +125,11 @@ const strings = Object.freeze({
       NO_RECIPIENT: "pas de résultat",
       NO_MESSAGES: "pas de messages",
     },
+    joinEvent: {
+      ALREADY_JOINED: "tu déjà participe à l'événement.",
+      FULL: "pas de places",
+      AUTHOR: "tu es un autheur de l'événement. Tu es déjà inscrit.",
+    },
   },
 });
 
