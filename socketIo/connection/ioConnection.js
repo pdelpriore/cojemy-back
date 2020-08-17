@@ -87,18 +87,20 @@ module.exports = (io) => {
         const recipient = await User.findById(data.recipient);
 
         if (socketRecipient && messageContent.length > 0) {
-          console.log("sent to recipient");
-          console.log(socketRecipient.userSocketId);
           io.to(socketRecipient.userSocketId).emit("newMessageSent", {
+            messageSent: messageContent,
+          });
+          io.to(socketRecipient.userSocketId).emit("newMessageSentListInfo", {
             messageSent: messageContent,
           });
         } else {
           await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
         }
         if (messageContent.length > 0) {
-          console.log("sent to sender");
-          console.log(socket.id);
           io.to(socket.id).emit("newMessageSent", {
+            messageSent: messageContent,
+          });
+          io.to(socket.id).emit("newMessageSentListInfo", {
             messageSent: messageContent,
           });
         }
