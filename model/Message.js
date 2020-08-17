@@ -11,7 +11,7 @@ const MessageSchema = new Schema(
       type: Schema.Types.ObjectId,
       ref: "user",
     },
-    isRead: {
+    isRecipientRead: {
       type: Boolean,
       required: true,
     },

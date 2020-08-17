@@ -87,6 +87,8 @@ module.exports = (io) => {
         const recipient = await User.findById(data.recipient);
 
         if (socketRecipient && messageContent.length > 0) {
+          console.log("sent to recipient");
+          console.log(socketRecipient.userSocketId);
           io.to(socketRecipient.userSocketId).emit("newMessageSent", {
             messageSent: messageContent,
           });
@@ -94,6 +96,8 @@ module.exports = (io) => {
           await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
         }
         if (messageContent.length > 0) {
+          console.log("sent to sender");
+          console.log(socket.id);
           io.to(socket.id).emit("newMessageSent", {
             messageSent: messageContent,
           });
