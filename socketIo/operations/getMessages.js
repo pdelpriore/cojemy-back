@@ -96,7 +96,10 @@ const getMessages = (userId) => {
                     isConnected: false,
                   },
                 });
-              } else {
+              } else if (
+                message.sender._id.toString() !==
+                connectedSender.userId.toString()
+              ) {
                 result.push({
                   ...message,
                   sender: { ...message.sender, isConnected: false },
@@ -126,7 +129,10 @@ const getMessages = (userId) => {
                     isConnected: true,
                   },
                 });
-              } else {
+              } else if (
+                message.recipient._id.toString() !==
+                connectedRecipient.userId.toString()
+              ) {
                 result.push({
                   ...message,
                   sender: { ...message.sender, isConnected: false },

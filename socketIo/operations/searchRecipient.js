@@ -11,7 +11,7 @@ const searchRecipient = (senderId, searchedUser) => {
       }).limit(5);
       if (recipients.length > 0) {
         const recipientsWithoutSender = recipients.filter(
-          (recipient) => recipient._id.toString() !== senderId
+          (recipient) => recipient._id.toString() !== senderId.toString()
         );
         const recipientIds = recipientsWithoutSender.map(
           (element) => element._id
@@ -19,17 +19,13 @@ const searchRecipient = (senderId, searchedUser) => {
         const connected = await Socket.find({ userId: { $in: recipientIds } });
         if (connected.length > 0) {
           let result = [];
-          recipientsWithoutSender.forEach((recipient) => {
-            connected.forEach((connectedUser) => {
-              if (
-                recipient._id.toString() === connectedUser.userId.toString()
-              ) {
-                result.push({ ...recipient, isConnected: true });
-              } else {
-                result.push({ ...recipient, isConnected: false });
-              }
-            });
-          });
+          recipientsWithoutSender.sort();
+          connected.sort((a, b) => (a.userId > b.userId ? 1 : -1));
+          recipientsWithoutSender.every((recipient, index) =>
+            recipient._id.toString() === connected[index].userId.toString()
+              ? result.push({ ...recipient, isConnected: true })
+              : result.push({ ...recipient, isConnected: false })
+          );
           resolve(result);
         } else {
           let result = [];
