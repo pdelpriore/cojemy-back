@@ -18,23 +18,24 @@ const searchRecipient = (senderId, searchedUser) => {
         );
         const connected = await Socket.find({ userId: { $in: recipientIds } });
         if (connected.length > 0) {
-          let result = [];
           recipientsWithoutSender.sort();
           connected.sort((a, b) =>
             a.userId.toString() > b.userId.toString() ? 1 : -1
           );
-          recipientsWithoutSender.every((recipient, index) =>
-            recipient._id.toString() === connected[index].userId.toString()
-              ? result.push({ ...recipient, isConnected: true })
-              : result.push({ ...recipient, isConnected: false })
+          resolve(
+            recipientsWithoutSender.map((recipient, index) =>
+              recipient._id.toString() === connected[index].userId.toString()
+                ? { ...recipient, isConnected: true }
+                : { ...recipient, isConnected: false }
+            )
           );
-          resolve(result);
         } else {
-          let result = [];
-          recipientsWithoutSender.forEach((recipient) => {
-            result.push({ ...recipient, isConnected: false });
-          });
-          resolve(result);
+          resolve(
+            recipientsWithoutSender.map((recipient) => ({
+              ...recipient,
+              isConnected: false,
+            }))
+          );
         }
       } else {
         reject(capitalizeFirst(strings.errors.mails.NO_RECIPIENT));
