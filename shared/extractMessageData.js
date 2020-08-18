@@ -7,7 +7,7 @@ const extractMessageData = (messages) => {
       isConnected: message.recipient.isConnected,
     },
     sender: { ...message.sender._doc, isConnected: message.sender.isConnected },
-    isRead: message._doc.isRead,
+    isRecipientRead: message._doc.isRecipientRead,
     date: message._doc.date,
   }));
 };
