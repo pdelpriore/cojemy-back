@@ -20,7 +20,9 @@ const searchRecipient = (senderId, searchedUser) => {
         if (connected.length > 0) {
           let result = [];
           recipientsWithoutSender.sort();
-          connected.sort((a, b) => (a.userId > b.userId ? 1 : -1));
+          connected.sort((a, b) =>
+            a.userId.toString() > b.userId.toString() ? 1 : -1
+          );
           recipientsWithoutSender.every((recipient, index) =>
             recipient._id.toString() === connected[index].userId.toString()
               ? result.push({ ...recipient, isConnected: true })
