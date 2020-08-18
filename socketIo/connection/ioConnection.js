@@ -1,5 +1,6 @@
 const Socket = require("../../model/Socket");
 const User = require("../../model/User");
+const Message = require("../../model/Message");
 const {
   checkAndUpdateSocketData,
 } = require("../operations/checkAndUpdateSocketData");
@@ -135,6 +136,18 @@ module.exports = (io) => {
             newConversationContent: newConversationContent,
           });
         }
+      } catch (err) {
+        if (err) console.log(err);
+      }
+    });
+    socket.on("messageRead", async (messageId) => {
+      try {
+        await Message.findOneAndUpdate(
+          { _id: messageId },
+          { $set: { isRecipientRead: true } },
+          { new: true }
+        ).exec();
+        io.to(socket.id).emit("messageReadSetListInfo", true);
       } catch (err) {
         if (err) console.log(err);
       }
