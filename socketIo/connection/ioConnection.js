@@ -1,6 +1,5 @@
 const Socket = require("../../model/Socket");
 const User = require("../../model/User");
-const Message = require("../../model/Message");
 const {
   checkAndUpdateSocketData,
 } = require("../operations/checkAndUpdateSocketData");
@@ -12,10 +11,12 @@ const {
   sendNewMessageEmail,
 } = require("../operations/email/sendNewMessageEmail");
 const { getMessages } = require("../operations/getMessages");
-const { extractMessageData } = require("../../shared/extractMessageData");
 const {
   insertNewConversation,
 } = require("../operations/insertNewConversation");
+const { setMessageRead } = require("../operations/setMessageRead");
+const { setUserActive } = require("../operations/setUserActive");
+const { setUserInactive } = require("../operations/setUserInactive");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {
@@ -23,8 +24,9 @@ module.exports = (io) => {
     socket.on("userData", async (data) => {
       try {
         await checkAndUpdateSocketData(data);
+        await setUserActive(data.userId);
         socket.broadcast.emit("userActive", data.userId);
-        socket.broadcast.emit("userActiveListInfo", data.userId);
+        socket.broadcast.emit("userActiveListInfo", true);
       } catch (err) {
         if (err) console.log(err);
       }
@@ -33,9 +35,10 @@ module.exports = (io) => {
       try {
         const userId = await removeUserSocketData(data.userId, null);
         if (userId) {
+          await setUserInactive(userId);
           socket.emit("userDisconnected", true);
           socket.broadcast.emit("userInactive", userId);
-          socket.broadcast.emit("userInactiveListInfo", userId);
+          socket.broadcast.emit("userActiveListInfo", false);
         }
       } catch (err) {
         if (err) console.log(err);
@@ -47,8 +50,9 @@ module.exports = (io) => {
         if (socketData) {
           const userId = await removeUserSocketData(null, socket.id);
           if (userId) {
+            await setUserInactive(userId);
             socket.broadcast.emit("userInactive", userId);
-            socket.broadcast.emit("userInactiveListInfo", userId);
+            socket.broadcast.emit("userActiveListInfo", false);
           }
         }
       } catch (err) {
@@ -72,10 +76,7 @@ module.exports = (io) => {
       try {
         const messages = await getMessages(userId);
         if (messages.length > 0) {
-          io.to(socket.id).emit(
-            "messagesRetrieved",
-            extractMessageData(messages)
-          );
+          io.to(socket.id).emit("messagesRetrieved", messages);
         }
       } catch (err) {
         if (err) io.to(socket.id).emit("getMessagesError", err);
@@ -142,11 +143,7 @@ module.exports = (io) => {
     });
     socket.on("messageRead", async (messageId) => {
       try {
-        await Message.findOneAndUpdate(
-          { _id: messageId },
-          { $set: { isRecipientRead: true } },
-          { new: true }
-        ).exec();
+        await setMessageRead(messageId);
         io.to(socket.id).emit("messageReadSetListInfo", true);
       } catch (err) {
         if (err) console.log(err);

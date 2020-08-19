@@ -63,7 +63,7 @@ const insertNewMessage = (data) => {
 
       resolve(messageContent);
     } catch (err) {
-      if (err) throw new Error(err);
+      if (err) console.log(err);
     }
   });
 };

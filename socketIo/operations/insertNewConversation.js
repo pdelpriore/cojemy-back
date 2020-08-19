@@ -44,7 +44,7 @@ const insertNewConversation = (data) => {
         });
       resolve(newConversationContent);
     } catch (err) {
-      if (err) throw new Error(err);
+      if (err) console.log(err);
     }
   });
 };

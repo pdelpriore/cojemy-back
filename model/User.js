@@ -27,6 +27,10 @@ const UserSchema = new Schema(
       type: Boolean,
       required: true,
     },
+    isConnected: {
+      type: Boolean,
+      required: false,
+    },
     isPremium: {
       type: Boolean,
       required: true,
