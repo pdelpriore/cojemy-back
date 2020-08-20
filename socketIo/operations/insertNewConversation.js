@@ -8,6 +8,7 @@ const insertNewConversation = (data) => {
       const author = await User.findById(data.sender);
 
       const newConversation = new Conversation({
+        message: data.messageId,
         author: author,
         content: data.content,
         date: new Date(),

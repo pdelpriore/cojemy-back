@@ -15,6 +15,7 @@ const {
   insertNewConversation,
 } = require("../operations/insertNewConversation");
 const { setMessageRead } = require("../operations/setMessageRead");
+const { setMessageUnread } = require("../operations/setMessageUnread");
 const { setUserActive } = require("../operations/setUserActive");
 const { setUserInactive } = require("../operations/setUserInactive");
 
@@ -129,6 +130,10 @@ module.exports = (io) => {
           io.to(socketRecipient.userSocketId).emit("newConversationSent", {
             newConversationContent: newConversationContent,
           });
+          io.to(socketRecipient.userSocketId).emit(
+            "newConversationListInfo",
+            newConversationContent[0].message
+          );
         } else {
           await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
         }
@@ -136,6 +141,10 @@ module.exports = (io) => {
           io.to(socket.id).emit("newConversationSent", {
             newConversationContent: newConversationContent,
           });
+          io.to(socket.id).emit(
+            "newConversationListInfo",
+            newConversationContent[0].message
+          );
         }
       } catch (err) {
         if (err) console.log(err);
@@ -145,6 +154,14 @@ module.exports = (io) => {
       try {
         await setMessageRead(messageId);
         io.to(socket.id).emit("messageReadSetListInfo", true);
+      } catch (err) {
+        if (err) console.log(err);
+      }
+    });
+    socket.on("messageUnread", async (messageId) => {
+      try {
+        await setMessageUnread(messageId);
+        io.to(socket.id).emit("messageUnreadSetListInfo", true);
       } catch (err) {
         if (err) console.log(err);
       }
