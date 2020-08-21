@@ -17,7 +17,7 @@ const insertNewMessage = (data) => {
       const message = new Message({
         recipient: data.recipient,
         sender: data.sender,
-        isRecipientRead: false,
+        isRead: false,
         date: new Date(),
         conversations: [conversation],
       });

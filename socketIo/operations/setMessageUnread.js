@@ -5,7 +5,7 @@ const setMessageUnread = (messageId) => {
     try {
       await Message.findOneAndUpdate(
         { _id: messageId },
-        { $set: { isRecipientRead: false } },
+        { $set: { isRead: false } },
         { new: true }
       ).exec();
       resolve();

@@ -5,7 +5,7 @@ const setMessageRead = (messageId) => {
     try {
       await Message.findOneAndUpdate(
         { _id: messageId },
-        { $set: { isRecipientRead: true } },
+        { $set: { isRead: true } },
         { new: true }
       ).exec();
       resolve();
