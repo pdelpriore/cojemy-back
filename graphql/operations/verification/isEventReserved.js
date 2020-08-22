@@ -16,7 +16,8 @@ const isEventReserved = (eventDate, addressObj, addressId) => {
       if (reservedAddress) {
         if (
           addressId === null ||
-          addressId.toString() !== reservedAddress._id.toString()
+          (addressId !== null && addressId.toString()) !==
+            (reservedAddress !== null && reservedAddress._id.toString())
         ) {
           const reservedEvents = await Event.find({
             _id: { $in: reservedAddress.events },
