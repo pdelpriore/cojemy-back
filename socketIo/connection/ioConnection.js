@@ -98,10 +98,7 @@ module.exports = (io) => {
           io.to(socketRecipient.userSocketId).emit("newMessageSent", {
             messageSent: messageContent,
           });
-          io.to(socketRecipient.userSocketId).emit(
-            "newMessageSentListInfo",
-            true
-          );
+          io.to(socketRecipient.userSocketId).emit("newMessageSentInfo", true);
         } else {
           await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
         }
@@ -109,7 +106,7 @@ module.exports = (io) => {
           io.to(socket.id).emit("newMessageSent", {
             messageSent: messageContent,
           });
-          io.to(socket.id).emit("newMessageSentListInfo", true);
+          io.to(socket.id).emit("newMessageSentInfo", true);
         }
       } catch (err) {
         if (err) console.log(err);
@@ -131,7 +128,7 @@ module.exports = (io) => {
             newConversationContent: newConversationContent,
           });
           io.to(socketRecipient.userSocketId).emit(
-            "newConversationListInfo",
+            "newConversationInfo",
             newConversationContent[0].message
           );
         } else {
@@ -142,7 +139,7 @@ module.exports = (io) => {
             newConversationContent: newConversationContent,
           });
           io.to(socket.id).emit(
-            "newConversationListInfo",
+            "newConversationInfo",
             newConversationContent[0].message
           );
         }
@@ -161,7 +158,7 @@ module.exports = (io) => {
     socket.on("messageUnread", async (messageId) => {
       try {
         await setMessageUnread(messageId);
-        io.to(socket.id).emit("messageUnreadSetListInfo", true);
+        io.to(socket.id).emit("messageUnreadSetInfo", true);
       } catch (err) {
         if (err) console.log(err);
       }
