@@ -78,9 +78,11 @@ module.exports = (io) => {
         const messages = await getMessages(userId);
         if (messages.length > 0) {
           io.to(socket.id).emit("messagesRetrieved", messages);
+          io.to(socket.id).emit("messagesRetrievedApp", messages);
         }
       } catch (err) {
         if (err) io.to(socket.id).emit("getMessagesError", err);
+        if (err) io.to(socket.id).emit("getMessagesErrorApp", err);
       }
     });
     socket.on("sendNewMessage", async (data) => {
@@ -174,7 +176,8 @@ module.exports = (io) => {
     socket.on("messageUnread", async (messageId) => {
       try {
         await setMessageUnread(messageId);
-        io.to(socket.id).emit("messageUnreadSetInfo", true);
+        io.to(socket.id).emit("messageUnreadSetListInfo", true);
+        io.to(socket.id).emit("messageUnreadSetAppInfo", true);
       } catch (err) {
         if (err) console.log(err);
       }
