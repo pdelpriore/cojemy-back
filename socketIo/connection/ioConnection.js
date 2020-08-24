@@ -98,7 +98,14 @@ module.exports = (io) => {
           io.to(socketRecipient.userSocketId).emit("newMessageSent", {
             messageSent: messageContent,
           });
-          io.to(socketRecipient.userSocketId).emit("newMessageSentInfo", true);
+          io.to(socketRecipient.userSocketId).emit(
+            "newMessageSentListInfo",
+            true
+          );
+          io.to(socketRecipient.userSocketId).emit(
+            "newMessageSentAppInfo",
+            true
+          );
         } else {
           await sendNewMessageEmail(sender.name, sender.photo, recipient.email);
         }
@@ -106,7 +113,8 @@ module.exports = (io) => {
           io.to(socket.id).emit("newMessageSent", {
             messageSent: messageContent,
           });
-          io.to(socket.id).emit("newMessageSentInfo", true);
+          io.to(socket.id).emit("newMessageSentListInfo", true);
+          io.to(socket.id).emit("newMessageSentAppInfo", true);
         }
       } catch (err) {
         if (err) console.log(err);
@@ -128,7 +136,11 @@ module.exports = (io) => {
             newConversationContent: newConversationContent,
           });
           io.to(socketRecipient.userSocketId).emit(
-            "newConversationInfo",
+            "newConversationListInfo",
+            newConversationContent[0].message
+          );
+          io.to(socketRecipient.userSocketId).emit(
+            "newConversationAppInfo",
             newConversationContent[0].message
           );
         } else {
@@ -139,7 +151,11 @@ module.exports = (io) => {
             newConversationContent: newConversationContent,
           });
           io.to(socket.id).emit(
-            "newConversationInfo",
+            "newConversationListInfo",
+            newConversationContent[0].message
+          );
+          io.to(socket.id).emit(
+            "newConversationAppInfo",
             newConversationContent[0].message
           );
         }
