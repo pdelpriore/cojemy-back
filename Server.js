@@ -25,6 +25,7 @@ const renderHereMap = require("./routes/renderHereMaps");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 const checkRequest = require("./util/checkRequest");
 const { removeUnconfirmedUsers } = require("./util/removeUnconfirmedUsers");
+const { removeOldMessages } = require("./util/removeOldMessages");
 const { strings } = require("./strings/Strings");
 const { capitalizeFirst } = require("./util/Util");
 
@@ -94,6 +95,7 @@ schedule.scheduleJob("*/10 * * * * *", () => {
 schedule.scheduleJob("0 11 * * *", async () => {
   try {
     await removeUnconfirmedUsers();
+    await removeOldMessages();
   } catch (err) {
     if (err) console.log(err);
   }
