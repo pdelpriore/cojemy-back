@@ -1,4 +1,4 @@
-const Socket = require("../../model/Socket");
+const Socket = require("../../../model/Socket");
 
 const checkAndUpdateSocketData = (data) => {
   return new Promise(async (resolve) => {

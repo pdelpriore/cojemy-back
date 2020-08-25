@@ -1,11 +1,11 @@
-const User = require("../../model/User");
+const User = require("../../../model/User");
 
-const setUserInactive = (userId) => {
+const setUserActive = (userId) => {
   return new Promise(async (resolve) => {
     try {
       await User.findOneAndUpdate(
         { _id: userId },
-        { $set: { isConnected: false } },
+        { $set: { isConnected: true } },
         { new: true }
       ).exec();
       resolve();
@@ -15,4 +15,4 @@ const setUserInactive = (userId) => {
   });
 };
 
-module.exports = { setUserInactive };
+module.exports = { setUserActive };

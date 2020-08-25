@@ -2,22 +2,24 @@ const Socket = require("../../model/Socket");
 const User = require("../../model/User");
 const {
   checkAndUpdateSocketData,
-} = require("../operations/checkAndUpdateSocketData");
-const { removeUserSocketData } = require("../operations/removeUserSocketData");
-const { searchRecipient } = require("../operations/searchRecipient");
+} = require("../operations//socketData/checkAndUpdateSocketData");
+const {
+  removeUserSocketData,
+} = require("../operations/socketData/removeUserSocketData");
+const { searchRecipient } = require("../operations/user/searchRecipient");
 const { hideUselessUserData } = require("../../shared/hideUselessUserData");
-const { insertNewMessage } = require("../operations/insertNewMessage");
+const { insertNewMessage } = require("../operations/messages/insertNewMessage");
 const {
   sendNewMessageEmail,
 } = require("../operations/email/sendNewMessageEmail");
-const { getMessages } = require("../operations/getMessages");
+const { getMessages } = require("../operations/messages/getMessages");
 const {
   insertNewConversation,
-} = require("../operations/insertNewConversation");
-const { setMessageRead } = require("../operations/setMessageRead");
-const { setMessageUnread } = require("../operations/setMessageUnread");
-const { setUserActive } = require("../operations/setUserActive");
-const { setUserInactive } = require("../operations/setUserInactive");
+} = require("../operations/conversations/insertNewConversation");
+const { setMessageRead } = require("../operations/messages/setMessageRead");
+const { setMessageUnread } = require("../operations/messages/setMessageUnread");
+const { setUserActive } = require("../operations/user/setUserActive");
+const { setUserInactive } = require("../operations/user/setUserInactive");
 
 module.exports = (io) => {
   io.on("connection", (socket) => {

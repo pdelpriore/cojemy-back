@@ -1,11 +1,11 @@
-const Message = require("../../model/Message");
+const Message = require("../../../model/Message");
 
-const setMessageUnread = (messageId) => {
+const setMessageRead = (messageId) => {
   return new Promise(async (resolve, reject) => {
     try {
       await Message.findOneAndUpdate(
         { _id: messageId },
-        { $set: { isRead: false } },
+        { $set: { isRead: true } },
         { new: true }
       ).exec();
       resolve();
@@ -15,4 +15,4 @@ const setMessageUnread = (messageId) => {
   });
 };
 
-module.exports = { setMessageUnread };
+module.exports = { setMessageRead };

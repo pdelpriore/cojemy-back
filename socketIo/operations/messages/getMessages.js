@@ -1,8 +1,8 @@
-const User = require("../../model/User");
-const Message = require("../../model/Message");
-const Conversation = require("../../model/Conversation");
-const { strings } = require("../../strings/Strings");
-const { capitalizeFirst } = require("../../util/Util");
+const User = require("../../../model/User");
+const Message = require("../../../model/Message");
+const Conversation = require("../../../model/Conversation");
+const { strings } = require("../../../strings/Strings");
+const { capitalizeFirst } = require("../../../util/Util");
 
 const getMessages = (userId) => {
   return new Promise(async (resolve, reject) => {

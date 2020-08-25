@@ -1,6 +1,6 @@
-const Message = require("../../model/Message");
-const Conversation = require("../../model/Conversation");
-const User = require("../../model/User");
+const Message = require("../../../model/Message");
+const Conversation = require("../../../model/Conversation");
+const User = require("../../../model/User");
 
 const insertNewConversation = (data) => {
   return new Promise(async (resolve) => {

@@ -1,6 +1,6 @@
-const User = require("../../model/User");
-const { strings } = require("../../strings/Strings");
-const { capitalizeFirst } = require("../../util/Util");
+const User = require("../../../model/User");
+const { strings } = require("../../../strings/Strings");
+const { capitalizeFirst } = require("../../../util/Util");
 
 const searchRecipient = (senderId, searchedUser) => {
   return new Promise(async (resolve, reject) => {
