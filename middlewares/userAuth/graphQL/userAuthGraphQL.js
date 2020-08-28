@@ -7,7 +7,8 @@ const userAuthGraphQL = async (req, res, next) => {
     if (req.path === strings.path.GRAPHQL) {
       if (
         req.headers.referer !== strings.path.REFERER_LOGIN &&
-        req.headers.referer !== strings.path.REFERER_SIGNUP
+        req.headers.referer !== strings.path.REFERER_SIGNUP &&
+        req.headers.referer !== strings.path.REFERER_CONTACT
       ) {
         await verifyToken(
           req.body.variables.userId,

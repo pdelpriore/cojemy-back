@@ -9,6 +9,7 @@ const strings = Object.freeze({
     REDIRECT_LOGIN: "http://localhost:3000/login",
     REFERER_LOGIN: "http://localhost:3000/login",
     REFERER_SIGNUP: "http://localhost:3000/signup",
+    REFERER_CONTACT: "http://localhost:3000/",
     SERVICE_EMAIL: "paul.del.priore29@gmail.com",
     ORIGIN_FRONT: "http://localhost:3000",
   },
