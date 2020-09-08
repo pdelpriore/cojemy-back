@@ -6,6 +6,7 @@ const strings = Object.freeze({
     HERE_MAP_REQUEST: "/heremaprequest",
     MAP_LOCATION_DETAILS: "/heremaplocation",
     MAP_RENDER: "/heremaprender/:latitude/:longitude/:zoom/:userId/:email",
+    GET_EMOJIS: "/emojis",
     REDIRECT_LOGIN: "http://localhost:3000/login",
     REFERER_LOGIN: "http://localhost:3000/login",
     REFERER_SIGNUP: "http://localhost:3000/signup",

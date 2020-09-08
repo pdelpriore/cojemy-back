@@ -22,6 +22,7 @@ const emailConfirmation = require("./routes/emailConfirmation");
 const autocompleteHereMaps = require("./routes/autocompleteHereMaps");
 const mapLocationDetails = require("./routes/mapLocationDetails");
 const renderHereMap = require("./routes/renderHereMaps");
+const getEmojis = require("./routes/getEmojis");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 const checkRequest = require("./util/checkRequest");
 const { removeUnconfirmedUsers } = require("./util/removeUnconfirmedUsers");
@@ -76,6 +77,7 @@ app.use(
     autocompleteHereMaps(app);
     mapLocationDetails(app);
     renderHereMap(app);
+    getEmojis(app);
 
     io.use(userAuthSocketIO);
     ioConnection(io);
