@@ -23,6 +23,7 @@ const autocompleteHereMaps = require("./routes/autocompleteHereMaps");
 const mapLocationDetails = require("./routes/mapLocationDetails");
 const renderHereMap = require("./routes/renderHereMaps");
 const getEmojis = require("./routes/getEmojis");
+const getEmojiCategories = require("./routes/getEmojiCategories");
 const generateGoogleAuthUrl = require("./helpers/generateGoogleAuthUrl");
 const checkRequest = require("./util/checkRequest");
 const { removeUnconfirmedUsers } = require("./util/removeUnconfirmedUsers");
@@ -78,6 +79,7 @@ app.use(
     mapLocationDetails(app);
     renderHereMap(app);
     getEmojis(app);
+    getEmojiCategories(app);
 
     io.use(userAuthSocketIO);
     ioConnection(io);
