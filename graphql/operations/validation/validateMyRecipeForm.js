@@ -56,8 +56,8 @@ const validateMyRecipeForm = (
       ![
         "lunch",
         "desserts",
-        "boissons",
-        "soirée",
+        "drinks",
+        "evening",
         "salades",
         "fast food",
       ].some((element) => category.includes(element))

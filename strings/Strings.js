@@ -8,9 +8,9 @@ const strings = Object.freeze({
     MAP_RENDER: "/heremaprender/:latitude/:longitude/:zoom/:userId/:email",
     GET_EMOJIS: "/emojis",
     EMOJI_CATEGORIES: "/emojicategories",
-    REDIRECT_LOGIN: "http://localhost:3000/login",
-    REFERER_LOGIN: "http://localhost:3000/login",
-    REFERER_SIGNUP: "http://localhost:3000/signup",
+    REDIRECT_LOGIN: "http://localhost:3000/logowanie",
+    REFERER_LOGIN: "http://localhost:3000/logowanie",
+    REFERER_SIGNUP: "http://localhost:3000/rejestracja",
     REFERER_CONTACT: "http://localhost:3000/",
     SERVICE_EMAIL: "paul.del.priore29@gmail.com",
     ORIGIN_FRONT: "http://localhost:3000",
@@ -24,10 +24,10 @@ const strings = Object.freeze({
     DB: "connected to MongoDB database",
   },
   contact: {
-    CUSTOMER_EMAIL_SENT: "Ton email a été bien envoyé. Merci.",
+    CUSTOMER_EMAIL_SENT: "Email wysłany. Dzięki.",
   },
   remindPass: {
-    PASSWORD_SENT: "nouveau mot de passe envoyé.",
+    PASSWORD_SENT: "nowe hasło zostało wysłane",
   },
   signupGoogleUser: {
     NO_PASSWORD: "password not required",
@@ -51,87 +51,91 @@ const strings = Object.freeze({
   },
   errors: {
     signup: {
-      USER_EMAIL_EXISTS: "email déjà pris.",
-      USER_NAME_EXISTS: "nom d'utilisateur déjà existe.",
+      USER_EMAIL_EXISTS: "email zajęty",
+      USER_NAME_EXISTS: "nazwa użytkownika zajęta",
     },
     signupGoogleUser: {
-      USER_EXISTS: "utilisateur déjà inscrit.",
+      USER_EXISTS: "użytkownik jest już zarejestrowany",
     },
     login: {
-      WRONG_PASSWORD: "mot de passe incorrect.",
-      EMAIL_UNCONFIRMED: "email non confirmé.",
-      ERROR: "c'est un compte google.",
-      HACK: "tu es bloqué en raison de tentative de hack.",
+      WRONG_PASSWORD: "hasło nieprawidłowe",
+      EMAIL_UNCONFIRMED: "nie potwierdził(a)eś swojego maila",
+      ERROR: "to jest konto użytkownika Google",
+      HACK: "zostałeś zablokowany",
     },
     loginGoogleUser: {
-      ERROR: "ce n'est pas un compte google.",
+      ERROR: "to nie jest konto użytkownika Google",
     },
     token: {
-      ERROR: "tu n'es pas autorisé",
+      ERROR: "autoryzacja nie powiodła się",
     },
     remindPass: {
-      USER_NULL: "utilisateur n'existe pas.",
+      USER_NULL: "podany adres mailowy nie istnieje",
     },
     validateSignupForm: {
-      NAME_LENGTH: "ton nom d'utilisateur doit contenir au moins 5 caractères.",
-      NAME_SPACE: "ton nom d'utilisateur ne peut pas contenir des espaces.",
-      WRONG_EMAIL: "ton email n'est pas correct.",
-      EMAILS_MISMATCH: "emails saisis ne sont pas les mêmes.",
-      WRONG_PASSWORD:
-        "ton mot de passe doit contenir au moins: \n 1. Une chiffre \n 2. Un caractère minuscule \n 3. Un caractère majuscule \n 4. Huit caractères",
+      NAME_LENGTH: "nazwa użytkownika musi zawierać min. 5 znaków",
+      NAME_SPACE: "nazwa użytkownika nie może zawierać spacji",
+      WRONG_EMAIL: "nieprawidłowy format adresu mailowego",
+      EMAILS_MISMATCH: "wprowadzone adresy mailowe muszą być takie same",
+      WRONG_PASSWORD: `
+      twoje hasło musi składać się z: 
+      1. min. 1 cyfry
+      2. min. 1 małej litery
+      3. min. 1 dużej litery
+      4. min. 8 znaków
+      `,
     },
     validateMyRecipeForm: {
-      TITLE_LENGTH: "title trop long",
-      IMAGE_FORMAT: "format d'image incorrecte",
-      IMAGE_SIZE: "image trop large",
-      VIDEO_ERROR: "adresse de vidéo incorrecte",
-      CATEGORY_ERROR: "catégorie non acceptée",
-      COOK_TIME_ZERO: "temps de cuisson incorrect",
-      COOK_TIME_ERROR: "temps de cuisson trop large",
-      COOK_TIME_SIZE: "temps de cuisson doit contenir 3 chiffres.",
-      INGREDIENTS_ERROR: "ingredients contiennent un élément vide",
-      IMAGE_UNACCEPTABLE: "image inappropriée",
-      VIDEO_UNACCEPTABLE: "vidéo inappropriée",
-      TITLE_UNACCEPTABLE: "titre inapproprié",
-      DESCRIPTION_UNACCEPTABLE: "description inappropriée",
+      TITLE_LENGTH: "nazwa za długa",
+      IMAGE_FORMAT: "nieprawidłowy format obrazka",
+      IMAGE_SIZE: "za duży rozmiar obrazka",
+      VIDEO_ERROR: "nieprawidłowy adres nagrania",
+      CATEGORY_ERROR: "nieprawidłowa kategoria",
+      COOK_TIME_ZERO: "nieprawidłowy czas gotowania",
+      COOK_TIME_ERROR: "czas gotowania za długi",
+      COOK_TIME_SIZE: "czas gotowania może zawierać max 3 cyfry",
+      INGREDIENTS_ERROR: "składniki zawierają jeden pusty element",
+      IMAGE_UNACCEPTABLE: "niewłaściwy obrazek",
+      VIDEO_UNACCEPTABLE: "niewłaściwe nagranie",
+      TITLE_UNACCEPTABLE: "niewłaściwa nazwa",
+      DESCRIPTION_UNACCEPTABLE: "niewłaściwy opis",
     },
     validateChangePasswordForm: {
-      USER_GOOGLE: "utlisateur google ne peut pas changer son mot de passe.",
+      USER_GOOGLE: "użytkownik Google nie może zmienić hasła",
     },
     validateRateCommentForm: {
-      RATE_VALUE: "note ne peut pas être supérieure à 5.",
+      RATE_VALUE: "ocena nie może być większa od 5",
     },
     retrieveRecipes: {
-      NO_RECIPES: "pas de recettes.",
+      NO_RECIPES: "brak przepisów",
     },
     retrieveEvents: {
-      NO_EVENTS: "pas d'événements",
+      NO_EVENTS: "brak wydarzeń",
     },
     addNewRecipe: {
-      RECIPE_EXISTS: "tu as déjà enregistré cette recette.",
+      RECIPE_EXISTS: "już dodała(e)ś przepis o takiej nazwie",
     },
     validateEventForm: {
-      NO_STREET: "adresse d'événement doit avoir un nom de la rue.",
-      NO_STREET_NUMBER: "merci de préciser un numéro de la rue",
-      NO_CITY: "adresse d'événement doit avoir une ville",
-      AVAILABLE_PLACES_ZERO: "nombre de places incorrect",
-      AVAILABLE_PLACES_ERROR:
-        "nombre de places ne peut pas être supérieur à 500.",
-      AVAILABLE_PLACES_SIZE: "nombre de places doit contenir 3 chiffres.",
-      EVENT_DATE_ERROR: "date incorrecte.",
-      TEL_SIZE: "numéro de téléphone dépasse 9 chiffres",
+      NO_STREET: "podaj nazwe ulicy",
+      NO_STREET_NUMBER: "podaj numer ulicy",
+      NO_CITY: "podaj nazwe miejscowości",
+      AVAILABLE_PLACES_ZERO: "nieprawidłowa ilość miejsc",
+      AVAILABLE_PLACES_ERROR: "max ilość miejsc nie może przekraczać 500",
+      AVAILABLE_PLACES_SIZE: "ilość miejsc może zawierać max 3 cyfry",
+      EVENT_DATE_ERROR: "nieprawidłowa data",
+      TEL_SIZE: "numer telefonu nie może zawierać więcej niż 9 cyfr",
     },
     addNewEvent: {
-      EVENT_RESERVED: "événement déjà réservé sous l'addresse saisie.",
+      EVENT_RESERVED: "w wybranym dniu jest już zarezerwowane inne wydarzenie",
     },
     mails: {
-      NO_RECIPIENT: "pas de résultat",
-      NO_MESSAGES: "pas de messages",
+      NO_RECIPIENT: "odbiorca nie istnieje",
+      NO_MESSAGES: "brak wiadomości",
     },
     joinEvent: {
-      ALREADY_JOINED: "tu déjà participe à l'événement.",
-      FULL: "pas de places",
-      AUTHOR: "tu es un autheur de l'événement. Tu es déjà inscrit.",
+      ALREADY_JOINED: "zapisałe(a)ś się już na te wydarzenie",
+      FULL: "brak wolnych miejsc",
+      AUTHOR: "jesteś organizatorem",
     },
   },
 });
