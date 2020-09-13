@@ -77,13 +77,11 @@ const strings = Object.freeze({
       NAME_SPACE: "nazwa użytkownika nie może zawierać spacji",
       WRONG_EMAIL: "nieprawidłowy format adresu mailowego",
       EMAILS_MISMATCH: "wprowadzone adresy mailowe muszą być takie same",
-      WRONG_PASSWORD: `
-      twoje hasło musi składać się z: 
+      WRONG_PASSWORD: `twoje hasło musi składać się z: 
       1. min. 1 cyfry
       2. min. 1 małej litery
       3. min. 1 dużej litery
-      4. min. 8 znaków
-      `,
+      4. min. 8 znaków`,
     },
     validateMyRecipeForm: {
       TITLE_LENGTH: "nazwa za długa",
