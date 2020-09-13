@@ -4,11 +4,11 @@ const Address = require("../../../model/Address");
 const { removeImage } = require("../image/removeImage");
 const { strings } = require("../../../strings/Strings");
 
-const deleteOldEvents = (email) => {
+const deleteOldEvents = (email, date) => {
   return new Promise(async (resolve) => {
     try {
       const oldEvents = await Event.find({
-        eventDate: { $lt: new Date() },
+        eventDate: { $lt: new Date(date) },
       });
       const oldEventIds =
         oldEvents.length > 0 && oldEvents.map((event) => event._id);

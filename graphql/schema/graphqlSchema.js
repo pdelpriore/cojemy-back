@@ -192,6 +192,7 @@ const RootQuery = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
         skip: { type: GraphQLInt },
         limit: { type: GraphQLInt },
+        date: { type: new GraphQLNonNull(GraphQLDate) },
       },
     },
     searchEvents: {
@@ -216,6 +217,7 @@ const RootMutation = new GraphQLObjectType({
         email: { type: new GraphQLNonNull(GraphQLString) },
         confirmEmail: { type: new GraphQLNonNull(GraphQLString) },
         password: { type: new GraphQLNonNull(GraphQLString) },
+        date: { type: new GraphQLNonNull(GraphQLDate) },
       },
     },
     customerContact: {
@@ -252,6 +254,7 @@ const RootMutation = new GraphQLObjectType({
         name: { type: new GraphQLNonNull(GraphQLString) },
         email: { type: new GraphQLNonNull(GraphQLString) },
         photo: { type: GraphQLString },
+        date: { type: new GraphQLNonNull(GraphQLDate) },
       },
     },
     loginGoogleUser: {
@@ -268,6 +271,7 @@ const RootMutation = new GraphQLObjectType({
         commentContent: { type: new GraphQLNonNull(GraphQLString) },
         userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
+        date: { type: new GraphQLNonNull(GraphQLDate) },
       },
     },
     editRecipeRateComment: {
@@ -307,6 +311,7 @@ const RootMutation = new GraphQLObjectType({
         description: { type: new GraphQLNonNull(GraphQLString) },
         userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
+        date: { type: new GraphQLNonNull(GraphQLDate) },
       },
     },
     editMyRecipe: {
@@ -372,6 +377,7 @@ const RootMutation = new GraphQLObjectType({
         tel: { type: new GraphQLNonNull(GraphQLInt) },
         userId: { type: new GraphQLNonNull(GraphQLID) },
         email: { type: new GraphQLNonNull(GraphQLString) },
+        date: { type: new GraphQLNonNull(GraphQLDate) },
       },
     },
     editEvent: {

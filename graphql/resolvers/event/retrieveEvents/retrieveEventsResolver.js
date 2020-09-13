@@ -7,9 +7,9 @@ const {
 } = require("../../../operations/oldEvents/deleteOldEvents");
 
 module.exports = {
-  retrieveEvents: async ({ category, email, skip, limit }) => {
+  retrieveEvents: async ({ category, email, skip, limit, date }) => {
     try {
-      await deleteOldEvents(email);
+      await deleteOldEvents(email, date);
       const user = await User.findOne({ email: email });
       if (category === strings.retrieveEvents.CAT_MY_EVENTS) {
         const myEvents = await Event.find({ _id: { $in: user.events } })

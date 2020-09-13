@@ -5,7 +5,6 @@ const User = require("../../../../model/User");
 const {
   validateRateCommentForm,
 } = require("../../../operations/validation/validateRateCommentForm");
-const { strings } = require("../../../../strings/Strings");
 
 module.exports = {
   addRecipeRateComment: async ({
@@ -13,6 +12,7 @@ module.exports = {
     rateValue,
     commentContent,
     email,
+    date,
   }) => {
     try {
       await validateRateCommentForm(rateValue);
@@ -26,7 +26,7 @@ module.exports = {
       const comment = new Comment({
         recipe: recipe,
         content: commentContent,
-        date: new Date(),
+        date: date,
       });
       await comment.save();
       const recipeUpdated = await Recipe.findOneAndUpdate(

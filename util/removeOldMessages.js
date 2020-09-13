@@ -6,7 +6,7 @@ const removeOldMessages = () => {
   return new Promise(async (resolve) => {
     try {
       const oldMessages = await Message.find({
-        date: { $lte: new Date().getTime() - 1000 * 3600 * 24 * 4 },
+        date: { $lte: new Date().getTime() - 1000 * 3600 * 24 * 3 },
       });
       if (oldMessages.length > 0) {
         const oldMessageIds = oldMessages.map((message) => message._id);

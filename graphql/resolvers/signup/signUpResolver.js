@@ -9,7 +9,7 @@ const { sendEmailConfirm } = require("../../operations/email/sendEmailConfirm");
 const { hideUserPassword } = require("../../../shared/hideUserPassword");
 
 module.exports = {
-  signUp: async ({ name, email, confirmEmail, password }) => {
+  signUp: async ({ name, email, confirmEmail, password, date }) => {
     try {
       const userEmail = await User.findOne({ email: email });
       const userName = await User.findOne({ name: name });
@@ -28,7 +28,7 @@ module.exports = {
           isGoogleUser: false,
           isPremium: false,
           isTrialPeriod: true,
-          creationDate: new Date(),
+          creationDate: date,
         });
         await user.save();
         const token = await generateToken(email);

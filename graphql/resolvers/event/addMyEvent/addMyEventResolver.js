@@ -23,6 +23,7 @@ module.exports = {
     eventDate,
     tel,
     email,
+    date,
   }) => {
     try {
       await validateEventForm(
@@ -57,7 +58,7 @@ module.exports = {
           author: user,
           eventDate: eventDate,
           tel: tel,
-          creationDate: new Date(),
+          creationDate: date,
         });
         await event.save();
 
@@ -114,7 +115,7 @@ module.exports = {
           author: user,
           eventDate: eventDate,
           tel: tel,
-          creationDate: new Date(),
+          creationDate: date,
         });
         await event.save();
 

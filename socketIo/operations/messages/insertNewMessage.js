@@ -10,7 +10,7 @@ const insertNewMessage = (data) => {
       const conversation = new Conversation({
         author: author,
         content: data.content,
-        date: new Date(),
+        date: data.date,
       });
       await conversation.save();
 
@@ -18,7 +18,7 @@ const insertNewMessage = (data) => {
         recipient: data.recipient,
         sender: data.sender,
         isRead: false,
-        date: new Date(),
+        date: data.date,
         conversations: [conversation],
       });
       await message.save();

@@ -11,7 +11,7 @@ const insertNewConversation = (data) => {
         message: data.messageId,
         author: author,
         content: data.content,
-        date: new Date(),
+        date: data.date,
       });
       await newConversation.save();
 

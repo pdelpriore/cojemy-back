@@ -6,7 +6,7 @@ const {
 const { hideUserPassword } = require("../../../shared/hideUserPassword");
 
 module.exports = {
-  signUpGoogleUser: async ({ name, email, photo }, { req }) => {
+  signUpGoogleUser: async ({ name, email, photo, date }, { req }) => {
     try {
       await verifyGoogleIdToken(email, req.get(strings.request.HEADER));
       const user = await User.findOne({ email: email });
@@ -22,7 +22,7 @@ module.exports = {
           isGoogleUser: true,
           isPremium: false,
           isTrialPeriod: true,
-          creationDate: new Date(),
+          creationDate: date,
         });
         await user.save();
 

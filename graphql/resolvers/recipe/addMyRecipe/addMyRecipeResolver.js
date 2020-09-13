@@ -22,6 +22,7 @@ module.exports = {
     ingredients,
     description,
     email,
+    date,
   }) => {
     try {
       await isRecipeExists(title, category, email);
@@ -47,7 +48,7 @@ module.exports = {
         cookTime: cookTime,
         ingredients: ingredients,
         description: description,
-        date: new Date(),
+        date: date,
         author: user,
         comments: [],
       });
