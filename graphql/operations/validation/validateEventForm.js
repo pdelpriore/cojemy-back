@@ -40,7 +40,7 @@ const validateEventForm = (
       new Buffer.from(
         eventImage.image.replace(/^data:image\/\w+;base64,/, ""),
         "base64"
-      ).byteLength > 102000
+      ).byteLength > 115000
     ) {
       reject(strings.errors.validateMyRecipeForm.IMAGE_SIZE);
     } else if (
