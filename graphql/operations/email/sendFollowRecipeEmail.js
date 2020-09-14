@@ -50,7 +50,7 @@ const sendFollowRecipeEmail = (
             <tr>
               <td>
                 <table
-                  style="background-color: #2e303f;"
+                  style="background-color: #2e303f; width: 350px"
                   border="0"
                   cellspacing="10"
                   cellpadding="0"
