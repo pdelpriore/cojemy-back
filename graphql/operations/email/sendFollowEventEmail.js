@@ -1,8 +1,8 @@
 const {
   gmailTransporter,
 } = require("../../../config/nodemailer/transporters/gmail/gmailTransporter");
-const { gmailAddress } = require("../../../config/security/Security");
 const { userGooglePhoto } = require("../../../shared/testWords");
+require("dotenv").config();
 
 const sendFollowEventEmail = (
   name,
@@ -28,7 +28,7 @@ const sendFollowEventEmail = (
     const url = "http://localhost:3000/myevents";
 
     const mailOptions = {
-      from: `${gmailAddress}`,
+      from: `${process.env.GMAIL_ADDRESS}`,
       to: emailList,
       subject: `Co Jemy ? - Użytkownik ${name} organizuje nowe wydarzenie kulinarne`,
       html: `<!DOCTYPE html>

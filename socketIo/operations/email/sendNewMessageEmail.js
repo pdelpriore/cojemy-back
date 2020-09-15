@@ -1,8 +1,8 @@
 const {
   gmailTransporter,
 } = require("../../../config/nodemailer/transporters/gmail/gmailTransporter");
-const { gmailAddress } = require("../../../config/security/Security");
 const { userGooglePhoto } = require("../../../shared/testWords");
+require("dotenv").config();
 
 const sendNewMessageEmail = (userName, userImagePath, recipient) => {
   return new Promise((resolve) => {
@@ -18,7 +18,7 @@ const sendNewMessageEmail = (userName, userImagePath, recipient) => {
     const url = "http://localhost:3000/mails";
 
     const mailOptions = {
-      from: `${gmailAddress}`,
+      from: `${process.env.GMAIL_ADDRESS}`,
       to: recipient,
       subject: `Co Jemy ? - Użytkownik ${userName} wyslal Ci nowa wiadomosc`,
       html: `<!DOCTYPE html>

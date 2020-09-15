@@ -1,13 +1,13 @@
 const {
   gmailTransporter,
 } = require("../../../config/nodemailer/transporters/gmail/gmailTransporter");
-const { gmailAddress } = require("../../../config/security/Security");
 const { strings } = require("../../../strings/Strings");
+require("dotenv").config();
 
 const sendCustomerContactEmail = (subject, email, content) => {
   return new Promise((resolve) => {
     const mailOptions = {
-      from: `${gmailAddress}`,
+      from: `${process.env.GMAIL_ADDRESS}`,
       to: strings.path.SERVICE_EMAIL,
       subject: "Co Jemy ? - Customer Contact Email",
       html: `<!DOCTYPE html>

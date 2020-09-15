@@ -1,6 +1,6 @@
 const { strings } = require("../strings/Strings");
-const { hereAPIKey } = require("../config/security/Security");
 const fetch = require("node-fetch");
+require("dotenv").config();
 
 module.exports = (app) => {
   app.post(strings.path.HERE_MAP_REQUEST, async (req, res) => {
@@ -8,7 +8,7 @@ module.exports = (app) => {
       const { addressValue } = req.body;
       const response = await fetch(
         encodeURI(
-          `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?query=${addressValue}&apiKey=${hereAPIKey}`
+          `https://autocomplete.geocoder.ls.hereapi.com/6.2/suggest.json?query=${addressValue}&apiKey=${process.env.HERE_API_KEY}`
         ),
         {
           method: "get",

@@ -1,10 +1,7 @@
 const jwt = require("jsonwebtoken");
 const cryptoJS = require("crypto-js");
-const {
-  jwtSecret,
-  jwtEncryptionKey,
-} = require("../../../config/security/Security");
 const User = require("../../../model/User");
+require("dotenv").config();
 
 const generateToken = (email) => {
   return new Promise(async (resolve) => {
@@ -13,9 +10,11 @@ const generateToken = (email) => {
       if (user) {
         const token = jwt.sign(
           { userId: user._id, email: user.email },
-          jwtSecret
+          process.env.JWT_SECRET
         );
-        resolve(cryptoJS.AES.encrypt(token, jwtEncryptionKey).toString());
+        resolve(
+          cryptoJS.AES.encrypt(token, process.env.JWT_ENCRYPTION_KEY).toString()
+        );
       }
     } catch (err) {
       if (err) throw new Error(err);

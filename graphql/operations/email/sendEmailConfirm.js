@@ -1,13 +1,13 @@
 const {
   gmailTransporter,
 } = require("../../../config/nodemailer/transporters/gmail/gmailTransporter");
-const { gmailAddress } = require("../../../config/security/Security");
+require("dotenv").config();
 
 const sendEmailConfirm = (name, email, token) => {
   return new Promise((resolve) => {
     const url = `http://localhost:4000/emailconfirm/${token}/${email}`;
     const mailOptions = {
-      from: `${gmailAddress}`,
+      from: `${process.env.GMAIL_ADDRESS}`,
       to: email,
       subject: "Co Jemy ? - Potwierdzenie adresu email",
       html: `<!DOCTYPE html>

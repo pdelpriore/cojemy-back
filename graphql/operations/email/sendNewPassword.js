@@ -1,12 +1,12 @@
 const {
   gmailTransporter,
 } = require("../../../config/nodemailer/transporters/gmail/gmailTransporter");
-const { gmailAddress } = require("../../../config/security/Security");
+require("dotenv").config();
 
 const sendNewPassword = (name, password, email) => {
   return new Promise((resolve) => {
     const mailOptions = {
-      from: `${gmailAddress}`,
+      from: `${process.env.GMAIL_ADDRESS}`,
       to: email,
       subject: "Co Jemy ? - Twoje nowe hasło",
       html: `<!DOCTYPE html>

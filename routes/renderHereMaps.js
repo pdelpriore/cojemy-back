@@ -1,8 +1,8 @@
-const { hereAPIKey } = require("../config/security/Security");
 const { renderMap } = require("../util/renderMap");
 const { verifyToken } = require("../shared/verifyToken");
 const { strings } = require("../strings/Strings");
 const { capitalizeFirst } = require("../util/Util");
+require("dotenv").config();
 
 module.exports = (app) => {
   app.get(strings.path.MAP_RENDER, async (req, res) => {
@@ -20,7 +20,7 @@ module.exports = (app) => {
             req.params.latitude,
             req.params.longitude,
             req.params.zoom,
-            hereAPIKey
+            process.env.HERE_API_KEY
           )
         );
     } catch (err) {

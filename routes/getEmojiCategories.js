@@ -1,12 +1,12 @@
 const { strings } = require("../strings/Strings");
-const { emojiAPIKey } = require("../config/security/Security");
 const fetch = require("node-fetch");
+require("dotenv").config();
 
 module.exports = (app) => {
   app.post(strings.path.EMOJI_CATEGORIES, async (req, res) => {
     try {
       const response = await fetch(
-        `https://emoji-api.com/categories?access_key=${emojiAPIKey}`,
+        `https://emoji-api.com/categories?access_key=${process.env.EMOJI_API_KEY}`,
         {
           method: "get",
           headers: {

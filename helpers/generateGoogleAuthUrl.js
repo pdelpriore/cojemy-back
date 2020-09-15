@@ -1,9 +1,5 @@
-const {
-  IdClient,
-  clientSecret,
-  redirectUrl,
-  gmailCode,
-} = require("../config/security/Security");
+//all secrets now available in process env
+
 const { google } = require("googleapis");
 
 const generateGoogleAuthUrl = () => {
