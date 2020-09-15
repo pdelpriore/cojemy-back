@@ -70,7 +70,7 @@ const strings = Object.freeze({
       ERROR: "autoryzacja nie powiodła się",
     },
     remindPass: {
-      USER_NULL: "podany adres mailowy nie istnieje",
+      USER_NULL: "użytkownik nie istnieje",
     },
     validateSignupForm: {
       NAME_LENGTH: "nazwa użytkownika musi zawierać min. 5 znaków",
