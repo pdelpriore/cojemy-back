@@ -1,18 +1,9 @@
-const fs = require("fs");
-require("dotenv").config();
 const express = require("express");
 const app = express();
 const graphqlHTTP = require("express-graphql");
 const graphqlSchema = require("./graphql/schema/graphqlSchema");
 const rootResolver = require("./graphql/resolvers/index");
-const server = require("https").createServer(
-  {
-    key: fs.readFileSync("./key.pem"),
-    cert: fs.readFileSync("./cert.pem"),
-    passphrase: process.env.PASSPHRASE,
-  },
-  app
-);
+const server = require("http").createServer(app);
 const io = require("socket.io")(server);
 const cors = require("cors");
 const bodyParser = require("body-parser");
