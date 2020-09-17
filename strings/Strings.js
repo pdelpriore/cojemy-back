@@ -8,7 +8,7 @@ const strings = Object.freeze({
     MAP_RENDER: "/heremaprender/:latitude/:longitude/:zoom/:userId/:email",
     GET_EMOJIS: "/emojis",
     EMOJI_CATEGORIES: "/emojicategories",
-    REDIRECT_LOGIN: "http://localhost:4000/logowanie",
+    REDIRECT: "http://localhost:4000",
     REFERER_LOGIN: "http://localhost:4000/logowanie",
     REFERER_SIGNUP: "http://localhost:4000/rejestracja",
     REFERER_CONTACT: "http://localhost:4000/",
@@ -27,7 +27,7 @@ const strings = Object.freeze({
     CUSTOMER_EMAIL_SENT: "Email wysłany. Dzięki.",
   },
   emailConfirmed: {
-    EMAIL_CONFIRMED: "Email potwierdzony. Możesz się zalogować.",
+    EMAIL_CONFIRMED: "email potwierdzony",
   },
   remindPass: {
     PASSWORD_SENT: "nowe hasło zostało wysłane",

@@ -20,7 +20,7 @@ module.exports = (app) => {
       if (user)
         res
           .cookie("emailConfirmed", strings.emailConfirmed.EMAIL_CONFIRMED)
-          .redirect(strings.path.REDIRECT_LOGIN);
+          .redirect(strings.path.REDIRECT);
     } catch (err) {
       if (err)
         res.status(401).send(capitalizeFirst(strings.errors.token.ERROR));
