@@ -5,7 +5,6 @@ const { capitalizeFirst } = require("../util/Util");
 
 module.exports = (app) => {
   app.get(strings.path.EMAIL_CONFIRM, async (req, res) => {
-    console.log(req.params.email);
     try {
       await verifyToken(
         null,
@@ -20,9 +19,7 @@ module.exports = (app) => {
       ).exec();
       if (user)
         res
-          .cookie("emailConfirmed", strings.emailConfirmed.EMAIL_CONFIRMED, {
-            expires: new Date().getSeconds() + 4,
-          })
+          .cookie("emailConfirmed", strings.emailConfirmed.EMAIL_CONFIRMED)
           .redirect(strings.path.REDIRECT_LOGIN);
     } catch (err) {
       if (err)
