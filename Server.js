@@ -45,7 +45,12 @@ app.use(express.static(path.join(__dirname, "uploads")));
 
 app.use(express.static(path.join(__dirname, "build")));
 app.get("*", (req, res, next) => {
-  req.url.includes("/emailconfirm")
+  req.url.includes("/emailconfirm") ||
+  req.url.includes("/heremaprequest") ||
+  req.url.includes("/heremaplocation") ||
+  req.url.includes("/heremaprender") ||
+  req.url.includes("/emojis") ||
+  req.url.includes("/emojicategories")
     ? next()
     : res.sendFile(path.join(__dirname, "build", "index.html"));
 });
