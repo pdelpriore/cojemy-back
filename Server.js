@@ -44,8 +44,10 @@ app.use(bodyParser.urlencoded({ limit: "250kb", extended: true }));
 app.use(express.static(path.join(__dirname, "uploads")));
 
 app.use(express.static(path.join(__dirname, "build")));
-app.get(strings.path.ORIGIN_FRONT, (req, res) => {
-  res.sendFile(path.join(__dirname, "build", "index.html"));
+app.get("*", (req, res, next) => {
+  req.url.includes("/emailconfirm")
+    ? next()
+    : res.sendFile(path.join(__dirname, "build", "index.html"));
 });
 
 app.use(userAuthGraphQL);
