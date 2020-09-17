@@ -18,7 +18,9 @@ module.exports = (app) => {
         { new: true }
       ).exec();
       if (user)
-        res.cookie("test", "test").redirect(strings.path.REDIRECT_LOGIN);
+        res
+          .cookie("emailConfirmed", "email potwierdzony")
+          .redirect(strings.path.REDIRECT_LOGIN);
     } catch (err) {
       if (err) console.log(err);
       res.status(401).send(capitalizeFirst(strings.errors.token.ERROR));
