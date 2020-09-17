@@ -2,7 +2,7 @@ const strings = Object.freeze({
   path: {
     MONGODB: "mongodb://localhost:27017/quoimanger",
     GRAPHQL: "/graphql",
-    EMAIL_CONFIRM: "/emailconfirm/:token/:email",
+    EMAIL_CONFIRM: "/emailconfirm/:token(*)/:email",
     HERE_MAP_REQUEST: "/heremaprequest",
     MAP_LOCATION_DETAILS: "/heremaplocation",
     MAP_RENDER: "/heremaprender/:latitude/:longitude/:zoom/:userId/:email",

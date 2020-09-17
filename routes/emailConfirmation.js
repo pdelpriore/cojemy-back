@@ -17,10 +17,11 @@ module.exports = (app) => {
         { $set: { isEmailConfirmed: true } },
         { new: true }
       ).exec();
-      if (user) res.redirect(strings.path.REDIRECT_LOGIN);
+      if (user)
+        res.cookie("test", "test").redirect(strings.path.REDIRECT_LOGIN);
     } catch (err) {
-      if (err)
-        res.status(401).send(capitalizeFirst(strings.errors.token.ERROR));
+      if (err) console.log(err);
+      res.status(401).send(capitalizeFirst(strings.errors.token.ERROR));
     }
   });
 };
