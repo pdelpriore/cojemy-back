@@ -8,7 +8,7 @@ const strings = Object.freeze({
     MAP_RENDER: "/heremaprender/:latitude/:longitude/:zoom/:userId/:email",
     GET_EMOJIS: "/emojis",
     EMOJI_CATEGORIES: "/emojicategories",
-    REDIRECT_LOGIN: "http://localhost:3000/logowanie",
+    REDIRECT: "http://localhost:3000",
     REFERER_LOGIN: "http://localhost:3000/logowanie",
     REFERER_SIGNUP: "http://localhost:3000/rejestracja",
     REFERER_CONTACT: "http://localhost:3000/",
