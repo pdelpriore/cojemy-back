@@ -27,7 +27,7 @@ const strings = Object.freeze({
     CUSTOMER_EMAIL_SENT: "Email wysłany. Dzięki.",
   },
   emailConfirmed: {
-    EMAIL_CONFIRMED: "email potwierdzony",
+    EMAIL_CONFIRMED: "Email potwierdzony. Możesz się zalogować.",
   },
   remindPass: {
     PASSWORD_SENT: "nowe hasło zostało wysłane",
