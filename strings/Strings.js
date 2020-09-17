@@ -63,11 +63,11 @@ const strings = Object.freeze({
     login: {
       WRONG_PASSWORD: "hasło nieprawidłowe",
       EMAIL_UNCONFIRMED: "nie potwierdził(a)eś swojego maila",
-      ERROR: "to jest konto użytkownika Google",
+      ERROR: "skorzystaj z przycisku Google aby się zalogować",
       HACK: "zostałeś zablokowany",
     },
     loginGoogleUser: {
-      ERROR: "to nie jest konto użytkownika Google",
+      ERROR: "skorzystaj z formularza aby się zalogować",
     },
     token: {
       ERROR: "autoryzacja nie powiodła się",
