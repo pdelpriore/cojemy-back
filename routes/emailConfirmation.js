@@ -5,6 +5,7 @@ const { capitalizeFirst } = require("../util/Util");
 
 module.exports = (app) => {
   app.get(strings.path.EMAIL_CONFIRM, async (req, res) => {
+    console.log(req.params.email);
     try {
       await verifyToken(
         null,
@@ -17,7 +18,12 @@ module.exports = (app) => {
         { $set: { isEmailConfirmed: true } },
         { new: true }
       ).exec();
-      if (user) res.redirect(strings.path.REDIRECT_LOGIN);
+      if (user)
+        res
+          .cookie("emailConfirmed", strings.emailConfirmed.EMAIL_CONFIRMED, {
+            expires: new Date().getSeconds() + 4,
+          })
+          .redirect(strings.path.REDIRECT_LOGIN);
     } catch (err) {
       if (err)
         res.status(401).send(capitalizeFirst(strings.errors.token.ERROR));
