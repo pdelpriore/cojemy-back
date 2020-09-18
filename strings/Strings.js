@@ -1,6 +1,5 @@
 const strings = Object.freeze({
   path: {
-    MONGODB: "mongodb://localhost:27017/quoimanger",
     GRAPHQL: "/graphql",
     EMAIL_CONFIRM: "/emailconfirm/:token(*)/:email",
     HERE_MAP_REQUEST: "/heremaprequest",
@@ -8,12 +7,12 @@ const strings = Object.freeze({
     MAP_RENDER: "/heremaprender/:latitude/:longitude/:zoom/:userId/:email",
     GET_EMOJIS: "/emojis",
     EMOJI_CATEGORIES: "/emojicategories",
-    REDIRECT_LOGIN: "http://localhost:4000/logowanie",
-    REFERER_LOGIN: "http://localhost:4000/logowanie",
-    REFERER_SIGNUP: "http://localhost:4000/rejestracja",
-    REFERER_CONTACT: "http://localhost:4000/",
+    REDIRECT_LOGIN: "http://cojemy.herokuapp.com/logowanie",
+    REFERER_LOGIN: "http://cojemy.herokuapp.com/logowanie",
+    REFERER_SIGNUP: "http://cojemy.herokuapp.com/rejestracja",
+    REFERER_CONTACT: "http://cojemy.herokuapp.com/",
     SERVICE_EMAIL: "paul.del.priore29@gmail.com",
-    ORIGIN_FRONT: "http://localhost:4000",
+    ORIGIN_FRONT: "http://cojemy.herokuapp.com",
   },
   port: 4000,
   request: {
