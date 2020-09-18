@@ -8,6 +8,8 @@ const validateSignupForm = (name, email, confirmEmail, password) => {
       reject(strings.errors.validateSignupForm.EMAILS_MISMATCH);
     } else if (name.length < 5) {
       reject(strings.errors.validateSignupForm.NAME_LENGTH);
+    } else if (name.length > 21) {
+      reject(strings.errors.validateSignupForm.NAME_TOO_BIG);
     } else if (!emailRegex.test(email)) {
       reject(strings.errors.validateSignupForm.WRONG_EMAIL);
     } else if (!passwordRegex.test(password)) {

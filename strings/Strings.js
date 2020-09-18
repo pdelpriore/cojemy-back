@@ -78,6 +78,7 @@ const strings = Object.freeze({
     validateSignupForm: {
       NAME_LENGTH: "nazwa użytkownika musi zawierać min. 5 znaków",
       NAME_SPACE: "nazwa użytkownika nie może zawierać spacji",
+      NAME_TOO_BIG: "nazwa użytkownika jest za długa",
       WRONG_EMAIL: "nieprawidłowy format adresu mailowego",
       EMAILS_MISMATCH: "wprowadzone adresy mailowe muszą być takie same",
       WRONG_PASSWORD: "hasło musi zawierać cyfry oraz małe i duże litery",

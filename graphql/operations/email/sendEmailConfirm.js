@@ -72,7 +72,7 @@ const sendEmailConfirm = (name, email, token) => {
                           color: #ffffff;
                         "
                       >
-                        Dziękuję za zarejestrowanie konta. Baw się dobrze !
+                        Dzięki za zarejestrowanie konta. Baw się dobrze !
                       </p>
                     </td>
                   </tr>
