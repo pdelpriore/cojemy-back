@@ -20,7 +20,6 @@ module.exports = {
           const token = await generateToken(user.email);
           res.cookie("id", token, {
             httpOnly: true,
-            secure: true,
           });
 
           return hideUserPassword(user);
