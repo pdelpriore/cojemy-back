@@ -1,18 +1,18 @@
 {
   "files": {
-    "main.css": "/static/css/main.4938ce47.chunk.css",
-    "main.js": "/static/js/main.2aa9ae16.chunk.js",
-    "main.js.map": "/static/js/main.2aa9ae16.chunk.js.map",
+    "main.css": "/static/css/main.3d0619dc.chunk.css",
+    "main.js": "/static/js/main.568dbd29.chunk.js",
+    "main.js.map": "/static/js/main.568dbd29.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.fb509f57.js",
     "runtime-main.js.map": "/static/js/runtime-main.fb509f57.js.map",
     "static/css/2.e61fc129.chunk.css": "/static/css/2.e61fc129.chunk.css",
     "static/js/2.18f61ad6.chunk.js": "/static/js/2.18f61ad6.chunk.js",
     "static/js/2.18f61ad6.chunk.js.map": "/static/js/2.18f61ad6.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.ef16be3a518d01210196c661b3316228.js": "/precache-manifest.ef16be3a518d01210196c661b3316228.js",
+    "precache-manifest.c4703f196fa590f6626c5a10aa5d8e6d.js": "/precache-manifest.c4703f196fa590f6626c5a10aa5d8e6d.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.e61fc129.chunk.css.map": "/static/css/2.e61fc129.chunk.css.map",
-    "static/css/main.4938ce47.chunk.css.map": "/static/css/main.4938ce47.chunk.css.map",
+    "static/css/main.3d0619dc.chunk.css.map": "/static/css/main.3d0619dc.chunk.css.map",
     "static/js/2.18f61ad6.chunk.js.LICENSE.txt": "/static/js/2.18f61ad6.chunk.js.LICENSE.txt",
     "static/media/index.css": "/static/media/OpenSans-SemiBold.ba5cde21.ttf",
     "static/media/UploadIcon.svg": "/static/media/UploadIcon.1cedb6e9.svg",
@@ -27,7 +27,7 @@
     "static/media/knobovenret.jpg": "/static/media/knobovenret.cecd1799.jpg",
     "static/media/knobovenretactive.jpg": "/static/media/knobovenretactive.9d9bf0c8.jpg",
     "static/media/loginret.jpg": "/static/media/loginret.72591987.jpg",
-    "static/media/incompatible.css": "/static/media/oops.ad4a29fe.jpg",
+    "static/media/incompatible.css": "/static/media/oops.c7043171.jpg",
     "static/media/panret.jpg": "/static/media/panret.609d52b2.jpg",
     "static/media/panret2.jpg": "/static/media/panret2.2105b5cf.jpg",
     "static/media/recipebookret.png": "/static/media/recipebookret.82e35d0b.png",
@@ -42,7 +42,7 @@
     "static/js/runtime-main.fb509f57.js",
     "static/css/2.e61fc129.chunk.css",
     "static/js/2.18f61ad6.chunk.js",
-    "static/css/main.4938ce47.chunk.css",
-    "static/js/main.2aa9ae16.chunk.js"
+    "static/css/main.3d0619dc.chunk.css",
+    "static/js/main.568dbd29.chunk.js"
   ]
 }
