@@ -13,8 +13,8 @@ const sendFollowRecipeEmail = (
 ) => {
   return new Promise((resolve) => {
     const recipePhoto = recipeImagePath
-      ? `http://localhost:4000/${recipeImagePath}`
-      : "http://localhost:4000/imgs/recipes/recipeDefaultPhoto.jpg";
+      ? `http://cojemy.herokuapp.com/${recipeImagePath}`
+      : "http://cojemy.herokuapp.com/imgs/recipes/recipeDefaultPhoto.jpg";
     const userPhoto =
       userImagePath &&
       userGooglePhoto.some(
@@ -22,9 +22,9 @@ const sendFollowRecipeEmail = (
       )
         ? userImagePath
         : userImagePath
-        ? `http://localhost:4000/${userImagePath}`
-        : "http://localhost:4000/imgs/users/userDefaultPhoto.png";
-    const url = "http://localhost:3000/myrecipes";
+        ? `http://cojemy.herokuapp.com/${userImagePath}`
+        : "http://cojemy.herokuapp.com/imgs/users/userDefaultPhoto.png";
+    const url = "http://cojemy.herokuapp.com/przepisy";
 
     const mailOptions = {
       from: `${process.env.GMAIL_ADDRESS}`,

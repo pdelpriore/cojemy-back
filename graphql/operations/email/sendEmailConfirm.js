@@ -5,7 +5,7 @@ require("dotenv").config();
 
 const sendEmailConfirm = (name, email, token) => {
   return new Promise((resolve) => {
-    const url = `http://localhost:4000/emailconfirm/${token}/${email}`;
+    const url = `http://cojemy.herokuapp.com/emailconfirm/${token}/${email}`;
     const mailOptions = {
       from: `${process.env.GMAIL_ADDRESS}`,
       to: email,

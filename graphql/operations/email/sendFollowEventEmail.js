@@ -14,8 +14,8 @@ const sendFollowEventEmail = (
 ) => {
   return new Promise((resolve) => {
     const eventPhoto = eventImagePath
-      ? `http://localhost:4000/${eventImagePath}`
-      : "http://localhost:4000/imgs/events/eventDefaultPhoto.jpg";
+      ? `http://cojemy.herokuapp.com/${eventImagePath}`
+      : "http://cojemy.herokuapp.com/imgs/events/eventDefaultPhoto.jpg";
     const userPhoto =
       userImagePath &&
       userGooglePhoto.some(
@@ -23,9 +23,9 @@ const sendFollowEventEmail = (
       )
         ? userImagePath
         : userImagePath
-        ? `http://localhost:4000/${userImagePath}`
-        : "http://localhost:4000/imgs/users/userDefaultPhoto.png";
-    const url = "http://localhost:3000/myevents";
+        ? `http://cojemy.herokuapp.com/${userImagePath}`
+        : "http://cojemy.herokuapp.com/imgs/users/userDefaultPhoto.png";
+    const url = "http://cojemy.herokuapp.com/wydarzenia";
 
     const mailOptions = {
       from: `${process.env.GMAIL_ADDRESS}`,
