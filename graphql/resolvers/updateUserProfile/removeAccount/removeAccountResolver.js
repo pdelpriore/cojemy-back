@@ -43,20 +43,19 @@ module.exports = {
         "comments.commentator": user._id,
       });
       if (recipesCommentedAndRatedByUser.length > 0) {
-        const recipeIds = recipesCommentedAndRatedByUser.map(
-          (recipe) => recipe._id
-        );
         recipesCommentedAndRatedByUser.forEach(async (recipe) => {
-          let commentIds = recipe.comments.map((item) => item._id);
-          let recipeComments = recipe.comments.map((item) => item.comment);
-          let recipeRates = recipe.comments.map((item) => item.rate);
+          let recipeId = recipe._id;
+          let userComment = recipe.comments.filter(
+            (item) => item.commentator.toString() === user._id.toString()
+          )[0];
 
-          await Comment.deleteMany({ _id: { $in: recipeComments } });
-          await Rate.deleteMany({ _id: { $in: recipeRates } });
-          await Recipe.updateMany(
-            { _id: { $in: recipeIds } },
-            { $pull: { comments: { $in: commentIds } } }
-          );
+          await Comment.findOneAndRemove({ _id: userComment.comment });
+          await Rate.findOneAndRemove({ _id: userComment.rate });
+          await Recipe.findOneAndUpdate(
+            { _id: recipeId },
+            { $pull: { comments: { _id: userComment._id } } },
+            { new: true }
+          ).exec();
         });
       }
 

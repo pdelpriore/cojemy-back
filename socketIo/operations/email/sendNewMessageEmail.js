@@ -13,9 +13,9 @@ const sendNewMessageEmail = (userName, userImagePath, recipient) => {
       )
         ? userImagePath
         : userImagePath
-        ? `http://localhost:4000/${userImagePath}`
-        : "http://localhost:4000/imgs/users/userDefaultPhoto.png";
-    const url = "http://localhost:3000/mails";
+        ? `http://cojemy.herokuapp.com/${userImagePath}`
+        : "http://cojemy.herokuapp.com/imgs/users/userDefaultPhoto.png";
+    const url = "http://cojemy.herokuapp.com/wiadomosci";
 
     const mailOptions = {
       from: `${process.env.GMAIL_ADDRESS}`,
