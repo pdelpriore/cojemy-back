@@ -1,0 +1,5 @@
+node_modules
+config/security
+.env
+package.json
+package-lock.json
