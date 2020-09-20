@@ -1,2 +1,6 @@
 node_modules
-/config
+helpers
+config/security
+.env
+package.json
+package-lock.json
